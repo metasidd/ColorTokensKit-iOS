@@ -1,5 +1,5 @@
 import XCTest
-@testable import ColorTokensKit_iOS
+@testable import ColorTokensKit
 
 final class ColorTokensKit_iOSTests: XCTestCase {
     func testExample() throws {
