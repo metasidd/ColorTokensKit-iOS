@@ -10,7 +10,7 @@ import SwiftUI
 public class ColorTokens {
     
     /// Default color tokens for any app
-    public class Default {
+    public class `default` {
         public static var foreground: Color {
             Palettes.slate._12
         }
