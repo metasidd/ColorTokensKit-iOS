@@ -6,7 +6,11 @@
 //
 
 import SwiftUI
-
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // Algorithm coming from: https://en.wikipedia.org/wiki/HSL_and_HSV#HSV_to_HSL
 extension Color {
@@ -82,6 +86,39 @@ extension Color {
             light: UIColor(lightModeColor()),
             dark: UIColor(darkModeColor())
         ))
+    }
+}
+#elseif canImport(AppKit)
+// Source: https://www.jessesquires.com/blog/2023/07/11/creating-dynamic-colors-in-swiftui/
+extension Color {
+    public init(
+        light lightModeColor: @escaping @autoclosure () -> Color,
+        dark darkModeColor: @escaping @autoclosure () -> Color
+    ) {
+        self.init(
+            nsColor: NSColor(
+                name: nil,
+                dynamicProvider: { appearance in
+                    switch appearance.name {
+                    case .aqua,
+                         .vibrantLight,
+                         .accessibilityHighContrastAqua,
+                         .accessibilityHighContrastVibrantLight:
+                        return NSColor(lightModeColor())
+
+                    case .darkAqua,
+                         .vibrantDark,
+                         .accessibilityHighContrastDarkAqua,
+                         .accessibilityHighContrastVibrantDark:
+                        return NSColor(darkModeColor())
+
+                    default:
+                        assertionFailure("Unknown appearance: \(appearance.name)")
+                        return NSColor(lightModeColor())
+                    }
+                }
+            )
+        )
     }
 }
 #endif
