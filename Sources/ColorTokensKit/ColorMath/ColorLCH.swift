@@ -2,14 +2,11 @@
 //  ColorLCH.swift
 //
 //
-//  Created by Tim Wood on 10/9/15.
-//  Copyright © 2015 Tim Wood. All rights reserved.
+//  Original repo: https://github.com/timrwood/ColorSpaces
 //
 
 import Foundation
 import SwiftUI
-
-// MARK: - LCH
 
 public struct LCHColor: Hashable {
     public let l: CGFloat     // 0..100

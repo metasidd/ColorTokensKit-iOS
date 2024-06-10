@@ -2,7 +2,7 @@
 //  LABColor.swift
 //
 //
-//  Created by Siddhant Mehta on 2024-06-10.
+//  Original repo: https://github.com/timrwood/ColorSpaces
 //
 
 import Foundation
