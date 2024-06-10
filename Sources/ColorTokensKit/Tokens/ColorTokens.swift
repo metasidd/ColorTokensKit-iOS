@@ -7,56 +7,44 @@
 import Foundation
 import SwiftUI
 
-public class ColorTokens {
+extension Color {
+    public static var foregroundPrimary: Color {
+        AppColors.gray.foregroundPrimary
+    }
+    public static var foregroundSecondary: Color {
+        AppColors.gray.foregroundSecondary
+    }
+    public static var foregroundTertiary: Color {
+        AppColors.gray.foregroundTertiary
+    }
     
-    /// Default color tokens for any app
-    public class `default` {
-        public static var foreground: Color {
-            Palettes.slate._12
-        }
-        public static var foreground_secondary: Color {
-            Palettes.slate._11
-        }
-        public static var foreground_tertiary: Color {
-            Palettes.slate._10
-        }
-        
-        public static var invertedForeground: Color {
-            Palettes.slate._1
-        }
-        public static var invertedForeground_secondary: Color {
-            Palettes.slate._2
-        }
-        public static var invertedForeground_tertiary: Color {
-            Palettes.slate._3
-        }
-        
-        public static var backgroundPrimary: Color {
-            Color(light: .white, dark: .black)
-        }
-        
-        public static var backgroundSecondary: Color {
-            Palettes.slate._2
-        }
-        public static var backgroundTertiary: Color {
-            Palettes.slate._3
-        }
-        
-        public static var outline: Color {
-            Palettes.slate._7
-        }
-        public static var outline_secondary: Color {
-            Palettes.slate._6
-        }
-        public static var outline_tertiary: Color {
-            Palettes.slate._4
-        }
-        
-        public static var negative: PaletteColor {
-            Palettes.ruby()
-        }
-        public static var positive: PaletteColor {
-            Palettes.green()
-        }
+    public static var invertedForeground: Color {
+        AppColors.gray.invertedForegroundPrimary
+    }
+    public static var invertedForegroundSecondary: Color {
+        AppColors.gray.invertedForegroundSecondary
+    }
+    public static var invertedForegroundTertiary: Color {
+        AppColors.gray.invertedForegroundTertiary
+    }
+    
+    public static var backgroundPrimary: Color {
+        Color(light: .white, dark: .black) // Pure black and white
+    }
+    public static var backgroundSecondary: Color {
+        AppColors.gray.backgroundSecondary
+    }
+    public static var backgroundTertiary: Color {
+        AppColors.gray.backgroundTertiary
+    }
+    
+    public static var outlinePrimary: Color {
+        AppColors.gray.outlinePrimary
+    }
+    public static var outlineSecondary: Color {
+        AppColors.gray.outlineSecondary
+    }
+    public static var outlineTertiary: Color {
+        AppColors.gray.outlineTertiary
     }
 }

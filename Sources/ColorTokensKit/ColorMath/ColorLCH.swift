@@ -9,24 +9,35 @@ import Foundation
 import SwiftUI
 
 public struct LCHColor: Hashable {
-    public let l: CGFloat     // 0..100
-    public let c: CGFloat     // 0..128
-    public let h: CGFloat     // 0..360
-    public let alpha: CGFloat // 0..1
+    private let l: CGFloat     // 0..100
+    private let c: CGFloat     // 0..128
+    private let h: CGFloat     // 0..360
+    private let alpha: CGFloat // 0..1
+    private let variableChroma: Bool
     
-    public init (l: CGFloat, c: CGFloat, h: CGFloat, alpha: CGFloat) {
+    public init (l: CGFloat, c: CGFloat, h: CGFloat, alpha: CGFloat = 1.0, variableChroma: Bool = true) {
         self.l = l
         self.c = c
         self.h = h
+        self.variableChroma = variableChroma
         self.alpha = alpha
     }
     
-    public init (color: Color) {
+    public init (h: CGFloat, variableChroma: Bool = true) {
+        self.l = 0
+        self.c = 0
+        self.h = h
+        self.variableChroma = variableChroma
+        self.alpha = 1.0
+    }
+    
+    public init (color: Color, variableChroma: Bool = true) {
         let lchColor = RGBColor(color: color).toLCH()
         self.l = lchColor.l
         self.c = lchColor.c
         self.h = lchColor.h
         self.alpha = lchColor.alpha
+        self.variableChroma = variableChroma
     }
 
     public func toLAB() -> LABColor {
@@ -57,5 +68,20 @@ public struct LCHColor: Hashable {
             h: (h + angle + 360).truncatingRemainder(dividingBy: 360),
             alpha: alpha + (other.alpha - alpha) * t
         )
+    }
+}
+
+extension LCHColor {
+    func getHue() -> CGFloat {
+        self.h
+    }
+    func getLightness() -> CGFloat {
+        self.l
+    }
+    func getChroma() -> CGFloat {
+        self.c
+    }
+    func getVariableChroma() -> Bool {
+        self.variableChroma
     }
 }
