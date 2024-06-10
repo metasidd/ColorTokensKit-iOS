@@ -87,9 +87,9 @@ enum DynamicColorTokens: String, CaseIterable {
     }
 }
 
-typealias DynamicColor = LCHColor
+public typealias DynamicColor = LCHColor
 
-extension DynamicColor {
+public extension DynamicColor {
     var foregroundPrimary: Color { tokenColor(for: .foregroundPrimary) }
     var foregroundSecondary: Color { tokenColor(for: .foregroundSecondary) }
     var foregroundTertiary: Color { tokenColor(for: .foregroundTertiary) }
