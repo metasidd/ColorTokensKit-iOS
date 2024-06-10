@@ -8,42 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension LCHColor {
-    var foregroundPrimary: Color { tokenColor(for: .foregroundPrimary) }
-    var foregroundSecondary: Color { tokenColor(for: .foregroundSecondary) }
-    var foregroundTertiary: Color { tokenColor(for: .foregroundTertiary) }
-    
-    var invertedForegroundPrimary: Color { tokenColor(for: .invertedForegroundPrimary) }
-    var invertedForegroundSecondary: Color { tokenColor(for: .invertedForegroundSecondary) }
-    var invertedForegroundTertiary: Color { tokenColor(for: .invertedForegroundTertiary) }
-    
-    var backgroundPrimary: Color { tokenColor(for: .backgroundPrimary) }
-    var backgroundSecondary: Color { tokenColor(for: .backgroundSecondary) }
-    var backgroundTertiary: Color { tokenColor(for: .backgroundTertiary) }
-    
-    var invertedBackgroundPrimary: Color { tokenColor(for: .invertedBackgroundPrimary) }
-    var invertedBackgroundSecondary: Color { tokenColor(for: .invertedBackgroundSecondary) }
-    var invertedBackgroundTertiary: Color { tokenColor(for: .invertedBackgroundTertiary) }
-    
-    var outlinePrimary: Color { tokenColor(for: .outlinePrimary) }
-    var outlineSecondary: Color { tokenColor(for: .outlineSecondary) }
-    var outlineTertiary: Color { tokenColor(for: .outlineTertiary) }
-    
-    
-    // Extend LCHColor with token properties
-    private func tokenColor(for token: LCHColorTokens) -> Color {
-        let adjustedHue = UIScreen.main.traitCollection.userInterfaceStyle == .dark ? (self.getHue() * 0.75).truncatingRemainder(dividingBy: 360) : self.getHue()
-        let lchColor = LCHColor(
-            l: token.lightness,
-            c: self.getVariableChroma() ? token.chroma : 0,
-            h: adjustedHue,
-            alpha: token.alpha
-        )
-        return lchColor.toColor()
-    }
-}
-
-enum LCHColorTokens: String, CaseIterable {
+enum DynamicColorTokens: String, CaseIterable {
     // Foreground
     case foregroundPrimary = "Foreground Primary"
     case foregroundSecondary = "Foreground Secondary"
@@ -119,5 +84,42 @@ enum LCHColorTokens: String, CaseIterable {
     
     var alpha: CGFloat {
         return 1.0
+    }
+}
+
+typealias DynamicColor = LCHColor
+
+extension DynamicColor {
+    var foregroundPrimary: Color { tokenColor(for: .foregroundPrimary) }
+    var foregroundSecondary: Color { tokenColor(for: .foregroundSecondary) }
+    var foregroundTertiary: Color { tokenColor(for: .foregroundTertiary) }
+    
+    var invertedForegroundPrimary: Color { tokenColor(for: .invertedForegroundPrimary) }
+    var invertedForegroundSecondary: Color { tokenColor(for: .invertedForegroundSecondary) }
+    var invertedForegroundTertiary: Color { tokenColor(for: .invertedForegroundTertiary) }
+    
+    var backgroundPrimary: Color { tokenColor(for: .backgroundPrimary) }
+    var backgroundSecondary: Color { tokenColor(for: .backgroundSecondary) }
+    var backgroundTertiary: Color { tokenColor(for: .backgroundTertiary) }
+    
+    var invertedBackgroundPrimary: Color { tokenColor(for: .invertedBackgroundPrimary) }
+    var invertedBackgroundSecondary: Color { tokenColor(for: .invertedBackgroundSecondary) }
+    var invertedBackgroundTertiary: Color { tokenColor(for: .invertedBackgroundTertiary) }
+    
+    var outlinePrimary: Color { tokenColor(for: .outlinePrimary) }
+    var outlineSecondary: Color { tokenColor(for: .outlineSecondary) }
+    var outlineTertiary: Color { tokenColor(for: .outlineTertiary) }
+    
+    
+    // Extend LCHColor with token properties
+    private func tokenColor(for token: DynamicColorTokens) -> Color {
+        let adjustedHue = UIScreen.main.traitCollection.userInterfaceStyle == .dark ? (self.getHue() * 0.75).truncatingRemainder(dividingBy: 360) : self.getHue()
+        let lchColor = LCHColor(
+            l: token.lightness,
+            c: self.getVariableChroma() ? token.chroma : 0,
+            h: adjustedHue,
+            alpha: token.alpha
+        )
+        return lchColor.toColor()
     }
 }
