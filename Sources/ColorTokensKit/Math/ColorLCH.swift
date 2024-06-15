@@ -69,19 +69,22 @@ public struct LCHColor: Hashable {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
-    public func getTraitAdjustedColor(l: CGFloat, c: CGFloat, a: CGFloat = 1.0) -> Color {
+}
+
+extension LCHColor {
+    public func getResponsiveColor(lightness: CGFloat, chroma: CGFloat, alpha: CGFloat = 1.0) -> Color {
         let h = self.getHue()
         let lightLCHColor = LCHColor(
-            l: l,
-            c: self.getVariableChroma() ? c : 0,
+            l: lightness,
+            c: self.getVariableChroma() ? chroma : 0,
             h: h,
-            alpha: a
+            alpha: alpha
         )
         let darkLCHColor = LCHColor(
-            l: l,
-            c: self.getVariableChroma() ? c : 0,
+            l: lightness,
+            c: self.getVariableChroma() ? chroma : 0,
             h: h * 0.75,
-            alpha: a
+            alpha: alpha
         )
         let color = Color(light: lightLCHColor.toColor(), dark: darkLCHColor.toColor())
         return color
