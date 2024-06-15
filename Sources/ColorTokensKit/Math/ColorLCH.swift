@@ -71,8 +71,8 @@ public struct LCHColor: Hashable {
     }
 }
 
-extension LCHColor {
-    public func getResponsiveColor(lightness: CGFloat, chroma: CGFloat, alpha: CGFloat = 1.0) -> Color {
+public extension LCHColor {
+    func getResponsiveColor(lightness: CGFloat, chroma: CGFloat, alpha: CGFloat = 1.0) -> Color {
         let h = self.getHue()
         let lightLCHColor = LCHColor(
             l: lightness,
@@ -91,7 +91,7 @@ extension LCHColor {
     }
 }
 
-extension LCHColor {
+public extension LCHColor {
     func getHue() -> CGFloat {
         self.h
     }
