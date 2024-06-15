@@ -69,6 +69,23 @@ public struct LCHColor: Hashable {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
+    public func getTraitAdjustedColor(l: CGFloat, c: CGFloat, a: CGFloat = 1.0) -> Color {
+        let h = self.getHue()
+        let lightLCHColor = LCHColor(
+            l: l,
+            c: self.getVariableChroma() ? c : 0,
+            h: h,
+            alpha: a
+        )
+        let darkLCHColor = LCHColor(
+            l: l,
+            c: self.getVariableChroma() ? c : 0,
+            h: h * 0.75,
+            alpha: a
+        )
+        let color = Color(light: lightLCHColor.toColor(), dark: darkLCHColor.toColor())
+        return color
+    }
 }
 
 extension LCHColor {

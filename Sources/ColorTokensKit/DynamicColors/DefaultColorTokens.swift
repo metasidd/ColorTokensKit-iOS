@@ -35,22 +35,4 @@ public extension LCHColor {
     var outlinePrimary: Color { getTraitAdjustedColor(l: 70, c: 30) }
     var outlineSecondary: Color { getTraitAdjustedColor(l: 80, c: 20) }
     var outlineTertiary: Color { getTraitAdjustedColor(l: 90, c: 10) }
-    
-    private func getTraitAdjustedColor(l: CGFloat, c: CGFloat, a: CGFloat = 1.0) -> Color {
-        let h = self.getHue()
-        let lightLCHColor = LCHColor(
-            l: l,
-            c: self.getVariableChroma() ? c : 0,
-            h: h,
-            alpha: a
-        )
-        let darkLCHColor = LCHColor(
-            l: l,
-            c: self.getVariableChroma() ? c : 0,
-            h: h * 0.75,
-            alpha: a
-        )
-        let color = Color(light: lightLCHColor.toColor(), dark: darkLCHColor.toColor())
-        return color
-    }
 }
