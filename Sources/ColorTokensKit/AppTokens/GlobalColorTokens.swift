@@ -8,6 +8,7 @@ import Foundation
 import SwiftUI
 
 extension Color {
+    // Foreground colors
     public static var foregroundPrimary: Color {
         .gray.foregroundPrimary
     }
@@ -18,6 +19,7 @@ extension Color {
         .gray.foregroundTertiary
     }
     
+    // Inverted colors
     public static var invertedForeground: Color {
         .gray.invertedForegroundPrimary
     }
@@ -28,6 +30,7 @@ extension Color {
         .gray.invertedForegroundTertiary
     }
     
+    // Background colors
     public static var backgroundPrimary: Color {
         Color(light: .white, dark: .black) // Pure black and white
     }
@@ -38,6 +41,7 @@ extension Color {
         .gray.backgroundTertiary
     }
     
+    // Outline colors
     public static var outlinePrimary: Color {
         .gray.outlinePrimary
     }
