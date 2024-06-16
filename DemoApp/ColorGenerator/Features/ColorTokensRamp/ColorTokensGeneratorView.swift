@@ -156,6 +156,8 @@ struct ColorTokensGeneratorView: View {
 }
 
 struct ColorBox: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let title: String
     let subtitle: String
     let foregroundColor: Color?
@@ -194,7 +196,7 @@ struct ColorBox: View {
     }
     
     private var lchString: String {
-        return colorToUse.getLCHString()
+        return "(\(colorToUse.getLCHString()))"
     }
     
     var body: some View {

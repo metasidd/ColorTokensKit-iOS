@@ -26,9 +26,9 @@ public extension LCHColor {
     var backgroundTertiary: Color { _20 }
     
     // Inverted background colors
-    var invertedBackgroundPrimary: Color { _80 }
-    var invertedBackgroundSecondary: Color { _65 }
-    var invertedBackgroundTertiary: Color { _50 }
+    var invertedBackgroundPrimary: Color { _90 }
+    var invertedBackgroundSecondary: Color { _75 }
+    var invertedBackgroundTertiary: Color { _60 }
     
     // Outline colors
     var outlinePrimary: Color { _30 }
