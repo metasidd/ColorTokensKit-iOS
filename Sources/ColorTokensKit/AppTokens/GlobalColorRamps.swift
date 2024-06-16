@@ -8,34 +8,35 @@
 import SwiftUI
 
 public extension Color {
-    static var allProColors: [LCHColor] = [
-        Color.gray,
-        Color.pink,
-        Color.red,
-        Color.tomato,
-        Color.orange,
-        Color.bronze,
-        Color.brown,
-        Color.amber,
-        Color.gold,
-        Color.yellow,
-        Color.lime,
-        Color.olive,
-        Color.grass,
-        Color.sage,
-        Color.green,
-        Color.jade,
-        Color.mint,
-        Color.cyan,
-        Color.teal,
-        Color.sky,
-        Color.blue,
-        Color.indigo,
-        Color.iris,
-        Color.purple,
-        Color.violet,
-        Color.plum,
-        Color.ruby
+    // TODO: Replace these with other dynamic names?
+    static let allProColors: [String: LCHColor] = [
+        "gray": Color.gray,
+        "pink": Color.pink,
+        "red": Color.red,
+        "tomato": Color.tomato,
+        "orange": Color.orange,
+        "bronze": Color.bronze,
+        "brown": Color.brown,
+        "amber": Color.amber,
+        "gold": Color.gold,
+        "yellow": Color.yellow,
+        "lime": Color.lime,
+        "olive": Color.olive,
+        "grass": Color.grass,
+        "sage": Color.sage,
+        "green": Color.green,
+        "jade": Color.jade,
+        "mint": Color.mint,
+        "cyan": Color.cyan,
+        "teal": Color.teal,
+        "sky": Color.sky,
+        "blue": Color.blue,
+        "indigo": Color.indigo,
+        "iris": Color.iris,
+        "purple": Color.purple,
+        "violet": Color.violet,
+        "plum": Color.plum,
+        "ruby": Color.ruby
     ]
     
     // Static colors
