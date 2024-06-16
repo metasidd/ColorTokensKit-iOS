@@ -66,21 +66,21 @@ public struct XYZColor: Hashable {
     }
     
     public func toOklab() -> OklabColor {
-        // 1. Convert XYZ to linear LMS
-        let L = 0.4121656120 * x + 0.5362752080 * y + 0.0514575653 * z
-        let M = 0.2118591070 * x + 0.6807189570 * y + 0.1074065790 * z
-        let S = 0.0883097947 * x + 0.2818474170 * y + 0.6302613616 * z
-        
-        // 2. Apply the non-linear transformation (cube root)
+        // Updated XYZ to LMS coefficients
+        let L = 0.8190224379967030 * x + 0.3619062600528904 * y - 0.1288737815209879 * z
+        let M = 0.0329836539323885 * x + 0.9292868615863434 * y + 0.0361446663506424 * z
+        let S = 0.0481771893596242 * x + 0.2642395317527308 * y + 0.6335478284694309 * z
+
+        // Apply the non-linear transformation (cube root)
         let l_ = pow(L, 1.0/3.0)
         let m_ = pow(M, 1.0/3.0)
         let s_ = pow(S, 1.0/3.0)
-        
-        // 3. Convert to Oklab
-        let okL = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_
-        let okA = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_
-        let okB = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_
-        
+
+        // Updated LMS to Oklab coefficients
+        let okL = 0.2104542683093140 * l_ + 0.7936177747023054 * m_ - 0.0040720430116193 * s_
+        let okA = 1.9779985324311684 * l_ - 2.4285922420485799 * m_ + 0.4505937096174110 * s_
+        let okB = 0.0259040424655478 * l_ + 0.7827717124575296 * m_ - 0.8086757549230774 * s_
+
         return OklabColor(l: okL, a: okA, b: okB, alpha: alpha)
     }
     
