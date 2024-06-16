@@ -23,9 +23,7 @@ public extension Color {
         "lime": Color.lime,
         "olive": Color.olive,
         "grass": Color.grass,
-        "sage": Color.sage,
         "green": Color.green,
-        "jade": Color.jade,
         "mint": Color.mint,
         "cyan": Color.cyan,
         "teal": Color.teal,
@@ -55,9 +53,7 @@ public extension Color {
     static let lime = LCHColor(h: 100.0)
     static let olive = LCHColor(h: 110.0)
     static let grass = LCHColor(h: 120.0)
-    static let sage = LCHColor(h: 130.0)
     static let green = LCHColor(h: 140.0)
-    static let jade = LCHColor(h: 150.0)
     static let mint = LCHColor(h: 160.0)
     static let cyan = LCHColor(h: 180.0)
     static let teal = LCHColor(h: 190.0)
