@@ -10,35 +10,35 @@ import SwiftUI
 public extension Color {
     // TODO: Replace these with other dynamic names?
     static let allProColors: [String: LCHColor] = [
-        "gray": Color.gray,
-        "pink": Color.pink,
-        "red": Color.red,
-        "tomato": Color.tomato,
-        "orange": Color.orange,
-        "bronze": Color.bronze,
-        "brown": Color.brown,
-        "amber": Color.amber,
-        "gold": Color.gold,
-        "yellow": Color.yellow,
-        "lime": Color.lime,
-        "olive": Color.olive,
-        "grass": Color.grass,
-        "green": Color.green,
-        "mint": Color.mint,
-        "cyan": Color.cyan,
-        "teal": Color.teal,
-        "blue": Color.blue,
-        "sky": Color.sky,
-        "indigo": Color.indigo,
-        "iris": Color.iris,
-        "purple": Color.purple,
-        "violet": Color.violet,
-        "plum": Color.plum,
-        "ruby": Color.ruby
+        "Gray": Color.gray,
+        "Pink": Color.pink,
+        "Red": Color.red,
+        "Tomato": Color.tomato,
+        "Orange": Color.orange,
+        "Bronze": Color.bronze,
+        "Brown": Color.brown,
+        "Amber": Color.amber,
+        "Gold": Color.gold,
+        "Yellow": Color.yellow,
+        "Lime": Color.lime,
+        "Olive": Color.olive,
+        "Grass": Color.grass,
+        "Green": Color.green,
+        "Mint": Color.mint,
+        "Cyan": Color.cyan,
+        "Teal": Color.teal,
+        "Blue": Color.blue,
+        "Sky": Color.sky,
+        "Indigo": Color.indigo,
+        "Iris": Color.iris,
+        "Purple": Color.purple,
+        "Violet": Color.violet,
+        "Plum": Color.plum,
+        "Ruby": Color.ruby
     ]
     
     // Static colors
-    static let gray = LCHColor(h: 0.0, variableChroma: false)
+    static let gray = LCHColor(h: 0.0, variableChroma: false, variableHue: false)
     
     // Dynamic colors
     static let pink = LCHColor(h: 0.0)

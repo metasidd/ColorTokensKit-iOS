@@ -14,30 +14,34 @@ public struct LCHColor: Hashable, Equatable {
     private let h: CGFloat     // 0..360
     private let alpha: CGFloat // 0..1
     private let variableChroma: Bool
+    private let variableHue: Bool
     
-    public init (l: CGFloat, c: CGFloat, h: CGFloat, alpha: CGFloat = 1.0, variableChroma: Bool = true) {
+    public init (l: CGFloat, c: CGFloat, h: CGFloat, alpha: CGFloat = 1.0, variableChroma: Bool = true, variableHue: Bool = true) {
         self.l = l
         self.c = c
         self.h = h
         self.variableChroma = variableChroma
+        self.variableHue = variableHue
         self.alpha = alpha
     }
     
-    public init (h: CGFloat, variableChroma: Bool = true) {
+    public init (h: CGFloat, variableChroma: Bool = true, variableHue: Bool = true) {
         self.l = 0
         self.c = 0
         self.h = h
-        self.variableChroma = variableChroma
         self.alpha = 1.0
+        self.variableChroma = variableChroma
+        self.variableHue = variableHue
     }
     
-    public init (color: Color, variableChroma: Bool = true) {
+    public init (color: Color, variableChroma: Bool = true, variableHue: Bool = true) {
         let lchColor = RGBColor(color: color).toLCH()
         self.l = lchColor.l
         self.c = lchColor.c
         self.h = lchColor.h
         self.alpha = lchColor.alpha
         self.variableChroma = variableChroma
+        self.variableHue = variableHue
     }
 
     public func toLAB() -> LABColor {
@@ -76,14 +80,14 @@ public extension LCHColor {
         let h = self.getHue()
         let lightLCHColor = LCHColor(
             l: lightness,
-            c: self.getVariableChroma() ? chroma : 0,
-            h: h,
+            c: self.adjustChroma() ? chroma : 0,
+            h: self.adjustHue() ? h : 0,
             alpha: alpha
         )
         let darkLCHColor = LCHColor(
             l: lightness,
-            c: self.getVariableChroma() ? chroma : 0,
-            h: h * 0.75,
+            c: self.adjustChroma() ? chroma : 0,
+            h: self.adjustHue() ? h * 0.75 : 0,
             alpha: alpha
         )
         let color = Color(light: lightLCHColor.toColor(), dark: darkLCHColor.toColor())
@@ -101,7 +105,14 @@ public extension LCHColor {
     func getChroma() -> CGFloat {
         self.c
     }
-    func getVariableChroma() -> Bool {
+    
+    // Changes chroma as things get lighter
+    func adjustChroma() -> Bool {
         self.variableChroma
+    }
+    
+    // Changes chroma as things get lighter
+    func adjustHue() -> Bool {
+        self.variableHue
     }
 }
