@@ -25,7 +25,7 @@
 		2C7FC8992C14B4B800E59921 /* ColorSpaces+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8982C14B4B800E59921 /* ColorSpaces+Ext.swift */; };
 		2C7FC89B2C14BD9D00E59921 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */; };
 		2CB61B8F2C15CFFC00D3F60B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B8E2C15CFFC00D3F60B /* MainView.swift */; };
-		2CB61B922C15D37B00D3F60B /* ColorRampUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B912C15D37B00D3F60B /* ColorRampUtility.swift */; };
+		2CB61B922C15D37B00D3F60B /* DefaultColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B912C15D37B00D3F60B /* DefaultColorTokens.swift */; };
 		2CB61B952C15FFCF00D3F60B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = 2CB61B942C15FFCF00D3F60B /* Routing */; };
 		2CB61B972C16005100D3F60B /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B962C16005100D3F60B /* GlobalRouter.swift */; };
 		2CB61B9C2C16D24000D3F60B /* CustomRampMakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B9B2C16D24000D3F60B /* CustomRampMakerView.swift */; };
@@ -71,7 +71,7 @@
 		2C7FC8982C14B4B800E59921 /* ColorSpaces+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSpaces+Ext.swift"; sourceTree = "<group>"; };
 		2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		2CB61B8E2C15CFFC00D3F60B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		2CB61B912C15D37B00D3F60B /* ColorRampUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRampUtility.swift; sourceTree = "<group>"; };
+		2CB61B912C15D37B00D3F60B /* DefaultColorTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColorTokens.swift; sourceTree = "<group>"; };
 		2CB61B962C16005100D3F60B /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
 		2CB61B9B2C16D24000D3F60B /* CustomRampMakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRampMakerView.swift; sourceTree = "<group>"; };
 		2CB61B9D2C16D2A000D3F60B /* CustomRampMakerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRampMakerViewModel.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		2C7FC88B2C14851200E59921 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				2CB61B902C15D36C00D3F60B /* ColorRamp */,
+				2CB61B902C15D36C00D3F60B /* ColorTokens */,
 				2C7FC8982C14B4B800E59921 /* ColorSpaces+Ext.swift */,
 				2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */,
 				2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */,
@@ -222,12 +222,12 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		2CB61B902C15D36C00D3F60B /* ColorRamp */ = {
+		2CB61B902C15D36C00D3F60B /* ColorTokens */ = {
 			isa = PBXGroup;
 			children = (
-				2CB61B912C15D37B00D3F60B /* ColorRampUtility.swift */,
+				2CB61B912C15D37B00D3F60B /* DefaultColorTokens.swift */,
 			);
-			path = ColorRamp;
+			path = ColorTokens;
 			sourceTree = "<group>";
 		};
 		2CB61B9A2C16D22400D3F60B /* CustomRampMaker */ = {
@@ -389,7 +389,7 @@
 				2C1347322C1DD613007329A3 /* ColorRampViewModel.swift in Sources */,
 				2CB61B8F2C15CFFC00D3F60B /* MainView.swift in Sources */,
 				2CB61B9C2C16D24000D3F60B /* CustomRampMakerView.swift in Sources */,
-				2CB61B922C15D37B00D3F60B /* ColorRampUtility.swift in Sources */,
+				2CB61B922C15D37B00D3F60B /* DefaultColorTokens.swift in Sources */,
 				2C7FC85C2C1468E400E59921 /* HuesView.swift in Sources */,
 				2C7FC85A2C1468E400E59921 /* ColorGeneratorApp.swift in Sources */,
 				2CB61B972C16005100D3F60B /* GlobalRouter.swift in Sources */,
