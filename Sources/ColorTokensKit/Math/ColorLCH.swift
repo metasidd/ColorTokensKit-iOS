@@ -18,8 +18,8 @@ public struct LCHColor: Hashable, Equatable {
     
     public init (l: CGFloat, c: CGFloat, h: CGFloat, alpha: CGFloat = 1.0, variableChroma: Bool = true, variableHue: Bool = true) {
         self.l = l
-        self.c = c
-        self.h = h
+        self.c = variableChroma ? c : 0 // TODO: rethink this
+        self.h = variableHue ? h : 0  // TODO: rethink this
         self.variableChroma = variableChroma
         self.variableHue = variableHue
         self.alpha = alpha
@@ -28,7 +28,7 @@ public struct LCHColor: Hashable, Equatable {
     public init (h: CGFloat, variableChroma: Bool = true, variableHue: Bool = true) {
         self.l = 0
         self.c = 0
-        self.h = h
+        self.h = variableHue ? h : 0 // TODO: rethink this
         self.alpha = 1.0
         self.variableChroma = variableChroma
         self.variableHue = variableHue
@@ -37,8 +37,8 @@ public struct LCHColor: Hashable, Equatable {
     public init (color: Color, variableChroma: Bool = true, variableHue: Bool = true) {
         let lchColor = RGBColor(color: color).toLCH()
         self.l = lchColor.l
-        self.c = lchColor.c
-        self.h = lchColor.h
+        self.c = variableChroma ? lchColor.c : 0 // TODO: rethink this
+        self.h = variableHue ? lchColor.h : 0 // TODO: rethink this
         self.alpha = lchColor.alpha
         self.variableChroma = variableChroma
         self.variableHue = variableHue
