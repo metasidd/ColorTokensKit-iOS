@@ -20,7 +20,7 @@ extension Color {
      - Parameter l: Range from 0 to 1.
      - Parameter a: Range from 0 to 1.
      */
-    init(h hue: Double, s saturation: Double, l lightness: Double, a opacity: Double = 1) {
+    public init(h hue: Double, s saturation: Double, l lightness: Double, a opacity: Double = 1) {
         let brightness = lightness + saturation * min(lightness, 1 - lightness)
         let saturation = brightness == 0 ? 0 : 2 * (1 - lightness / brightness)
 
@@ -28,7 +28,7 @@ extension Color {
         self.init(hue: hue / 360, saturation: saturation, brightness: brightness, opacity: opacity)
     }
     
-    init(hex: String) {
+    public init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
 
         // Assert to check if the input is a valid hex value
@@ -58,7 +58,7 @@ extension Color {
     }
     
     // TODO: Make this work with iOS 16
-    func toHex() -> String {
+    public func toHex() -> String {
             let resolvedColor = self.resolve(in: .init())
             
             // Ensure RGB values are within [0, 1]
