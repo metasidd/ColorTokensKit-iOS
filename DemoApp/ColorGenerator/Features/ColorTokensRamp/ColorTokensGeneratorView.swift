@@ -117,17 +117,14 @@ struct ColorTokensGeneratorView: View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
                 title: "Foreground Primary",
-                subtitle: "#\(viewModel.lchColor.foregroundPrimary.toHex())",
                 foregroundColor: viewModel.lchColor.foregroundPrimary
             )
             ColorBox(
                 title: "Foreground Secondary",
-                subtitle: "#\(viewModel.lchColor.foregroundSecondary.toHex())",
                 foregroundColor: viewModel.lchColor.foregroundSecondary
             )
             ColorBox(
                 title: "Foreground Tertiary",
-                subtitle: "#\(viewModel.lchColor.foregroundTertiary.toHex())",
                 foregroundColor: viewModel.lchColor.foregroundTertiary
             )
         }
@@ -142,17 +139,14 @@ struct ColorTokensGeneratorView: View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
                 title: "Inverted Foreground Primary",
-                subtitle: "#\(viewModel.lchColor.invertedForegroundPrimary.toHex())",
                 foregroundColor: viewModel.lchColor.invertedForegroundPrimary
             )
             ColorBox(
                 title: "Inverted Foreground Secondary",
-                subtitle: "#\(viewModel.lchColor.invertedForegroundSecondary.toHex())",
                 foregroundColor: viewModel.lchColor.invertedForegroundSecondary
             )
             ColorBox(
                 title: "Inverted Foreground Tertiary",
-                subtitle: "#\(viewModel.lchColor.invertedForegroundTertiary.toHex())",
                 foregroundColor: viewModel.lchColor.invertedForegroundTertiary
             )
         }
@@ -167,46 +161,36 @@ struct ColorTokensGeneratorView: View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
                 title: "Background Primary",
-                subtitle: "",
-                foregroundColor: viewModel.lchColor.foregroundPrimary,
                 backgroundColor: viewModel.lchColor.backgroundPrimary
             )
             ColorBox(
                 title: "Background Secondary",
-                subtitle: "",
-                foregroundColor: viewModel.lchColor.foregroundPrimary,
                 backgroundColor: viewModel.lchColor.backgroundSecondary
             )
             ColorBox(
                 title: "Background Tertiary",
-                subtitle: "",
-                foregroundColor: viewModel.lchColor.foregroundPrimary,
                 backgroundColor: viewModel.lchColor.backgroundTertiary
             )
         }
+        .foregroundStyle(viewModel.lchColor.foregroundPrimary)
     }
     
     private func invertedBackgroundColors() -> some View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
                 title: "Inverted Background Primary",
-                subtitle: "",
-                foregroundColor: viewModel.lchColor.invertedForegroundPrimary,
                 backgroundColor: viewModel.lchColor.invertedBackgroundPrimary
             )
             ColorBox(
                 title: "Inverted Background Secondary",
-                subtitle: "",
-                foregroundColor: viewModel.lchColor.invertedForegroundPrimary,
                 backgroundColor: viewModel.lchColor.invertedBackgroundSecondary
             )
             ColorBox(
                 title: "Inverted Background Tertiary",
-                subtitle: "",
-                foregroundColor: viewModel.lchColor.invertedForegroundPrimary,
                 backgroundColor: viewModel.lchColor.invertedBackgroundTertiary
             )
         }
+        .foregroundStyle(viewModel.lchColor.invertedForegroundPrimary)
     }
     
     private func outlineColors() -> some View {
@@ -230,6 +214,7 @@ struct ColorTokensGeneratorView: View {
                 outlineColor: viewModel.lchColor.outlineTertiary
             )
         }
+        .foregroundStyle(viewModel.lchColor.foregroundPrimary)
     }
     
     private func sectionHeader(title: String) -> some View {
@@ -240,67 +225,22 @@ struct ColorTokensGeneratorView: View {
         .padding(.top, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
-    
-    private func colorBlock(name: String, lchColor: Color) -> some View {
-        //        let defaultForegroundColor = lchColor.foregroundPrimary
-        //        let invertedForegroundColor = lchColor.invertedForegroundPrimary
-        //
-        //        let contrast = lchColor.getContrast(with: LCHColor(color: defaultForegroundColor))
-        //        let invertedContrast = lchColor.getContrast(with: LCHColor(color: invertedForegroundColor))
-        
-        return HStack(alignment: .center, spacing: 4) {
-            VStack {
-                Text(name)
-                    .font(.appSmallBody(weight: .bold))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                //                accessibilityLabel(lchColor: lchColor, contrast: contrast > 4.5 ? contrast : invertedContrast)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .font(.appCaption())
-            
-            //            VStack(alignment: .trailing) {
-            //                Text("L: \(Int(lchColor.getLightness())) C: \(Int(lchColor.getChroma())) H: \(Int(lchColor.getHue()))")
-            //                    .multilineTextAlignment(.trailing)
-            //            }
-            //            .frame(maxWidth: .infinity, alignment: .trailing)
-            //            .font(.appMiniCaption())
-        }
-        //        .foregroundStyle(contrast > 4.5 ? defaultForegroundColor : invertedForegroundColor)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        //        .background(lchColor.toSwiftUIColor())
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-    }
-    
-    private func accessibilityLabel(lchColor: LCHColor, contrast: Double) -> some View {
-        return HStack(spacing: 2) {
-            if contrast > 4.5 {
-                Image(systemName: "checkmark")
-            } else {
-                Image(systemName: "xmark")
-            }
-            Text(String(format: "%.2f", contrast))
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .font(.appMiniCaption(weight: .bold))
-    }
 }
 
 struct ColorBox: View {
     let title: String
     let subtitle: String
-    let foregroundColor: Color
-    let backgroundColor: Color
-    let outlineColor: Color
+    let foregroundColor: Color?
+    let backgroundColor: Color?
+    let outlineColor: Color?
     let cornerRadius: CGFloat = 16
     
     init(
         title: String,
-        subtitle: String,
-        foregroundColor: Color = Color.clear,
-        backgroundColor: Color = Color.clear,
-        outlineColor: Color = Color.clear
+        subtitle: String = "",
+        foregroundColor: Color? = nil,
+        backgroundColor: Color? = nil,
+        outlineColor: Color? = nil
     ) {
         self.title = title
         self.subtitle = subtitle
@@ -309,21 +249,43 @@ struct ColorBox: View {
         self.outlineColor = outlineColor
     }
     
+    private var colorToUse: Color {
+        if let foregroundColor {
+            return foregroundColor
+        } else if let backgroundColor {
+            return backgroundColor
+        } else if let outlineColor {
+            return outlineColor
+        } else {
+            return Color.clear
+        }
+    }
+    
+    private var hexString: String {
+        return colorToUse.toHex()
+    }
+    
+    private var lchString: String {
+        return colorToUse.getLCHString()
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .font(.appCaption())
-            Text(subtitle)
+            Text(subtitle.isEmpty ? "#\(hexString) \(lchString)" : subtitle)
                 .font(.appMiniCaption())
         }
-        .foregroundColor(foregroundColor)
+        .applyIf(foregroundColor != nil) { view in
+            view.foregroundColor(foregroundColor!)
+        }
         .padding(.vertical, 16)
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(backgroundColor)
-                .stroke(outlineColor, style: .init(lineWidth: 1))
+                .fill(backgroundColor ?? Color.clear)
+                .stroke(outlineColor ?? Color.clear, style: .init(lineWidth: 1))
         )
     }
 }

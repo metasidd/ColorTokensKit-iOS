@@ -56,7 +56,7 @@ public extension Color {
     static let blue = LCHColor(h: 210.0)
     static let sky = LCHColor(h: 230.0)
     static let indigo = LCHColor(h: 260.0)
-    static let iris = LCHColor(h: 280.0)
+    static let iris = LCHColor(h: 295.0)
     static let purple = LCHColor(h: 310.0)
     static let violet = LCHColor(h: 320.0)
     static let plum = LCHColor(h: 345.0)

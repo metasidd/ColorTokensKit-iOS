@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 public struct LCHColor: Hashable, Equatable {
-    public let l: CGFloat     // 0..100
-    public let c: CGFloat     // 0..128
-    public let h: CGFloat     // 0..360
+    public let l: CGFloat     // 0..100. How bright or dark the color is.
+    public let c: CGFloat     // 0..128. How much saturation the color holds.
+    public let h: CGFloat     // 0..360. What hue it picks.
     public let alpha: CGFloat // 0..1
     public let variableChroma: Bool
     public let variableHue: Bool
@@ -85,7 +85,7 @@ public extension LCHColor {
         )
         let darkLCHColor = LCHColor(
             l: 100 - lightness,
-            c: self.variableChroma ? chroma * 0.95 : 0,
+            c: self.variableChroma ? chroma : 0,
             h: self.variableHue ? h : 0,
             alpha: alpha
         )

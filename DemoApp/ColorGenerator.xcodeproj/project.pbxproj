@@ -10,6 +10,7 @@
 		2C1347302C1DD5EE007329A3 /* ColorRampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13472F2C1DD5EE007329A3 /* ColorRampView.swift */; };
 		2C1347322C1DD613007329A3 /* ColorRampViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1347312C1DD613007329A3 /* ColorRampViewModel.swift */; };
 		2C73DB352C1F0CDF004EEEC6 /* ColorTokensKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2C73DB342C1F0CDF004EEEC6 /* ColorTokensKit */; };
+		2C73DB372C1F1AE6004EEEC6 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */; };
 		2C7FC85A2C1468E400E59921 /* ColorGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8592C1468E400E59921 /* ColorGeneratorApp.swift */; };
 		2C7FC85C2C1468E400E59921 /* HuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC85B2C1468E400E59921 /* HuesView.swift */; };
 		2C7FC85E2C1468E400E59921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FC85D2C1468E400E59921 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		2C13472F2C1DD5EE007329A3 /* ColorRampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRampView.swift; sourceTree = "<group>"; };
 		2C1347312C1DD613007329A3 /* ColorRampViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRampViewModel.swift; sourceTree = "<group>"; };
+		2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		2C7FC8562C1468E400E59921 /* ColorGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7FC8592C1468E400E59921 /* ColorGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGeneratorApp.swift; sourceTree = "<group>"; };
 		2C7FC85B2C1468E400E59921 /* HuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuesView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				2C7FC8982C14B4B800E59921 /* ColorSpaces+Ext.swift */,
 				2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */,
 				2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */,
+				2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C73DB372C1F1AE6004EEEC6 /* View+Ext.swift in Sources */,
 				2CB61B9E2C16D2A000D3F60B /* CustomRampMakerViewModel.swift in Sources */,
 				2C7FC8872C14690700E59921 /* ColorTokensGeneratorView.swift in Sources */,
 				2C7FC8992C14B4B800E59921 /* ColorSpaces+Ext.swift in Sources */,
