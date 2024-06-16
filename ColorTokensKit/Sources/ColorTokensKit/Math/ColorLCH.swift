@@ -73,6 +73,14 @@ public struct LCHColor: Hashable, Equatable {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
+    
+    public func toOKLCH() -> OKLCHColor {
+        return toLAB().toOKLCH()
+    }
+    
+    public func printValues() {
+        print("L:\(Double(l)) C:\(Double(c)) H:\(Double(h))")
+    }
 }
 
 public extension LCHColor {

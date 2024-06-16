@@ -98,4 +98,8 @@ public struct RGBColor: Hashable {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
+    
+    func toOKLCH() -> OKLCHColor {
+        return toXYZ().toOklab().toOKLCH()
+    }
 }

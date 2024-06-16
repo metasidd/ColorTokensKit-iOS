@@ -56,4 +56,12 @@ public struct LABColor: Hashable {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
+    
+    public func toOKLCH() -> OKLCHColor {
+        return toXYZ().toOklab().toOKLCH()
+    }
+    
+    public func printValues() {
+        print("L:\(Double(l)) A:\(Double(a)) B:\(Double(b))")
+    }
 }
