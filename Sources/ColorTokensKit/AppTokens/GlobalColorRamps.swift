@@ -8,6 +8,36 @@
 import SwiftUI
 
 public extension Color {
+    static var allProColors: [LCHColor] = [
+        Color.gray,
+        Color.pink,
+        Color.red,
+        Color.tomato,
+        Color.orange,
+        Color.bronze,
+        Color.brown,
+        Color.amber,
+        Color.gold,
+        Color.yellow,
+        Color.lime,
+        Color.olive,
+        Color.grass,
+        Color.sage,
+        Color.green,
+        Color.jade,
+        Color.mint,
+        Color.cyan,
+        Color.teal,
+        Color.sky,
+        Color.blue,
+        Color.indigo,
+        Color.iris,
+        Color.purple,
+        Color.violet,
+        Color.plum,
+        Color.ruby
+    ]
+    
     // Static colors
     static let gray = LCHColor(h: 0.0, variableChroma: false)
     
