@@ -15,9 +15,7 @@ public extension Color {
         "Red": Color.red,
         "Tomato": Color.tomato,
         "Orange": Color.orange,
-        "Bronze": Color.bronze,
         "Brown": Color.brown,
-        "Amber": Color.amber,
         "Gold": Color.gold,
         "Yellow": Color.yellow,
         "Lime": Color.lime,
@@ -45,9 +43,7 @@ public extension Color {
     static let red = LCHColor(h: 10.0)
     static let tomato = LCHColor(h: 20.0)
     static let orange = LCHColor(h: 30.0)
-    static let bronze = LCHColor(h: 50.0)
-    static let brown = LCHColor(h: 40.0)
-    static let amber = LCHColor(h: 45.0)
+    static let brown = LCHColor(h: 45.0)
     static let gold = LCHColor(h: 70.0)
     static let yellow = LCHColor(h: 90.0)
     static let lime = LCHColor(h: 100.0)
