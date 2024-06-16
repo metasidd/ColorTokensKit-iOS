@@ -20,7 +20,7 @@ extension Color {
      - Parameter l: Range from 0 to 1.
      - Parameter a: Range from 0 to 1.
      */
-    init(h hue: Double, s saturation: Double, l lightness: Double, a opacity: Double = 1) {
+    public init(h hue: Double, s saturation: Double, l lightness: Double, a opacity: Double = 1) {
         let brightness = lightness + saturation * min(lightness, 1 - lightness)
         let saturation = brightness == 0 ? 0 : 2 * (1 - lightness / brightness)
 
@@ -28,7 +28,7 @@ extension Color {
         self.init(hue: hue / 360, saturation: saturation, brightness: brightness, opacity: opacity)
     }
     
-    init(hex: String) {
+    public init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
 
         // Assert to check if the input is a valid hex value
@@ -55,6 +55,39 @@ extension Color {
             blue:  Double(b) / 255,
             opacity: Double(a) / 255
         )
+    }
+    
+    // TODO: Make this work with iOS 16
+    public func toHex() -> String {
+        let resolvedColor = self.resolve(in: .init())
+        
+        // Ensure RGB values are within [0, 1]
+        let r = Double(max(0, min(resolvedColor.red, 1)))
+        let g = Double(max(0, min(resolvedColor.green, 1)))
+        let b = Double(max(0, min(resolvedColor.blue, 1)))
+        let a = Double(max(0, min(resolvedColor.cgColor.alpha, 1)))
+        
+        // Convert to hexadecimal
+        let hexString: String
+        if a != 1.0 {
+            hexString = String(format: "%02lX%02lX%02lX%02lX", lround(r * 255), lround(g * 255), lround(b * 255), lround(a * 255))
+        } else {
+            hexString = String(format: "%02lX%02lX%02lX", lround(r * 255), lround(g * 255), lround(b * 255))
+        }
+        
+        print("red \(r)")
+        print("green \(g)")
+        print("blue \(b)")
+        print("alpha \(a)")
+        print("hex: \(hexString)")
+        print("-------")
+        
+        return hexString
+    }
+    
+    public func getLCHString() -> String {
+        let lchColor = LCHColor(color: self)
+        return "L:\(Int(lchColor.l)) C:\(Int(lchColor.c)) H:\(Int(lchColor.h))"
     }
 }
 
