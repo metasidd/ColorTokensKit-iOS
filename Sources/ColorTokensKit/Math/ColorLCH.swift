@@ -84,9 +84,9 @@ public extension LCHColor {
             alpha: alpha
         )
         let darkLCHColor = LCHColor(
-            l: lightness,
-            c: self.variableChroma ? chroma : 0,
-            h: self.variableHue ? h * 0.75 : 0,
+            l: 100 - lightness,
+            c: self.variableChroma ? chroma * 0.75 : 0,
+            h: self.variableHue ? h : 0,
             alpha: alpha
         )
         let color = Color(light: lightLCHColor.toColor(), dark: darkLCHColor.toColor())
