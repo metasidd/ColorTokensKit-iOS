@@ -10,34 +10,28 @@ import SwiftUI
 
 public extension LCHColor {
     var allCases: [Color] {
-        let instance = LCHColor(
-            l: self.getLightness(),
-            c: self.getChroma(),
-            h: self.getHue(),
-            alpha: 1
-        )
         return [
-            instance._0,
-            instance._5,
-            instance._10,
-            instance._15,
-            instance._20,
-            instance._25,
-            instance._30,
-            instance._35,
-            instance._40,
-            instance._45,
-            instance._50,
-            instance._55,
-            instance._60,
-            instance._65,
-            instance._70,
-            instance._75,
-            instance._80,
-            instance._85,
-            instance._90,
-            instance._95,
-            instance._100
+            self._0,
+            self._5,
+            self._10,
+            self._15,
+            self._20,
+            self._25,
+            self._30,
+            self._35,
+            self._40,
+            self._45,
+            self._50,
+            self._55,
+            self._60,
+            self._65,
+            self._70,
+            self._75,
+            self._80,
+            self._85,
+            self._90,
+            self._95,
+            self._100
         ]
     }
     

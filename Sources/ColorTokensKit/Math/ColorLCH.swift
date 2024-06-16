@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 public struct LCHColor: Hashable, Equatable {
-    private let l: CGFloat     // 0..100
-    private let c: CGFloat     // 0..128
-    private let h: CGFloat     // 0..360
-    private let alpha: CGFloat // 0..1
-    private let variableChroma: Bool
-    private let variableHue: Bool
+    public let l: CGFloat     // 0..100
+    public let c: CGFloat     // 0..128
+    public let h: CGFloat     // 0..360
+    public let alpha: CGFloat // 0..1
+    public let variableChroma: Bool
+    public let variableHue: Bool
     
     public init (l: CGFloat, c: CGFloat, h: CGFloat, alpha: CGFloat = 1.0, variableChroma: Bool = true, variableHue: Bool = true) {
         self.l = l
@@ -77,42 +77,19 @@ public struct LCHColor: Hashable, Equatable {
 
 public extension LCHColor {
     func getResponsiveColor(lightness: CGFloat, chroma: CGFloat, alpha: CGFloat = 1.0) -> Color {
-        let h = self.getHue()
         let lightLCHColor = LCHColor(
             l: lightness,
-            c: self.adjustChroma() ? chroma : 0,
-            h: self.adjustHue() ? h : 0,
+            c: self.variableChroma ? chroma : 0,
+            h: self.variableHue ? h : 0,
             alpha: alpha
         )
         let darkLCHColor = LCHColor(
             l: lightness,
-            c: self.adjustChroma() ? chroma : 0,
-            h: self.adjustHue() ? h * 0.75 : 0,
+            c: self.variableChroma ? chroma : 0,
+            h: self.variableHue ? h * 0.75 : 0,
             alpha: alpha
         )
         let color = Color(light: lightLCHColor.toColor(), dark: darkLCHColor.toColor())
         return color
-    }
-}
-
-public extension LCHColor {
-    func getHue() -> CGFloat {
-        self.h
-    }
-    func getLightness() -> CGFloat {
-        self.l
-    }
-    func getChroma() -> CGFloat {
-        self.c
-    }
-    
-    // Changes chroma as things get lighter
-    func adjustChroma() -> Bool {
-        self.variableChroma
-    }
-    
-    // Changes chroma as things get lighter
-    func adjustHue() -> Bool {
-        self.variableHue
     }
 }
