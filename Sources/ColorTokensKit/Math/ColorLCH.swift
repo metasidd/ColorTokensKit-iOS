@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct LCHColor: Hashable {
+public struct LCHColor: Hashable, Equatable {
     private let l: CGFloat     // 0..100
     private let c: CGFloat     // 0..128
     private let h: CGFloat     // 0..360
