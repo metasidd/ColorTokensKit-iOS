@@ -57,7 +57,7 @@ public extension Color {
     static let mint = LCHColor(h: 160.0)
     static let cyan = LCHColor(h: 180.0)
     static let teal = LCHColor(h: 190.0)
-    static let sky = LCHColor(h: 195.0)
+    static let sky = LCHColor(h: 200.0)
     static let blue = LCHColor(h: 210.0)
     static let indigo = LCHColor(h: 260.0)
     static let iris = LCHColor(h: 280.0)
