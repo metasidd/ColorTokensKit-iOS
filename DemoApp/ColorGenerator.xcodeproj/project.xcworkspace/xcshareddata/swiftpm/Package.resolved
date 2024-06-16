@@ -1,0 +1,24 @@
+{
+  "originHash" : "9333353f37bf1c21fc69e0e0ce86e90b03e4d72659dd591c83a8a3053b341dd1",
+  "pins" : [
+    {
+      "identity" : "colortokenskit-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/metasidd/ColorTokensKit-iOS",
+      "state" : {
+        "branch" : "sid/setup-color-basics",
+        "revision" : "e47dead40bc1ac6ffec0f009f10b6b7d02f4c59f"
+      }
+    },
+    {
+      "identity" : "routing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/obvios/Routing.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ef84e13ceb42335969944a7945f19119ba55f3ce"
+      }
+    }
+  ],
+  "version" : 3
+}

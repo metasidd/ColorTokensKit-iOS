@@ -1,0 +1,15 @@
+{
+  "originHash" : "af861a8178f5610eeede6514cf93c17a2991d608a3d5e7c67f2575068135d1b3",
+  "pins" : [
+    {
+      "identity" : "routing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/obvios/Routing.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ef84e13ceb42335969944a7945f19119ba55f3ce"
+      }
+    }
+  ],
+  "version" : 3
+}
