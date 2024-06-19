@@ -21,12 +21,9 @@ struct HuesView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 4) {
-//                    ForEach(Array(stride(from: 0, to: 361, by: 10)), id: \.self) { index in
-//                        let lchColor = LCHColor(l: 75, c: 50, h: CGFloat(index), alpha: 1.0)
-//                        HueColorGroup(router: router, lchColor: lchColor)
-//                    }
-                    ForEach(Array(Color.allProColors).sorted { $0.value.h < $1.value.h }, id: \.key) { name, color in
-                        HueColorGroup(router: router, lchColor: color, name: name)
+                    let sortedProColors = Array(Color.allProColors).sorted { $0.value.h < $1.value.h }
+                    ForEach(sortedProColors, id: \.key) { name, color in
+                        HueColorGroup(router: router, okLchColor: color, name: name)
                     }
                 }
                 .padding(16)
@@ -40,36 +37,36 @@ struct HuesView: View {
 struct HueColorGroup: View {
     @StateObject var router: Router<GlobalRouter>
     
-    let lchColor: LCHColor
+    let okLchColor: OKLCHColor
     let name: String
     @State var collapsed: Bool = true
     
     var body: some View {
         VStack(spacing: 4) {
-            hueColorButton(lchColor: lchColor)
+            hueColorButton(okLchColor: okLchColor)
         }
     }
     
-    private func hueColorButton(lchColor: LCHColor) -> some View {
+    private func hueColorButton(okLchColor: OKLCHColor) -> some View {
         return Button {
             withAnimation {
-                router.routeTo(.colorRampView(lchColor))
+                router.routeTo(.colorRampView(okLchColor))
                 collapsed.toggle()
             }
         } label: {
             HStack {
-                hueRampView(lchColor: lchColor)
+                hueRampView(okLchColor: okLchColor)
             }
             .overlay {
                 HStack {
-                    Text("H\(Int(lchColor.h)) • \(name)")
+                    Text("H\(Int(okLchColor.h)) • \(name)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.appSmallBody(weight: .bold))
-                        .foregroundStyle(lchColor.invertedForegroundPrimary)
+                        .foregroundStyle(okLchColor.invertedForegroundPrimary)
                     Image(systemName: "chevron.right")
                         .rotationEffect(.degrees(collapsed ? 0 : 90))
                         .font(.appCaption(weight: .bold))
-                        .foregroundStyle(lchColor.foregroundPrimary)
+                        .foregroundStyle(okLchColor.foregroundPrimary)
                 }
                 .padding(.horizontal, 16)
                 .frame(maxWidth: .infinity)
@@ -79,12 +76,12 @@ struct HueColorGroup: View {
         }
     }
     
-    private func hueRampView(lchColor: LCHColor) -> some View {
-        let colorRamp = lchColor.allCases.reversed()
+    private func hueRampView(okLchColor: OKLCHColor) -> some View {
+        let colorRamp = okLchColor.allCases.reversed()
         return HStack(spacing: 0) {
-            ForEach(colorRamp, id: \.self) { lchColor in
+            ForEach(colorRamp, id: \.self) { okLchColor in
                 Rectangle()
-                    .fill(lchColor)
+                    .fill(okLchColor)
                     .frame(height: 64)
             }
         }

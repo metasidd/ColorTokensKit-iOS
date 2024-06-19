@@ -12,8 +12,8 @@ import ColorTokensKit
 struct ColorTokensGeneratorView: View {
     @StateObject var viewModel: ColorTokensGeneratorViewModel
     
-    init(lchColor: LCHColor) {
-        _viewModel = StateObject(wrappedValue: ColorTokensGeneratorViewModel(lchColor: lchColor))
+    init(okLchColor: OKLCHColor) {
+        _viewModel = StateObject(wrappedValue: ColorTokensGeneratorViewModel(lchColor: okLchColor))
     }
     
     private let containerVStackPadding: CGFloat = 4
@@ -223,5 +223,5 @@ struct ColorBox: View {
 
 
 #Preview {
-    ColorTokensGeneratorView(lchColor: Color.purple)
+    ColorTokensGeneratorView(okLchColor: Color.purple)
 }

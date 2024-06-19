@@ -10,13 +10,13 @@ import Routing
 import ColorTokensKit
 
 enum GlobalRouter: Routable {
-    case colorRampView(LCHColor)
+    case colorRampView(OKLCHColor)
     
     @ViewBuilder
     func viewToDisplay(router: Router<GlobalRouter>) -> some View {
         switch self {
-        case .colorRampView(let lchColor):
-            ColorTokensGeneratorView(lchColor: lchColor)
+        case .colorRampView(let okLchColor):
+            ColorTokensGeneratorView(okLchColor: okLchColor)
         }
     }
     

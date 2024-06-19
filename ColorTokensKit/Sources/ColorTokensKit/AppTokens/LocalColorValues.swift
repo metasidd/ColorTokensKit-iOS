@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public extension LCHColor {
+public extension OKLCHColor {
     var allCases: [Color] {
         return [
             self._0,
@@ -36,25 +36,25 @@ public extension LCHColor {
     }
     
     // Lightest to darkest
-    var _0: Color { getResponsiveColor(lightness: 100, chroma: 0) }
-    var _5: Color { getResponsiveColor(lightness: 95, chroma: 5) }
-    var _10: Color { getResponsiveColor(lightness: 90, chroma: 10) }
-    var _15: Color { getResponsiveColor(lightness: 85, chroma: 15) }
-    var _20: Color { getResponsiveColor(lightness: 80, chroma: 20) }
-    var _25: Color { getResponsiveColor(lightness: 75, chroma: 25) }
-    var _30: Color { getResponsiveColor(lightness: 70, chroma: 30) }
-    var _35: Color { getResponsiveColor(lightness: 65, chroma: 35) }
-    var _40: Color { getResponsiveColor(lightness: 60, chroma: 40) }
-    var _45: Color { getResponsiveColor(lightness: 55, chroma: 45) }
-    var _50: Color { getResponsiveColor(lightness: 50, chroma: 50) }
-    var _55: Color { getResponsiveColor(lightness: 45, chroma: 55) }
-    var _60: Color { getResponsiveColor(lightness: 40, chroma: 60) }
-    var _65: Color { getResponsiveColor(lightness: 35, chroma: 65) }
-    var _70: Color { getResponsiveColor(lightness: 30, chroma: 70) }
-    var _75: Color { getResponsiveColor(lightness: 25, chroma: 75) }
-    var _80: Color { getResponsiveColor(lightness: 20, chroma: 80) }
-    var _85: Color { getResponsiveColor(lightness: 15, chroma: 85) }
-    var _90: Color { getResponsiveColor(lightness: 10, chroma: 90) }
-    var _95: Color { getResponsiveColor(lightness: 5, chroma: 95) }
-    var _100: Color { getResponsiveColor(lightness: 0, chroma: 100) }
+    var _0: Color { getResponsiveColor(lightness: 1, chroma: 0.01) }
+    var _5: Color { getResponsiveColor(lightness: 0.95, chroma: 0.05) }
+    var _10: Color { getResponsiveColor(lightness: 0.90, chroma: 0.10) }
+    var _15: Color { getResponsiveColor(lightness: 0.85, chroma: 0.15) }
+    var _20: Color { getResponsiveColor(lightness: 0.80, chroma: 0.20) }
+    var _25: Color { getResponsiveColor(lightness: 0.75, chroma: 0.25) }
+    var _30: Color { getResponsiveColor(lightness: 0.70, chroma: 0.30) }
+    var _35: Color { getResponsiveColor(lightness: 0.65, chroma: 0.35) }
+    var _40: Color { getResponsiveColor(lightness: 0.60, chroma: 0.40) }
+    var _45: Color { getResponsiveColor(lightness: 0.55, chroma: 0.45) }
+    var _50: Color { getResponsiveColor(lightness: 0.50, chroma: 0.50) }
+    var _55: Color { getResponsiveColor(lightness: 0.45, chroma: 0.55) }
+    var _60: Color { getResponsiveColor(lightness: 0.40, chroma: 0.60) }
+    var _65: Color { getResponsiveColor(lightness: 0.35, chroma: 0.65) }
+    var _70: Color { getResponsiveColor(lightness: 0.30, chroma: 0.70) }
+    var _75: Color { getResponsiveColor(lightness: 0.25, chroma: 0.75) }
+    var _80: Color { getResponsiveColor(lightness: 0.20, chroma: 0.80) }
+    var _85: Color { getResponsiveColor(lightness: 0.15, chroma: 0.85) }
+    var _90: Color { getResponsiveColor(lightness: 0.10, chroma: 0.90) }
+    var _95: Color { getResponsiveColor(lightness: 0.05, chroma: 0.95) }
+    var _100: Color { getResponsiveColor(lightness: 0.0, chroma: 1.0) }
 }

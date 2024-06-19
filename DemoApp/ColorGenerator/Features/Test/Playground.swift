@@ -14,9 +14,34 @@ struct Playground: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
+                
                 titleView(
-                    title: hex
+                    title: "Conversions from Hex"
                 )
+                
+                colorView(
+                    title: "Hex to RGBColor to LCH",
+                    color: RGBColor(
+                        color: Color(
+                            hex: hex
+                        )
+                    ).toLCH().toColor()
+                )
+                
+                colorView(
+                    title: "Hex to LCH Color",
+                    color: LCHColor(color: Color(hex: hex)).toColor()
+                )
+                
+                colorView(
+                    title: "LCH to LAB to XYZ to OKLAB to OKLCH Color",
+                    color: getColor(inputColor: Color(hex: hex))
+                )
+                
+                titleView(
+                    title: "Fixed colors"
+                )
+                
                 colorView(
                     title: "Hex Color \(hex)",
                     color: Color(
@@ -64,29 +89,6 @@ struct Playground: View {
                     ).toOklab().toXYZ().toLCH().toColor()
                 )
                 
-                titleView(
-                    title: "Conversions from Hex"
-                )
-                
-                colorView(
-                    title: "Hex to RGBColor to LCH",
-                    color: RGBColor(
-                        color: Color(
-                            hex: hex
-                        )
-                    ).toLCH().toColor()
-                )
-                
-                colorView(
-                    title: "Hex to LCH Color",
-                    color: LCHColor(color: Color(hex: hex)).toColor()
-                )
-                
-                colorView(
-                    title: "Hex to LCH Color",
-                    color: getColor(inputColor: Color(hex: hex))
-                )
-                
             }
             .font(.appSmallBody())
             .padding(16)
@@ -107,6 +109,7 @@ struct Playground: View {
                 .fill(color)
                 .frame(height: 64)
         }
+        .padding(.top, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     

@@ -12,11 +12,11 @@ import ColorTokensKit
 
 @Observable
 class ColorTokensGeneratorViewModel: ObservableObject {
-    var lchColor: LCHColor
+    var lchColor: OKLCHColor
     var steps: Int = Color.allProColors.count
-    var colors: [String: LCHColor] = [:]
+    var colors: [String: OKLCHColor] = [:]
     
-    init(lchColor: LCHColor) {
+    init(lchColor: OKLCHColor) {
         self.lchColor = lchColor
         updateColors()
     }
