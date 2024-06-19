@@ -30,9 +30,9 @@ public struct XYZColor: Hashable {
         let r = (x *  3.2404542) + (y * -1.5371385) + (z * -0.4985314)
         let g = (x * -0.9692660) + (y *  1.8760108) + (z *  0.0415560)
         let b = (x *  0.0556434) + (y * -0.2040259) + (z *  1.0572252)
-        let R = sRGBCompand(r)
-        let G = sRGBCompand(g)
-        let B = sRGBCompand(b)
+        let R = clamp(sRGBCompand(r), min: 0, max: 1)
+        let G = clamp(sRGBCompand(g), min: 0, max: 1)
+        let B = clamp(sRGBCompand(b), min: 0, max: 1)
         return RGBColor(r: R, g: G, b: B, alpha: alpha)
     }
     

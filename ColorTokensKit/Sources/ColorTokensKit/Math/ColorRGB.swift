@@ -14,11 +14,11 @@ public struct RGBColor: Hashable {
     public let b: CGFloat     // 0..1
     public let alpha: CGFloat // 0..1
     
-    public init (r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat) {
-        self.r = r
-        self.g = g
-        self.b = b
-        self.alpha = alpha
+    public init(r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat) {
+        self.r = clamp(r, min: 0, max: 1)
+        self.g = clamp(g, min: 0, max: 1)
+        self.b = clamp(b, min: 0, max: 1)
+        self.alpha = clamp(alpha, min: 0, max: 1)
     }
     
     public init(color: Color) {

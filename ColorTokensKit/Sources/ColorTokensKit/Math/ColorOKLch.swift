@@ -16,20 +16,11 @@ public struct OKLCHColor: Hashable {
     public let variableChroma: Bool
     public let variableHue: Bool
     
-    public init(l: CGFloat, c: CGFloat, h: CGFloat, alpha: CGFloat = 1.0, variableChroma: Bool = true, variableHue: Bool = true) {
-        self.l = l
-        self.c = variableChroma ? c : 0 // TODO: rethink this
-        self.h = variableHue ? h : 0  // TODO: rethink this
-        self.alpha = alpha
-        self.variableChroma = variableChroma
-        self.variableHue = variableHue
-    }
-    
-    public init(h: CGFloat, variableChroma: Bool = true, variableHue: Bool = true) {
-        self.l = 0
-        self.c = 0
-        self.h = variableHue ? h : 0 // TODO: rethink this
-        self.alpha = 1.0
+    public init(l: CGFloat = 0, c: CGFloat = 0, h: CGFloat, alpha: CGFloat = 1.0, variableChroma: Bool = true, variableHue: Bool = true) {
+        self.l = clamp(l, min: 0, max: 1)
+        self.c = variableChroma ? clamp(c, min: 0, max: 1) : 0 // TODO: rethink this
+        self.h = variableHue ? clamp(h, min: 0, max: 360) : 0  // TODO: rethink this
+        self.alpha = clamp(alpha, min: 0, max: 1)
         self.variableChroma = variableChroma
         self.variableHue = variableHue
     }
@@ -37,8 +28,8 @@ public struct OKLCHColor: Hashable {
     public init(color: Color, variableChroma: Bool = true, variableHue: Bool = true) {
         let oklchColor = RGBColor(color: color).toOKLCH()
         self.l = oklchColor.l
-        self.c = variableChroma ? oklchColor.c : 0 // TODO: rethink this
-        self.h = variableHue ? oklchColor.h : 0 // TODO: rethink this
+        self.c = variableChroma ? clamp(oklchColor.c, min: 0, max: 1) : 0 // TODO: rethink this
+        self.h = variableHue ? clamp(oklchColor.h, min: 0, max: 360) : 0 // TODO: rethink this
         self.alpha = oklchColor.alpha
         self.variableChroma = variableChroma
         self.variableHue = variableHue
