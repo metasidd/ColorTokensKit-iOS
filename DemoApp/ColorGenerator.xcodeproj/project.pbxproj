@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C1347302C1DD5EE007329A3 /* ColorRampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13472F2C1DD5EE007329A3 /* ColorRampView.swift */; };
-		2C1347322C1DD613007329A3 /* ColorRampViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1347312C1DD613007329A3 /* ColorRampViewModel.swift */; };
 		2C73DB352C1F0CDF004EEEC6 /* ColorTokensKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2C73DB342C1F0CDF004EEEC6 /* ColorTokensKit */; };
 		2C73DB372C1F1AE6004EEEC6 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */; };
 		2C7FC85A2C1468E400E59921 /* ColorGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8592C1468E400E59921 /* ColorGeneratorApp.swift */; };
@@ -50,8 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C13472F2C1DD5EE007329A3 /* ColorRampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRampView.swift; sourceTree = "<group>"; };
-		2C1347312C1DD613007329A3 /* ColorRampViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRampViewModel.swift; sourceTree = "<group>"; };
 		2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		2C7FC8562C1468E400E59921 /* ColorGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7FC8592C1468E400E59921 /* ColorGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGeneratorApp.swift; sourceTree = "<group>"; };
@@ -104,15 +100,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C13472E2C1DD5AF007329A3 /* ColorRamp */ = {
-			isa = PBXGroup;
-			children = (
-				2C13472F2C1DD5EE007329A3 /* ColorRampView.swift */,
-				2C1347312C1DD613007329A3 /* ColorRampViewModel.swift */,
-			);
-			path = ColorRamp;
-			sourceTree = "<group>";
-		};
 		2C7FC84D2C1468E400E59921 = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +177,6 @@
 				2CB61B8D2C15CFA300D3F60B /* Navigation */,
 				2C7FC8952C14AC3300E59921 /* Hues */,
 				2C7FC8942C14AB2300E59921 /* ColorTokensRamp */,
-				2C13472E2C1DD5AF007329A3 /* ColorRamp */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -385,8 +371,6 @@
 				2C7FC8922C149B3100E59921 /* Fonts+Ext.swift in Sources */,
 				2C7FC89B2C14BD9D00E59921 /* Double+Ext.swift in Sources */,
 				2C7FC8972C14AD6700E59921 /* HuesViewModel.swift in Sources */,
-				2C1347302C1DD5EE007329A3 /* ColorRampView.swift in Sources */,
-				2C1347322C1DD613007329A3 /* ColorRampViewModel.swift in Sources */,
 				2CB61B8F2C15CFFC00D3F60B /* MainView.swift in Sources */,
 				2CB61B9C2C16D24000D3F60B /* CustomRampMakerView.swift in Sources */,
 				2CB61B922C15D37B00D3F60B /* DefaultColorTokens.swift in Sources */,

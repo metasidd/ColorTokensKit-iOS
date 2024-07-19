@@ -24,8 +24,11 @@ public struct LABColor: Hashable {
         let v3 = v * v * v
         return v3 > Constants.LAB_E ? v3 : (v - Constants.LAB_16_116) / Constants.LAB_K_116
     }
-    
-    public func toXYZ() -> XYZColor {
+}
+
+// All conversion capabilities
+public extension LABColor {
+    func toXYZ() -> XYZColor {
         let y = (l + 16) / 116
         let x = y + (a / 500)
         let z = y - (b / 200)
@@ -37,18 +40,18 @@ public struct LABColor: Hashable {
         )
     }
     
-    public func toLCH() -> LCHColor {
+    func toLCH() -> LCHColor {
         let c = sqrt(a * a + b * b)
         let angle = atan2(b, a) * Constants.RAD_TO_DEG
         let h = angle < 0 ? angle + 360 : angle
         return LCHColor(l: l, c: c, h: h, alpha: alpha)
     }
     
-    public func toRGB() -> RGBColor {
+    func toRGB() -> RGBColor {
         return toXYZ().toRGB()
     }
     
-    public func lerp(_ other: LABColor, t: CGFloat) -> LABColor {
+    func lerp(_ other: LABColor, t: CGFloat) -> LABColor {
         return LABColor(
             l: l + (other.l - l) * t,
             a: a + (other.a - a) * t,

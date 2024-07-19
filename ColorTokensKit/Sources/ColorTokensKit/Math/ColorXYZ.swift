@@ -2,7 +2,7 @@
 //  ColorXYZ.swift
 //  
 //
-//  Original repo: https://github.com/timrwood/ColorSpaces
+//  Built off of the original repo of: https://github.com/timrwood/ColorSpaces
 //
 
 import Foundation
@@ -26,7 +26,13 @@ public struct XYZColor: Hashable {
         return v > 0 ? out : -out
     }
     
-    public func toRGB() -> RGBColor {
+    fileprivate func labCompand(_ v: CGFloat) -> CGFloat {
+        return v > Constants.LAB_E ? pow(v, 1.0 / 3.0) : (Constants.LAB_K_116 * v) + Constants.LAB_16_116
+    }
+}
+
+public extension XYZColor {
+    func toRGB() -> RGBColor {
         let r = (x *  3.2404542) + (y * -1.5371385) + (z * -0.4985314)
         let g = (x * -0.9692660) + (y *  1.8760108) + (z *  0.0415560)
         let b = (x *  0.0556434) + (y * -0.2040259) + (z *  1.0572252)
@@ -36,11 +42,7 @@ public struct XYZColor: Hashable {
         return RGBColor(r: R, g: G, b: B, alpha: alpha)
     }
     
-    fileprivate func labCompand(_ v: CGFloat) -> CGFloat {
-        return v > Constants.LAB_E ? pow(v, 1.0 / 3.0) : (Constants.LAB_K_116 * v) + Constants.LAB_16_116
-    }
-    
-    public func toLAB() -> LABColor {
+    func toLAB() -> LABColor {
         let fx = labCompand(x / Constants.LAB_X)
         let fy = labCompand(y / Constants.LAB_Y)
         let fz = labCompand(z / Constants.LAB_Z)
@@ -52,11 +54,11 @@ public struct XYZColor: Hashable {
         )
     }
     
-    public func toLCH() -> LCHColor {
+    func toLCH() -> LCHColor {
         return toLAB().toLCH()
     }
     
-    public func lerp(_ other: XYZColor, t: CGFloat) -> XYZColor {
+    func lerp(_ other: XYZColor, t: CGFloat) -> XYZColor {
         return XYZColor(
             x: x + (other.x - x) * t,
             y: y + (other.y - y) * t,

@@ -11,29 +11,29 @@ import SwiftUI
 
 public extension LCHColor {
     // Foreground colors
-    var foregroundPrimary: Color { _100 }
-    var foregroundSecondary: Color { _80 }
-    var foregroundTertiary: Color { _60 }
+    var foregroundPrimary: Color { Color(light: _100, dark: _0) }
+    var foregroundSecondary: Color { Color(light: _80, dark: _20) }
+    var foregroundTertiary: Color { Color(light: _60, dark: _40) }
     
     // Inverted foreground colors
-    var invertedForegroundPrimary: Color { _0 }
-    var invertedForegroundSecondary: Color { _15 }
-    var invertedForegroundTertiary: Color { _25 }
+    var invertedForegroundPrimary: Color { Color(light: _0, dark: _100) }
+    var invertedForegroundSecondary: Color { Color(light: _15, dark: _85) }
+    var invertedForegroundTertiary: Color { Color(light: _25, dark: _75) }
     
     // Backgroundcolors
-    var backgroundPrimary: Color { _5 }
-    var backgroundSecondary: Color { _10 }
-    var backgroundTertiary: Color { _20 }
+    var backgroundPrimary: Color { Color(light: _5, dark: _95) }
+    var backgroundSecondary: Color { Color(light: _10, dark: _90) }
+    var backgroundTertiary: Color { Color(light: _20, dark: _80) }
     
     // Inverted background colors
-    var invertedBackgroundPrimary: Color { _90 }
-    var invertedBackgroundSecondary: Color { _75 }
-    var invertedBackgroundTertiary: Color { _60 }
+    var invertedBackgroundPrimary: Color { Color(light: _100, dark: _10) }
+    var invertedBackgroundSecondary: Color { Color(light: _75, dark: _25) }
+    var invertedBackgroundTertiary: Color { Color(light: _60, dark: _40) }
     
     // Outline colors
-    var outlinePrimary: Color { _30 }
-    var outlineSecondary: Color { _10 }
-    var outlineTertiary: Color { _5 }
+    var outlinePrimary: Color { Color(light: _30, dark: _70) }
+    var outlineSecondary: Color { Color(light: _10, dark: _90) }
+    var outlineTertiary: Color { Color(light: _5, dark: _95) }
 }
 
 extension Color {

@@ -61,14 +61,15 @@ public struct RGBColor: Hashable {
         }
     }
 
-
     fileprivate func sRGBCompand(_ v: CGFloat) -> CGFloat {
         let absV = abs(v)
         let out = absV > 0.04045 ? pow((absV + 0.055) / 1.055, 2.4) : absV / 12.92
         return v > 0 ? out : -out
     }
-    
-    public func toXYZ() -> XYZColor {
+}
+
+public extension RGBColor {
+    func toXYZ() -> XYZColor {
         let R = sRGBCompand(r)
         let G = sRGBCompand(g)
         let B = sRGBCompand(b)
@@ -78,19 +79,19 @@ public struct RGBColor: Hashable {
         return XYZColor(x: x, y: y, z: z, alpha: alpha)
     }
     
-    public func toLAB() -> LABColor {
+    func toLAB() -> LABColor {
         return toXYZ().toLAB()
     }
     
-    public func toLCH() -> LCHColor {
+    func toLCH() -> LCHColor {
         return toXYZ().toLCH()
     }
     
-    public func color() -> UIColor {
+    func color() -> UIColor {
         return UIColor(red: r, green: g, blue: b, alpha: alpha)
     }
     
-    public func lerp(_ other: RGBColor, t: CGFloat) -> RGBColor {
+    func lerp(_ other: RGBColor, t: CGFloat) -> RGBColor {
         return RGBColor(
             r: r + (other.r - r) * t,
             g: g + (other.g - g) * t,
