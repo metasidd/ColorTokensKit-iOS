@@ -36,25 +36,129 @@ public extension LCHColor {
     }
     
     // Lightest to darkest
-    var _0: Color { getResponsiveColor(lightness: 100, chroma: 0) }
-    var _5: Color { getResponsiveColor(lightness: 95, chroma: 5) }
-    var _10: Color { getResponsiveColor(lightness: 90, chroma: 10) }
-    var _15: Color { getResponsiveColor(lightness: 85, chroma: 15) }
-    var _20: Color { getResponsiveColor(lightness: 80, chroma: 20) }
-    var _25: Color { getResponsiveColor(lightness: 75, chroma: 25) }
-    var _30: Color { getResponsiveColor(lightness: 70, chroma: 30) }
-    var _35: Color { getResponsiveColor(lightness: 65, chroma: 35) }
-    var _40: Color { getResponsiveColor(lightness: 60, chroma: 40) }
-    var _45: Color { getResponsiveColor(lightness: 55, chroma: 45) }
-    var _50: Color { getResponsiveColor(lightness: 50, chroma: 50) }
-    var _55: Color { getResponsiveColor(lightness: 45, chroma: 55) }
-    var _60: Color { getResponsiveColor(lightness: 40, chroma: 60) }
-    var _65: Color { getResponsiveColor(lightness: 35, chroma: 65) }
-    var _70: Color { getResponsiveColor(lightness: 30, chroma: 70) }
-    var _75: Color { getResponsiveColor(lightness: 25, chroma: 75) }
-    var _80: Color { getResponsiveColor(lightness: 20, chroma: 80) }
-    var _85: Color { getResponsiveColor(lightness: 15, chroma: 85) }
-    var _90: Color { getResponsiveColor(lightness: 10, chroma: 90) }
-    var _95: Color { getResponsiveColor(lightness: 5, chroma: 95) }
-    var _100: Color { getResponsiveColor(lightness: 0, chroma: 100) }
+    var _0: Color {
+        Color(
+            light: LCHColor(l: 100, c: 10, h: self.h).toColor(),
+            dark: LCHColor(l: 0, c: 10, h: self.h).toColor())
+    }
+
+    var _5: Color {
+        Color(
+            light: LCHColor(l: 95, c: 10, h: self.h).toColor(),
+            dark: LCHColor(l: 5, c: 5, h: self.h).toColor())
+    }
+
+    var _10: Color {
+        Color(
+            light: LCHColor(l: 90, c: 20, h: self.h).toColor(),
+            dark: LCHColor(l: 10, c: 10, h: self.h).toColor())
+    }
+
+    var _15: Color {
+        Color(
+            light: LCHColor(l: 85, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 15, c: 15, h: self.h).toColor())
+    }
+
+    var _20: Color {
+        Color(
+            light: LCHColor(l: 80, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 20, c: 20, h: self.h).toColor())
+    }
+
+    var _25: Color {
+        Color(
+            light: LCHColor(l: 75, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 25, c: 35, h: self.h).toColor())
+    }
+
+    var _30: Color {
+        Color(
+            light: LCHColor(l: 70, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 30, c: 40, h: self.h).toColor())
+    }
+
+    var _35: Color {
+        Color(
+            light: LCHColor(l: 65, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 35, c: 40, h: self.h).toColor())
+    }
+
+    var _40: Color {
+        Color(
+            light: LCHColor(l: 60, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 40, c: 40, h: self.h).toColor())
+    }
+
+    var _45: Color {
+        Color(
+            light: LCHColor(l: 55, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 45, c: 40, h: self.h).toColor())
+    }
+
+    var _50: Color {
+        Color(
+            light: LCHColor(l: 50, c: 30, h: self.h).toColor(),
+            dark: LCHColor(l: 50, c: 40, h: self.h).toColor())
+    }
+
+    var _55: Color {
+        Color(
+            light: LCHColor(l: 45, c: 35, h: self.h).toColor(),
+            dark: LCHColor(l: 52, c: 40, h: self.h).toColor())
+    }
+
+    var _60: Color {
+        Color(
+            light: LCHColor(l: 40, c: 50, h: self.h).toColor(),
+            dark: LCHColor(l: 55, c: 40, h: self.h).toColor())
+    }
+
+    var _65: Color {
+        Color(
+            light: LCHColor(l: 35, c: 45, h: self.h).toColor(),
+            dark: LCHColor(l: 58, c: 40, h: self.h).toColor())
+    }
+
+    var _70: Color {
+        Color(
+            light: LCHColor(l: 30, c: 50, h: self.h).toColor(),
+            dark: LCHColor(l: 60, c: 40, h: self.h).toColor())
+    }
+
+    var _75: Color {
+        Color(
+            light: LCHColor(l: 25, c: 55, h: self.h).toColor(),
+            dark: LCHColor(l: 63, c: 40, h: self.h).toColor())
+    }
+
+    var _80: Color {
+        Color(
+            light: LCHColor(l: 20, c: 60, h: self.h).toColor(),
+            dark: LCHColor(l: 65, c: 40, h: self.h).toColor())
+    }
+
+    var _85: Color {
+        Color(
+            light: LCHColor(l: 15, c: 75, h: self.h).toColor(),
+            dark: LCHColor(l: 67, c: 45, h: self.h).toColor())
+    }
+
+    var _90: Color {
+        Color(
+            light: LCHColor(l: 10, c: 80, h: self.h).toColor(),
+            dark: LCHColor(l: 70, c: 50, h: self.h).toColor())
+    }
+
+    var _95: Color {
+        Color(
+            light: LCHColor(l: 5, c: 85, h: self.h).toColor(),
+            dark: LCHColor(l: 75, c: 50, h: self.h).toColor())
+    }
+
+    var _100: Color {
+        Color(
+            light: LCHColor(l: 0, c: 90, h: self.h).toColor(),
+            dark: LCHColor(l: 80, c: 60, h: self.h).toColor())
+    }
 }
