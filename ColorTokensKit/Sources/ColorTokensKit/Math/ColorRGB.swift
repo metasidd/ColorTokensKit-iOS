@@ -30,13 +30,13 @@ public struct RGBColor: Hashable {
             self.alpha = CGFloat(resolvedColor.cgColor.alpha)
         } else {
             #if canImport(UIKit)
-            var red: CGFloat = 0
+            var proRed: CGFloat = 0
             var green: CGFloat = 0
             var blue: CGFloat = 0
             var alpha: CGFloat = 0
 
-            UIColor(color).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-            self.r = red
+            UIColor(color).getRed(&proRed, green: &green, blue: &blue, alpha: &alpha)
+            self.r = proRed
             self.g = green
             self.b = blue
             self.alpha = alpha

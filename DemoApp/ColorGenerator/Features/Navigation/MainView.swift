@@ -30,7 +30,7 @@ struct MainView: View {
             
             
             RoutingView(GlobalRouter.self) { router in
-                ColorTokensGeneratorView(lchColor: Color.lime)
+                ColorTokensGeneratorView(lchColor: Color.proLime)
             }
             .tabItem {
                 Label("Playground", systemImage: "paintbrush")

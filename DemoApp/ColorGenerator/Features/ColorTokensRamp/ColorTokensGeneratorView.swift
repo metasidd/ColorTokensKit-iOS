@@ -223,5 +223,5 @@ struct ColorBox: View {
 
 
 #Preview {
-    ColorTokensGeneratorView(lchColor: Color.purple)
+    ColorTokensGeneratorView(lchColor: Color.proPurple)
 }

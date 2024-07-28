@@ -11,54 +11,54 @@ public extension Color {
     // TODO: Replace these with other dynamic names?
     static let allProHues: [String: LCHColor] = [
         "Gray": Color.gray,
-        "Pink": Color.pink,
-        "Red": Color.red,
-        "Tomato": Color.tomato,
-        "Orange": Color.orange,
-        "Brown": Color.brown,
-        "Gold": Color.gold,
-        "Yellow": Color.yellow,
-        "Lime": Color.lime,
-        "Olive": Color.olive,
-        "Grass": Color.grass,
-        "Green": Color.green,
-        "Mint": Color.mint,
-        "Cyan": Color.cyan,
-        "Teal": Color.teal,
-        "Blue": Color.blue,
-        "Sky": Color.sky,
-        "Indigo": Color.indigo,
-        "Iris": Color.iris,
-        "Purple": Color.purple,
-        "Violet": Color.violet,
-        "Plum": Color.plum,
-        "Ruby": Color.ruby
+        "Pink": Color.proPink,
+        "Red": Color.proRed,
+        "Tomato": Color.proTomato,
+        "Orange": Color.proOrange,
+        "Brown": Color.proBrown,
+        "Gold": Color.proGold,
+        "Yellow": Color.proYellow,
+        "Lime": Color.proLime,
+        "Olive": Color.proOlive,
+        "Grass": Color.proGrass,
+        "Green": Color.proGreen,
+        "Mint": Color.proMint,
+        "Cyan": Color.proCyan,
+        "Teal": Color.proTeal,
+        "Blue": Color.proBlue,
+        "Sky": Color.proSky,
+        "Indigo": Color.proIndigo,
+        "Iris": Color.proIris,
+        "Purple": Color.proPurple,
+        "Violet": Color.proViolet,
+        "Plum": Color.proPlum,
+        "Ruby": Color.proRuby
     ]
     
     // Static colors
     static let gray = LCHColor(h: 0.0, variableChroma: false, variableHue: false)
     
     // Dynamic colors
-    static let pink = LCHColor(h: 0.0)
-    static let red = LCHColor(h: 10.0)
-    static let tomato = LCHColor(h: 20.0)
-    static let orange = LCHColor(h: 30.0)
-    static let brown = LCHColor(h: 45.0)
-    static let gold = LCHColor(h: 70.0)
-    static let yellow = LCHColor(h: 90.0)
-    static let lime = LCHColor(h: 100.0)
-    static let olive = LCHColor(h: 110.0)
-    static let grass = LCHColor(h: 120.0)
-    static let green = LCHColor(h: 140.0)
-    static let mint = LCHColor(h: 160.0)
-    static let cyan = LCHColor(h: 180.0)
-    static let teal = LCHColor(h: 190.0)
-    static let blue = LCHColor(h: 210.0)
-    static let sky = LCHColor(h: 230.0)
-    static let indigo = LCHColor(h: 260.0)
-    static let iris = LCHColor(h: 295.0)
-    static let purple = LCHColor(h: 310.0)
-    static let violet = LCHColor(h: 320.0)
-    static let plum = LCHColor(h: 345.0)
-    static let ruby = LCHColor(h: 360.0)
+    static let proPink = LCHColor(h: 0.0)
+    static let proRed = LCHColor(h: 10.0)
+    static let proTomato = LCHColor(h: 20.0)
+    static let proOrange = LCHColor(h: 30.0)
+    static let proBrown = LCHColor(h: 45.0)
+    static let proGold = LCHColor(h: 70.0)
+    static let proYellow = LCHColor(h: 90.0)
+    static let proLime = LCHColor(h: 100.0)
+    static let proOlive = LCHColor(h: 110.0)
+    static let proGrass = LCHColor(h: 120.0)
+    static let proGreen = LCHColor(h: 140.0)
+    static let proMint = LCHColor(h: 160.0)
+    static let proCyan = LCHColor(h: 180.0)
+    static let proTeal = LCHColor(h: 190.0)
+    static let proBlue = LCHColor(h: 210.0)
+    static let proSky = LCHColor(h: 230.0)
+    static let proIndigo = LCHColor(h: 260.0)
+    static let proIris = LCHColor(h: 295.0)
+    static let proPurple = LCHColor(h: 310.0)
+    static let proViolet = LCHColor(h: 320.0)
+    static let proPlum = LCHColor(h: 345.0)
+    static let proRuby = LCHColor(h: 360.0)
 }
