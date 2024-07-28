@@ -13,7 +13,7 @@ public extension LCHColor {
     // Foreground colors
     var foregroundPrimary: Color { Color(light: _100, dark: _0_pastel) }
     var foregroundSecondary: Color { Color(light: _80, dark: _20_pastel) }
-    var foregroundTertiary: Color { Color(light: _60, dark: _40_pastel) }
+    var foregroundTertiary: Color { Color(light: _70, dark: _30_pastel) }
     
     // Inverted foreground colors
     var invertedForegroundPrimary: Color { Color(light: _0, dark: _100_pastel) }
@@ -26,9 +26,9 @@ public extension LCHColor {
     var backgroundTertiary: Color { Color(light: _20, dark: _80_pastel) }
     
     // Inverted background colors
-    var invertedBackgroundPrimary: Color { Color(light: _95, dark: _5_pastel) }
-    var invertedBackgroundSecondary: Color { Color(light: _80, dark: _20_pastel) }
-    var invertedBackgroundTertiary: Color { Color(light: _65, dark: _35_pastel) }
+    var invertedBackgroundPrimary: Color { Color(light: _85, dark: _15_pastel) }
+    var invertedBackgroundSecondary: Color { Color(light: _70, dark: _30_pastel) }
+    var invertedBackgroundTertiary: Color { Color(light: _60, dark: _40_pastel) }
     
     // Outline colors
     var outlinePrimary: Color { Color(light: _30, dark: _70_pastel) }
