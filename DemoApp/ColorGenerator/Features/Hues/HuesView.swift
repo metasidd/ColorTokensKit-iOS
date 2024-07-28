@@ -40,6 +40,7 @@ struct HuesView: View {
 }
 
 struct HueColorGroup: View {
+    @Environment(\.colorScheme) var colorScheme
     @StateObject var router: Router<GlobalRouter>
     
     let lchColor: LCHColor
@@ -82,7 +83,7 @@ struct HueColorGroup: View {
     }
     
     private func hueRampView(lchColor: LCHColor) -> some View {
-        let colorRamp = lchColor.allCases.reversed()
+        let colorRamp = colorScheme == .light ? lchColor.allNormalColors.reversed() : lchColor.allPastelColors
         return HStack(spacing: 0) {
             ForEach(colorRamp, id: \.self) { lchColor in
                 Rectangle()

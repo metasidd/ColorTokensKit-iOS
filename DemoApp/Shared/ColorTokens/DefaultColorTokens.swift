@@ -11,29 +11,30 @@ import SwiftUI
 
 public extension LCHColor {
     // Foreground colors
-    var foregroundPrimary: Color { _100 }
-    var foregroundSecondary: Color { _80 }
-    var foregroundTertiary: Color { _60 }
+    var foregroundPrimary: Color { Color(light: _100, dark: _0_pastel) }
+    var foregroundSecondary: Color { Color(light: _80, dark: _20_pastel) }
+    var foregroundTertiary: Color { Color(light: _60, dark: _40_pastel) }
     
     // Inverted foreground colors
-    var invertedForegroundPrimary: Color { _0 }
-    var invertedForegroundSecondary: Color { _15 }
-    var invertedForegroundTertiary: Color { _25 }
+    var invertedForegroundPrimary: Color { Color(light: _0, dark: _100_pastel) }
+    var invertedForegroundSecondary: Color { Color(light: _15, dark: _85_pastel) }
+    var invertedForegroundTertiary: Color { Color(light: _25, dark: _75_pastel) }
     
-    // Backgroundcolors
-    var backgroundPrimary: Color { _5 }
-    var backgroundSecondary: Color { _10 }
-    var backgroundTertiary: Color { _20 }
+    // Background colors
+    var backgroundPrimary: Color { Color(light: _5, dark: _95_pastel) }
+    var backgroundSecondary: Color { Color(light: _10, dark: _90_pastel) }
+    var backgroundTertiary: Color { Color(light: _20, dark: _80_pastel) }
     
     // Inverted background colors
-    var invertedBackgroundPrimary: Color { _95 }
-    var invertedBackgroundSecondary: Color { _80 }
-    var invertedBackgroundTertiary: Color { _65 }
+    var invertedBackgroundPrimary: Color { Color(light: _95, dark: _5_pastel) }
+    var invertedBackgroundSecondary: Color { Color(light: _80, dark: _20_pastel) }
+    var invertedBackgroundTertiary: Color { Color(light: _65, dark: _35_pastel) }
     
     // Outline colors
-    var outlinePrimary: Color { _30 }
-    var outlineSecondary: Color { _10 }
-    var outlineTertiary: Color { _5 }
+    var outlinePrimary: Color { Color(light: _30, dark: _70_pastel) }
+    var outlineSecondary: Color { Color(light: _10, dark: _90_pastel) }
+    var outlineTertiary: Color { Color(light: _5, dark: _95_pastel) }
+
 }
 
 extension Color {
