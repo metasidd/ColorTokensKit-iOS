@@ -9,7 +9,7 @@ import SwiftUI
 
 public extension Color {
     // TODO: Replace these with other dynamic names?
-    static let allProColors: [String: LCHColor] = [
+    static let allProHues: [String: LCHColor] = [
         "Gray": Color.gray,
         "Pink": Color.pink,
         "Red": Color.red,
