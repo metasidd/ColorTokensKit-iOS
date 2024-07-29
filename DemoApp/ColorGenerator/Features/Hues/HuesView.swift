@@ -21,9 +21,7 @@ struct HuesView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 4) {
-                    ForEach(Array(Color.allProHues).sorted { $0.value.h < $1.value.h }, id: \.key) {
-                        name,
-                        color in
+                    ForEach(Array(Color.allProHues).sorted { $0.value.h < $1.value.h }, id: \.key) { name, color in
                         HueColorGroup(
                             router: router,
                             lchColor: color,
