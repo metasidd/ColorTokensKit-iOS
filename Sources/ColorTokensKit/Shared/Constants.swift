@@ -8,7 +8,7 @@
 import Foundation
 
 enum Constants {
-    static let RAD_TO_DEG = 180 / CGFloat(M_PI)
+    static let RAD_TO_DEG = 180 / Double.pi
     static let LAB_E: CGFloat = 0.008856
     static let LAB_16_116: CGFloat = 0.1379310
     static let LAB_K_116: CGFloat = 7.787036
