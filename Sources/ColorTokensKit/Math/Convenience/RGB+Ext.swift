@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  RGB+Ext.swift
 //  
 //
 //  Created by Siddhant Mehta on 2024-07-29.
