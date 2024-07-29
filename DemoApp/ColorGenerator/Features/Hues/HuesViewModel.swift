@@ -11,5 +11,5 @@ import ColorTokensKit
 
 @Observable
 class HuesViewModel: ObservableObject {
-    var colors = Color.allProColors
+    var colors = Color.allProHues
 }

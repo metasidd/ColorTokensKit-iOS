@@ -13,7 +13,7 @@ import ColorTokensKit
 @Observable
 class ColorTokensGeneratorViewModel: ObservableObject {
     var lchColor: LCHColor
-    var steps: Int = Color.allProColors.count
+    var steps: Int = Color.allProHues.count
     var colors: [String: LCHColor] = [:]
     
     init(lchColor: LCHColor) {
@@ -22,7 +22,7 @@ class ColorTokensGeneratorViewModel: ObservableObject {
     }
     
     func updateColors() {
-        colors = Color.allProColors
+        colors = Color.allProHues
     }
 }
 

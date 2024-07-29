@@ -79,20 +79,21 @@ public extension LCHColor {
         )
     }
     
-    func getResponsiveColor(lightness: CGFloat, chroma: CGFloat, alpha: CGFloat = 1.0) -> Color {
-        let lightLCHColor = LCHColor(
-            l: lightness,
-            c: self.variableChroma ? chroma : 0,
-            h: self.variableHue ? h : 0,
-            alpha: alpha
-        )
-        let darkLCHColor = LCHColor(
-            l: lightness,
-            c: self.variableChroma ? (chroma * 0.65) : 0,
-            h: self.variableHue ? h : 0,
-            alpha: alpha
-        )
-        let color = Color(light: lightLCHColor.toColor(), dark: darkLCHColor.toColor())
-        return color
+    func getColor(
+        l: CGFloat? = nil,
+        c: CGFloat? = nil,
+        h: CGFloat? = nil,
+        alpha: CGFloat? = nil,
+        variableChroma: Bool? = nil,
+        variableHue: Bool? = nil
+    ) -> Color {
+        return LCHColor(
+            l: l ?? self.l,
+            c: (variableChroma ?? self.variableChroma) ? (c ?? self.c) : 0,
+            h: (variableHue ?? self.variableHue) ? (h ?? self.h) : 0,
+            alpha: alpha ?? self.alpha,
+            variableChroma: variableChroma ?? self.variableChroma,
+            variableHue: variableHue ?? self.variableHue
+        ).toColor()
     }
 }

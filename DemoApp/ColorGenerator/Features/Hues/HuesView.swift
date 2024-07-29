@@ -21,12 +21,12 @@ struct HuesView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 4) {
-//                    ForEach(Array(stride(from: 0, to: 361, by: 10)), id: \.self) { index in
-//                        let lchColor = LCHColor(l: 75, c: 50, h: CGFloat(index), alpha: 1.0)
-//                        HueColorGroup(router: router, lchColor: lchColor)
-//                    }
-                    ForEach(Array(Color.allProColors).sorted { $0.value.h < $1.value.h }, id: \.key) { name, color in
-                        HueColorGroup(router: router, lchColor: color, name: name)
+                    ForEach(Array(Color.allProHues).sorted { $0.value.h < $1.value.h }, id: \.key) { name, color in
+                        HueColorGroup(
+                            router: router,
+                            lchColor: color,
+                            name: name
+                        )
                     }
                 }
                 .padding(16)
@@ -38,6 +38,7 @@ struct HuesView: View {
 }
 
 struct HueColorGroup: View {
+    @Environment(\.colorScheme) var colorScheme
     @StateObject var router: Router<GlobalRouter>
     
     let lchColor: LCHColor
@@ -80,7 +81,7 @@ struct HueColorGroup: View {
     }
     
     private func hueRampView(lchColor: LCHColor) -> some View {
-        let colorRamp = lchColor.allCases.reversed()
+        let colorRamp = colorScheme == .light ? lchColor.allNormalColors.reversed() : lchColor.allPastelColors
         return HStack(spacing: 0) {
             ForEach(colorRamp, id: \.self) { lchColor in
                 Rectangle()

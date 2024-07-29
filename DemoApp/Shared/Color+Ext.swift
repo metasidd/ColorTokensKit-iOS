@@ -1,40 +1,13 @@
 //
-//  ColorRampUtility.swift
+//  Color+Ext.swift
 //  ColorGenerator
 //
-//  Created by Siddhant Mehta on 2024-06-09.
+//  Created by Siddhant Mehta on 2024-07-29.
 //
 
-import Foundation
 import ColorTokensKit
+import Foundation
 import SwiftUI
-
-public extension LCHColor {
-    // Foreground colors
-    var foregroundPrimary: Color { Color(light: _100, dark: _0) }
-    var foregroundSecondary: Color { Color(light: _80, dark: _20) }
-    var foregroundTertiary: Color { Color(light: _60, dark: _40) }
-    
-    // Inverted foreground colors
-    var invertedForegroundPrimary: Color { Color(light: _0, dark: _100) }
-    var invertedForegroundSecondary: Color { Color(light: _15, dark: _85) }
-    var invertedForegroundTertiary: Color { Color(light: _25, dark: _75) }
-    
-    // Backgroundcolors
-    var backgroundPrimary: Color { Color(light: _5, dark: _95) }
-    var backgroundSecondary: Color { Color(light: _10, dark: _90) }
-    var backgroundTertiary: Color { Color(light: _20, dark: _80) }
-    
-    // Inverted background colors
-    var invertedBackgroundPrimary: Color { Color(light: _100, dark: _10) }
-    var invertedBackgroundSecondary: Color { Color(light: _75, dark: _25) }
-    var invertedBackgroundTertiary: Color { Color(light: _60, dark: _40) }
-    
-    // Outline colors
-    var outlinePrimary: Color { Color(light: _30, dark: _70) }
-    var outlineSecondary: Color { Color(light: _10, dark: _90) }
-    var outlineTertiary: Color { Color(light: _5, dark: _95) }
-}
 
 extension Color {
     // Foreground colors
