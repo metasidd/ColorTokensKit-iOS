@@ -457,8 +457,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/metasidd/ColorTokensKit-iOS/";
 			requirement = {
-				branch = "sid/package-first-repo";
-				kind = branch;
+				kind = exactVersion;
+				version = 0.0.6;
 			};
 		};
 		2CB61B932C15FFCF00D3F60B /* XCRemoteSwiftPackageReference "Routing" */ = {

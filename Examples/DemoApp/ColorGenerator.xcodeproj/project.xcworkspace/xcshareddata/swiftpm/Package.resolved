@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/metasidd/ColorTokensKit-iOS/",
       "state" : {
-        "branch" : "sid/package-first-repo",
-        "revision" : "4a62091b4f3f67c590a647ef5cc20d1ea20d810e"
+        "revision" : "ad7452e6517372f60272cc4470c20d1abd3032a8",
+        "version" : "0.0.6"
       }
     },
     {
