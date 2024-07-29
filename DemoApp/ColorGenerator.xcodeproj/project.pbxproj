@@ -20,10 +20,10 @@
 		2C7FC8872C14690700E59921 /* ColorTokensGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8862C14690700E59921 /* ColorTokensGeneratorView.swift */; };
 		2C7FC8922C149B3100E59921 /* Fonts+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */; };
 		2C7FC8972C14AD6700E59921 /* HuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8962C14AD6700E59921 /* HuesViewModel.swift */; };
-		2C7FC8992C14B4B800E59921 /* ColorSpaces+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8982C14B4B800E59921 /* ColorSpaces+Ext.swift */; };
 		2C7FC89B2C14BD9D00E59921 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */; };
+		2C8AF08D2C57510100704C24 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8AF08C2C57510100704C24 /* Color+Ext.swift */; };
 		2CB61B8F2C15CFFC00D3F60B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B8E2C15CFFC00D3F60B /* MainView.swift */; };
-		2CB61B922C15D37B00D3F60B /* DefaultColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B912C15D37B00D3F60B /* DefaultColorTokens.swift */; };
+		2CB61B922C15D37B00D3F60B /* LCHColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B912C15D37B00D3F60B /* LCHColor+Ext.swift */; };
 		2CB61B952C15FFCF00D3F60B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = 2CB61B942C15FFCF00D3F60B /* Routing */; };
 		2CB61B972C16005100D3F60B /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B962C16005100D3F60B /* GlobalRouter.swift */; };
 		2CB61B9C2C16D24000D3F60B /* CustomRampMakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B9B2C16D24000D3F60B /* CustomRampMakerView.swift */; };
@@ -64,10 +64,10 @@
 		2C7FC8862C14690700E59921 /* ColorTokensGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensGeneratorView.swift; sourceTree = "<group>"; };
 		2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Ext.swift"; sourceTree = "<group>"; };
 		2C7FC8962C14AD6700E59921 /* HuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuesViewModel.swift; sourceTree = "<group>"; };
-		2C7FC8982C14B4B800E59921 /* ColorSpaces+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorSpaces+Ext.swift"; sourceTree = "<group>"; };
 		2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
+		2C8AF08C2C57510100704C24 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		2CB61B8E2C15CFFC00D3F60B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		2CB61B912C15D37B00D3F60B /* DefaultColorTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColorTokens.swift; sourceTree = "<group>"; };
+		2CB61B912C15D37B00D3F60B /* LCHColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCHColor+Ext.swift"; sourceTree = "<group>"; };
 		2CB61B962C16005100D3F60B /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
 		2CB61B9B2C16D24000D3F60B /* CustomRampMakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRampMakerView.swift; sourceTree = "<group>"; };
 		2CB61B9D2C16D2A000D3F60B /* CustomRampMakerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRampMakerViewModel.swift; sourceTree = "<group>"; };
@@ -162,8 +162,8 @@
 		2C7FC88B2C14851200E59921 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				2CB61B902C15D36C00D3F60B /* ColorTokens */,
-				2C7FC8982C14B4B800E59921 /* ColorSpaces+Ext.swift */,
+				2C8AF08C2C57510100704C24 /* Color+Ext.swift */,
+				2CB61B912C15D37B00D3F60B /* LCHColor+Ext.swift */,
 				2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */,
 				2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */,
 				2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */,
@@ -206,14 +206,6 @@
 				2CB61B8E2C15CFFC00D3F60B /* MainView.swift */,
 			);
 			path = Navigation;
-			sourceTree = "<group>";
-		};
-		2CB61B902C15D36C00D3F60B /* ColorTokens */ = {
-			isa = PBXGroup;
-			children = (
-				2CB61B912C15D37B00D3F60B /* DefaultColorTokens.swift */,
-			);
-			path = ColorTokens;
 			sourceTree = "<group>";
 		};
 		2CB61B9A2C16D22400D3F60B /* CustomRampMaker */ = {
@@ -366,17 +358,17 @@
 				2C73DB372C1F1AE6004EEEC6 /* View+Ext.swift in Sources */,
 				2CB61B9E2C16D2A000D3F60B /* CustomRampMakerViewModel.swift in Sources */,
 				2C7FC8872C14690700E59921 /* ColorTokensGeneratorView.swift in Sources */,
-				2C7FC8992C14B4B800E59921 /* ColorSpaces+Ext.swift in Sources */,
 				2C7FC8852C1468F600E59921 /* ColorTokensGeneratorViewModel.swift in Sources */,
 				2C7FC8922C149B3100E59921 /* Fonts+Ext.swift in Sources */,
 				2C7FC89B2C14BD9D00E59921 /* Double+Ext.swift in Sources */,
 				2C7FC8972C14AD6700E59921 /* HuesViewModel.swift in Sources */,
 				2CB61B8F2C15CFFC00D3F60B /* MainView.swift in Sources */,
 				2CB61B9C2C16D24000D3F60B /* CustomRampMakerView.swift in Sources */,
-				2CB61B922C15D37B00D3F60B /* DefaultColorTokens.swift in Sources */,
+				2CB61B922C15D37B00D3F60B /* LCHColor+Ext.swift in Sources */,
 				2C7FC85C2C1468E400E59921 /* HuesView.swift in Sources */,
 				2C7FC85A2C1468E400E59921 /* ColorGeneratorApp.swift in Sources */,
 				2CB61B972C16005100D3F60B /* GlobalRouter.swift in Sources */,
+				2C8AF08D2C57510100704C24 /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

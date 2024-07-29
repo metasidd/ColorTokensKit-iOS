@@ -37,48 +37,30 @@ public extension LCHColor {
 
 }
 
-extension Color {
-    // Foreground colors
-    public static var foregroundPrimary: Color {
-        .gray.foregroundPrimary
-    }
-    public static var foregroundSecondary: Color {
-        .gray.foregroundSecondary
-    }
-    public static var foregroundTertiary: Color {
-        .gray.foregroundTertiary
-    }
-    
-    // Inverted colors
-    public static var invertedForeground: Color {
-        .gray.invertedForegroundPrimary
-    }
-    public static var invertedForegroundSecondary: Color {
-        .gray.invertedForegroundSecondary
-    }
-    public static var invertedForegroundTertiary: Color {
-        .gray.invertedForegroundTertiary
+extension LCHColor {
+    func getContrast(with lchColor: LCHColor) -> Double {
+        let color1 = self.toColor().resolve(in: .init())
+        let color2 = lchColor.toColor().resolve(in: .init())
+        
+        let luminance1 = relativeLuminance(red: Double(color1.red), green: Double(color1.green), blue: Double(color1.blue))
+        let luminance2 = relativeLuminance(red: Double(color2.red), green: Double(color2.green), blue: Double(color2.blue))
+        
+        let lighter = max(luminance1, luminance2) + 0.05
+        let darker = min(luminance1, luminance2) + 0.05
+        
+        return lighter / darker
     }
     
-    // Background colors
-    public static var backgroundPrimary: Color {
-        Color(light: .white, dark: .black) // Pure black and white
-    }
-    public static var backgroundSecondary: Color {
-        .gray.backgroundSecondary
-    }
-    public static var backgroundTertiary: Color {
-        .gray.backgroundTertiary
-    }
-    
-    // Outline colors
-    public static var outlinePrimary: Color {
-        .gray.outlinePrimary
-    }
-    public static var outlineSecondary: Color {
-        .gray.outlineSecondary
-    }
-    public static var outlineTertiary: Color {
-        .gray.outlineTertiary
+    // Function to calculate relative luminance
+    func relativeLuminance(red: Double, green: Double, blue: Double) -> Double {
+        func adjust(_ component: Double) -> Double {
+            return component <= 0.03928 ? component / 12.92 : pow((component + 0.055) / 1.055, 2.4)
+        }
+        
+        let r = adjust(red)
+        let g = adjust(green)
+        let b = adjust(blue)
+        
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b
     }
 }

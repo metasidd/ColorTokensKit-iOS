@@ -78,4 +78,22 @@ public extension LCHColor {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
+    
+    func getColor(
+        l: CGFloat? = nil,
+        c: CGFloat? = nil,
+        h: CGFloat? = nil,
+        alpha: CGFloat? = nil,
+        variableChroma: Bool? = nil,
+        variableHue: Bool? = nil
+    ) -> Color {
+        return LCHColor(
+            l: l ?? self.l,
+            c: (variableChroma ?? self.variableChroma) ? (c ?? self.c) : 0,
+            h: (variableHue ?? self.variableHue) ? (h ?? self.h) : 0,
+            alpha: alpha ?? self.alpha,
+            variableChroma: variableChroma ?? self.variableChroma,
+            variableHue: variableHue ?? self.variableHue
+        ).toColor()
+    }
 }
