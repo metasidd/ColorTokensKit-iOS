@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C73DB352C1F0CDF004EEEC6 /* ColorTokensKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2C73DB342C1F0CDF004EEEC6 /* ColorTokensKit */; };
-		2C73DB372C1F1AE6004EEEC6 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */; };
 		2C7FC85A2C1468E400E59921 /* ColorGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8592C1468E400E59921 /* ColorGeneratorApp.swift */; };
 		2C7FC85C2C1468E400E59921 /* HuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC85B2C1468E400E59921 /* HuesView.swift */; };
 		2C7FC85E2C1468E400E59921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FC85D2C1468E400E59921 /* Assets.xcassets */; };
@@ -18,12 +16,8 @@
 		2C7FC8782C1468E500E59921 /* ColorGeneratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8772C1468E500E59921 /* ColorGeneratorUITestsLaunchTests.swift */; };
 		2C7FC8852C1468F600E59921 /* ColorTokensGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8842C1468F600E59921 /* ColorTokensGeneratorViewModel.swift */; };
 		2C7FC8872C14690700E59921 /* ColorTokensGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8862C14690700E59921 /* ColorTokensGeneratorView.swift */; };
-		2C7FC8922C149B3100E59921 /* Fonts+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */; };
 		2C7FC8972C14AD6700E59921 /* HuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC8962C14AD6700E59921 /* HuesViewModel.swift */; };
-		2C7FC89B2C14BD9D00E59921 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */; };
-		2C8AF08D2C57510100704C24 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8AF08C2C57510100704C24 /* Color+Ext.swift */; };
 		2CB61B8F2C15CFFC00D3F60B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B8E2C15CFFC00D3F60B /* MainView.swift */; };
-		2CB61B922C15D37B00D3F60B /* LCHColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B912C15D37B00D3F60B /* LCHColor+Ext.swift */; };
 		2CB61B952C15FFCF00D3F60B /* Routing in Frameworks */ = {isa = PBXBuildFile; productRef = 2CB61B942C15FFCF00D3F60B /* Routing */; };
 		2CB61B972C16005100D3F60B /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B962C16005100D3F60B /* GlobalRouter.swift */; };
 		2CB61B9C2C16D24000D3F60B /* CustomRampMakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB61B9B2C16D24000D3F60B /* CustomRampMakerView.swift */; };
@@ -48,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		2C11DD8A2C57EBB200FFC8E0 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../../Package.swift; sourceTree = "<group>"; };
 		2C7FC8562C1468E400E59921 /* ColorGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7FC8592C1468E400E59921 /* ColorGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGeneratorApp.swift; sourceTree = "<group>"; };
 		2C7FC85B2C1468E400E59921 /* HuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuesView.swift; sourceTree = "<group>"; };
@@ -62,12 +56,8 @@
 		2C7FC8772C1468E500E59921 /* ColorGeneratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGeneratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2C7FC8842C1468F600E59921 /* ColorTokensGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensGeneratorViewModel.swift; sourceTree = "<group>"; };
 		2C7FC8862C14690700E59921 /* ColorTokensGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensGeneratorView.swift; sourceTree = "<group>"; };
-		2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Ext.swift"; sourceTree = "<group>"; };
 		2C7FC8962C14AD6700E59921 /* HuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuesViewModel.swift; sourceTree = "<group>"; };
-		2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
-		2C8AF08C2C57510100704C24 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		2CB61B8E2C15CFFC00D3F60B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		2CB61B912C15D37B00D3F60B /* LCHColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCHColor+Ext.swift"; sourceTree = "<group>"; };
 		2CB61B962C16005100D3F60B /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
 		2CB61B9B2C16D24000D3F60B /* CustomRampMakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRampMakerView.swift; sourceTree = "<group>"; };
 		2CB61B9D2C16D2A000D3F60B /* CustomRampMakerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRampMakerViewModel.swift; sourceTree = "<group>"; };
@@ -79,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CB61B952C15FFCF00D3F60B /* Routing in Frameworks */,
-				2C73DB352C1F0CDF004EEEC6 /* ColorTokensKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,14 +89,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C11DD892C57EBB200FFC8E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C11DD8A2C57EBB200FFC8E0 /* Package.swift */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2C7FC84D2C1468E400E59921 = {
 			isa = PBXGroup;
 			children = (
 				2C7FC8582C1468E400E59921 /* ColorGenerator */,
-				2C7FC88B2C14851200E59921 /* Shared */,
 				2C7FC86A2C1468E400E59921 /* ColorGeneratorTests */,
 				2C7FC8742C1468E500E59921 /* ColorGeneratorUITests */,
 				2C7FC8572C1468E400E59921 /* Products */,
+				2C11DD892C57EBB200FFC8E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,18 +154,6 @@
 				2C7FC8772C1468E500E59921 /* ColorGeneratorUITestsLaunchTests.swift */,
 			);
 			path = ColorGeneratorUITests;
-			sourceTree = "<group>";
-		};
-		2C7FC88B2C14851200E59921 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				2C8AF08C2C57510100704C24 /* Color+Ext.swift */,
-				2CB61B912C15D37B00D3F60B /* LCHColor+Ext.swift */,
-				2C7FC8912C149B3100E59921 /* Fonts+Ext.swift */,
-				2C7FC89A2C14BD9D00E59921 /* Double+Ext.swift */,
-				2C73DB362C1F1AE6004EEEC6 /* View+Ext.swift */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		2C7FC8932C14AB1A00E59921 /* Features */ = {
@@ -235,7 +220,6 @@
 			name = ColorGenerator;
 			packageProductDependencies = (
 				2CB61B942C15FFCF00D3F60B /* Routing */,
-				2C73DB342C1F0CDF004EEEC6 /* ColorTokensKit */,
 			);
 			productName = ColorGenerator;
 			productReference = 2C7FC8562C1468E400E59921 /* ColorGenerator.app */;
@@ -311,7 +295,6 @@
 			mainGroup = 2C7FC84D2C1468E400E59921;
 			packageReferences = (
 				2CB61B932C15FFCF00D3F60B /* XCRemoteSwiftPackageReference "Routing" */,
-				2C73DB332C1F0CDF004EEEC6 /* XCLocalSwiftPackageReference "../ColorTokensKit" */,
 			);
 			productRefGroup = 2C7FC8572C1468E400E59921 /* Products */;
 			projectDirPath = "";
@@ -355,20 +338,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C73DB372C1F1AE6004EEEC6 /* View+Ext.swift in Sources */,
 				2CB61B9E2C16D2A000D3F60B /* CustomRampMakerViewModel.swift in Sources */,
 				2C7FC8872C14690700E59921 /* ColorTokensGeneratorView.swift in Sources */,
 				2C7FC8852C1468F600E59921 /* ColorTokensGeneratorViewModel.swift in Sources */,
-				2C7FC8922C149B3100E59921 /* Fonts+Ext.swift in Sources */,
-				2C7FC89B2C14BD9D00E59921 /* Double+Ext.swift in Sources */,
 				2C7FC8972C14AD6700E59921 /* HuesViewModel.swift in Sources */,
 				2CB61B8F2C15CFFC00D3F60B /* MainView.swift in Sources */,
 				2CB61B9C2C16D24000D3F60B /* CustomRampMakerView.swift in Sources */,
-				2CB61B922C15D37B00D3F60B /* LCHColor+Ext.swift in Sources */,
 				2C7FC85C2C1468E400E59921 /* HuesView.swift in Sources */,
 				2C7FC85A2C1468E400E59921 /* ColorGeneratorApp.swift in Sources */,
 				2CB61B972C16005100D3F60B /* GlobalRouter.swift in Sources */,
-				2C8AF08D2C57510100704C24 /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,13 +704,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		2C73DB332C1F0CDF004EEEC6 /* XCLocalSwiftPackageReference "../ColorTokensKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../ColorTokensKit;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		2CB61B932C15FFCF00D3F60B /* XCRemoteSwiftPackageReference "Routing" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -745,10 +716,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2C73DB342C1F0CDF004EEEC6 /* ColorTokensKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ColorTokensKit;
-		};
 		2CB61B942C15FFCF00D3F60B /* Routing */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CB61B932C15FFCF00D3F60B /* XCRemoteSwiftPackageReference "Routing" */;
