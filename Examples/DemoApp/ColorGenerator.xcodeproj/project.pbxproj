@@ -26,7 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C11DD8A2C57EBB200FFC8E0 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		2C11DD912C57EFA500FFC8E0 /* Color+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		2C11DD922C57EFA500FFC8E0 /* Double+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		2C11DD932C57EFA500FFC8E0 /* Fonts+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fonts+Ext.swift"; sourceTree = "<group>"; };
@@ -61,14 +60,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C11DD892C57EBB200FFC8E0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2C11DD8A2C57EBB200FFC8E0 /* Package.swift */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2C11DD962C57EFA500FFC8E0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,7 +79,6 @@
 				2C7FC86A2C1468E400E59921 /* ColorGeneratorTests */,
 				2C7FC8742C1468E500E59921 /* ColorGeneratorUITests */,
 				2C7FC8572C1468E400E59921 /* Products */,
-				2C11DD892C57EBB200FFC8E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
