@@ -1,6 +1,15 @@
 {
-  "originHash" : "a44c1bdca3e2ba5515f9d1ea94f853403dcb82589b4cef7e4114b10b81b29432",
+  "originHash" : "6beaa64b4192d86358bbde813ddf1d97d34844e749f80e57b7cbe25249e7bdb1",
   "pins" : [
+    {
+      "identity" : "colortokenskit-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/metasidd/ColorTokensKit-iOS/",
+      "state" : {
+        "branch" : "sid/package-first-repo",
+        "revision" : "dda4b271b2d4672b4e000a3c508441c0a2fcc534"
+      }
+    },
     {
       "identity" : "routing",
       "kind" : "remoteSourceControl",
