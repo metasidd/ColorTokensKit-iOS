@@ -37,9 +37,6 @@
 		2C7FC85D2C1468E400E59921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C7FC85F2C1468E400E59921 /* ColorGenerator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ColorGenerator.entitlements; sourceTree = "<group>"; };
 		2C7FC8612C1468E400E59921 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2C7FC86B2C1468E400E59921 /* ColorGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGeneratorTests.swift; sourceTree = "<group>"; };
-		2C7FC8752C1468E500E59921 /* ColorGeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGeneratorUITests.swift; sourceTree = "<group>"; };
-		2C7FC8772C1468E500E59921 /* ColorGeneratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGeneratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2C7FC8842C1468F600E59921 /* ColorTokensGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensGeneratorViewModel.swift; sourceTree = "<group>"; };
 		2C7FC8862C14690700E59921 /* ColorTokensGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokensGeneratorView.swift; sourceTree = "<group>"; };
 		2C7FC8962C14AD6700E59921 /* HuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuesViewModel.swift; sourceTree = "<group>"; };
@@ -76,8 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				2C7FC8582C1468E400E59921 /* ColorGenerator */,
-				2C7FC86A2C1468E400E59921 /* ColorGeneratorTests */,
-				2C7FC8742C1468E500E59921 /* ColorGeneratorUITests */,
 				2C7FC8572C1468E400E59921 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,23 +104,6 @@
 				2C7FC8612C1468E400E59921 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		2C7FC86A2C1468E400E59921 /* ColorGeneratorTests */ = {
-			isa = PBXGroup;
-			children = (
-				2C7FC86B2C1468E400E59921 /* ColorGeneratorTests.swift */,
-			);
-			path = ColorGeneratorTests;
-			sourceTree = "<group>";
-		};
-		2C7FC8742C1468E500E59921 /* ColorGeneratorUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2C7FC8752C1468E500E59921 /* ColorGeneratorUITests.swift */,
-				2C7FC8772C1468E500E59921 /* ColorGeneratorUITestsLaunchTests.swift */,
-			);
-			path = ColorGeneratorUITests;
 			sourceTree = "<group>";
 		};
 		2C7FC8932C14AB1A00E59921 /* Features */ = {
