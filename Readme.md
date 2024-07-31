@@ -15,8 +15,10 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
   - [Working with themes](#working-with-themes)
   - [Making exceptions for dark mode](#making-exceptions-for-dark-mode)
   - [Interpolating Colors](#interpolating-colors)
+  - [Conveniniece Functions](#conveniniece-functions)
 - [Sample Application](#sample-application)
 - [Future ideas](#future-ideas)
+- [Resources](#resources)
 - [License](#license)
 
 <!-- Table of contents look good. Rest needs work. -->
@@ -30,11 +32,11 @@ Imagine you have a primary color used for your brand. This color is used in vari
 ```swift
 Text("Hello to ColorTokensKit")
   .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // Messy: Defining colors inline
-  .background(Color.brandColorBackground) // Custom variables: Often hardcoded. Changing various values associated with brandColor is hard and impractical.
-  .background(Color.brandColor.backgroundPrimary) // New way: Semantic naming that enables reusabusability, predictability and enables accessible colors. 
+  .background(Color.brandColorBackground) // Custom Variables: Often hardcoded. Changing various values associated with brandColor is hard and impractical.
+  .background(Color.brandColor.backgroundPrimary) // Design Tokens: Semantic naming that enables reusabusability, predictability and enables accessible colors. 
 ```
 
- Behind the scenes, brandColor uses an LCH color system to get a specific color. It gets the "hue" value from `brandColor` and calculates an accessibile background according to a few defined primitives.
+ Behind the scenes, `brandColor` uses an LCH color system to get a specific color. It gets the "hue" value from `brandColor` and calculates an accessible color ramps based on a few defined primitives.
 
 
 ## What is the LCH color system? 
@@ -200,7 +202,6 @@ Now that we have our design token system, and the basic gray ramp set up, you ca
 import ColorTokensKit
 
 public extension Color {
-extension Color {
    // Your main brand color can be defined by HEX, RGB, HSL or any other system
     public static var brandColor: LCHColor {
         LCHColor(hex: "#F12E53")
@@ -217,7 +218,6 @@ extension Color {
     }
 }
 ```
-
 
 ### Step 3: Using them for UI
 We're all set up. You're ready to start using them in code. You can just use the extension on `Color` for themeless gray colors. OR, you can even pass themes to your components for a more powerful setup. 
@@ -298,43 +298,118 @@ struct CardView: View {
 ```
 
 ### Making Exceptions for Dark mode
+Some things just don't look good in dark mode. In that case, you can easily select a different design token for it.
 
-### Defining Custom Tokens
+For example, this approach below allows light mode to have themed green text, whereas dark mode would have dark gray text. The benefit of using the LCH system is that they'll offer the same levels of lightness to keep your UI looking beautiful.
 
-### Interpolating Colors
-
-## Conveniniece Functions
-
-### Converting Colors
-ColorKit allows you to convert between different color spaces with ease. Here are some examples:
-
-#### Convert RGB to LCH
 ```swift
-import ColorKit
+import SwiftUI
 
-let rgbColor = RGBColor(r: 0.5, g: 0.4, b: 0.3, alpha: 1.0)
-let lchColor = rgbColor.toLCH()
-print(lchColor) // Output: LCHColor(l: 42.33, c: 29.65, h: 59.53, alpha: 1.0)
+struct CardView: View {
+  @Environment(\.colorScheme) var colorScheme
+  var body: some View {
+    Text("Hello World")
+      .foregroundStyle(colorScheme == .light ? Color.positive.foregroundPrimary : Color.foregroundPrimary)
+  }
+}
 ```
 
-#### Convert LCH to UIColor
+### Defining Custom Tokens
+If the existing tokens aren't enough for you app, you can always define new ones. Here, we define additional tokens for 
+
 ```swift
+// This setup would enable colors of all hues to have these values
+public extension LCHColor {
+    // Container tokens
+    var containerPrimary: Color { Color(light: _100, dark: _0_pastel) }
+    var containerSecondary: Color { Color(light: _80, dark: _20_pastel) }
+
+    // Shadow tokens
+    var shadowPrimary: Color { Color(light: _30.opacity(0.5), dark: _70_pastel.opacity(0.5)) }
+    var shadowSecondary: Color { Color(light: _30.opacity(0.3), dark: _70_pastel.opacity(0.3)) }
+}
+
+// This setup enables an extension on Color, so you don't need to refer to an LCHColor when you just want to use your grays
+public extension Color {
+    // Default container tokens
+    public static var containerPrimary: Color {
+        .gray.containerPrimary
+    }
+    public static var containerSecondary: Color {
+        .gray.containerSecondary
+    }
+
+    // Default shadow tokens
+    public static var shadowPrimary: Color {
+        .gray.shadowPrimary
+    }
+    public static var shadowSecondary: Color {
+        .gray.shadowSecondary
+    }
+}
+
+struct CardView: View {
+  var body: some View {
+    VStack {
+      Text("Hello World")
+        .foregroundStyle(Color.foregroundPrimary)
+    }
+    .background(Color.containerPrimary)
+    .shadow(color: Color.shadowPrimary, radius: 4, y: 2) // Gives a nice consistent shadow with or without theme colors
+  }
+}
+
+```
+
+### Interpolating Colors
+Transitioning colors using LCH offer much smoother color values.
+
+```swift
+let color1 = LCHColor(l: 40, c: 30, h: 60)
+let color2 = LCHColor(l: 60, c: 60, h: 90)
+let interpolatedColor = color1.lerp(color2, t: 0.5)
+print(interpolatedColor) // Output: LCHColor(l: 50, c: 45, h: 75)
+```
+
+### Conveniniece Functions
+ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, OKLAB, OKLCH etc. Here are some simple examples:
+
+```swift
+// RGB to LCH Color
+let rgbColor = Color(r: 0.5, g: 0.4, b: 0.3, alpha: 1.0)
+let lchColor = LCHColor(color: rgbColor)
+
+// HEX to LCH Color
+let lchColor = LCHColor(hex: "#abcdef")
+
+// HSL to LCH Color
+let hslColor = Color(h: 50, s: 50, l: 50)
+let lchColor = LCHColor(color: hslColor)
+
+// LCH to RGB
+let lchColor = LCHColor(l: 40, c: 30, h: 60)
+let rgbColor: color = lchColor.toRGB()
+
+// LCH to HEX
+let lchColor = LCHColor(l: 40, c: 30, h: 60)
+let hexColor: String = lchColor.toHex()
+
+// LCH to UIColor
 let lchColor = LCHColor(l: 42.33, c: 29.65, h: 59.53, alpha: 1.0)
 let uiColor = lchColor.toColor()
 print(uiColor) // Output: UIDeviceRGBColorSpace 0.5 0.4 0.3 1
+
 ```
 
-### Interpolating Color
-ColorKit also supports color interpolation, which can be useful for animations or generating color gradients.
+## Sample Application
+Open `ColorGenerator.xcproject` from the File Explorer to explore the spectrum of colors.
+[insert image of the application]
 
-#### Interpolate Between Two LCH Colors
-```swift
-let color1 = LCHColor(l: 42.33, c: 29.65, h: 59.53, alpha: 1.0)
-let color2 = LCHColor(l: 52.33, c: 39.65, h: 69.53, alpha: 1.0)
-let interpolatedColor = color1.lerp(color2, t: 0.5)
-print(interpolatedColor) // Output: LCHColor(l: 47.33, c: 34.65, h: 64.53, alpha: 1.0)
-```
-
-
-### Setting Up Design Tokens
-Design tokens are a great way to manage and apply consistent colors throughout your app. Here's how you can set up design tokens using ColorKit.
+## Future Ideas
+- [] Offer `.lighten()`, `.darken()`, `.saturate()` and `.desaturate()` for LCH Colors
+- [] Create smooth gradients using LCH colors
+- [] Basic Unit Tests
+- [] UI Snapshot Tests
+- [] Example Figma
+- [] Custom Lightness, Chroma or Hue curves
+- [] Any other feedback?
