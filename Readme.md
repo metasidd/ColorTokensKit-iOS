@@ -1,4 +1,6 @@
 # 🌈 ColorTokensKit 🌈
+## 🚧🚧🚧🚧 THIS IS A WORK IN PROGRESS, USE AT YOUR OWN RISK 🚧🚧🚧🚧
+
 By designers, for developers. 
 
 ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 1000's of pre-defined colors built using the LCH color system. 
@@ -20,8 +22,6 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
 - [Future ideas](#future-ideas)
 - [Resources](#resources)
 - [License](#license)
-
-<!-- Table of contents look good. Rest needs work. -->
 
 ## What are design tokens?
 Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus on color tokens. These tokens allow designers and developers to maintain consistency across an application, making it easier to update and maintain the visual language of your iOS app.
@@ -413,3 +413,6 @@ Open `ColorGenerator.xcproject` from the File Explorer to explore the spectrum o
 - [] Example Figma
 - [] Custom Lightness, Chroma or Hue curves
 - [] Any other feedback?
+
+## License
+The source code for the site is licensed under the MIT license, which you can find in the MIT-LICENSE.txt file.
