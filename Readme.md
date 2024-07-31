@@ -52,8 +52,24 @@ Text("Hello to ColorTokensKit")
 [Insert image]
 
 
-## What does the code look like in practice?
-Using ColorTokensKit, you can define and use colors in a way that aligns with modern design practices. Here’s a quick example of how it looks in code:
+## Ok, show me how the ColorTokens kit works
+ColorTokensKit is designed to be intuitive and easy to use in your Swift code. You can access pre-defined colors or create custom ones using a simple, expressive syntax. The library integrates seamlessly with SwiftUI and UIKit, allowing you to use color tokens in your views and UI components with minimal effort. Code example:
+
+```swift
+// A simple container with a name and a subtitle
+// An extension on `Color` offers ready to use design tokens with a `Color.gray` color ramp
+VStack {
+  Text("Title")
+    .foregroundStyle(Color.foregroundPrimary) // Uses the darkest text color available
+  Text("Subtitle")
+    .foregroundStyle(Color.foregroundSecondary) // Since it's a secondary piece of text, it uses a lighter shade available
+}
+.background(
+  RoundedRectangle(cornerRadius: 16) // Creates a rounded rectangle container that works in light & dark mode
+    .fill(Color.backgroundPrimary) // Uses `backgroundPrimary` as its base, resulting in a white background
+    .stroke(Color.outlineTertiary, lineWidth: 1) // Uses the lightest gray outline for a border
+)
+```
 
 ```swift
 import ColorTokensKit
@@ -67,8 +83,6 @@ let textColor = ColorTokens.textColor
 The LCH color space (Lightness, Chroma, Hue) is a representation of colors that aligns more closely with human vision compared to other color spaces like RGB or HSL. This makes it an excellent choice for tasks requiring color manipulation and accessibility.
 
 ColorKit provides a comprehensive set of tools to convert between various color spaces, interpolate colors, and use dynamic colors in SwiftUI and UIKit.
-                                                                                                                            
-In traditional approaches, developers often assign colors using RGB values (`Color(red: 0.5, green: 0.4, blue: 0.3)`), HEX codes (`#FF0045`), or HSL values (`H: 30, S: 20, L: 90`). This method can be less intuitive when trying to achieve consistent and accessible color palettes, as RGB doesn't align well with human color perception.
 
 ```swift
 Text("Hello, World!")
