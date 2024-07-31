@@ -252,20 +252,21 @@ Theming is made extremely ergonomic with this approach. You can pass values them
 
 ```swift
 import ColorTokensKit
+import SwifTUI
 
 struct ContentView: View {
   var body: some View {
-    ContainerComponentView() // Themeless
-    ContainerComponentView(theme: Color.proMint) // Mint theme
-    ContainerComponentView(theme: Color.proBlue) // Blue theme
-    ContainerComponentView(theme: Color.proGold) // Gold theme
-    ContainerComponentView(theme: Color.proRuby) // Ruby theme
-    ContainerComponentView(theme: LCHColor("#abcdef")) // Custom theme based on hex values
-    // We have 22 default "Pro" colors available. 
+    CardView() // Themeless
+    CardView(theme: Color.proMint) // Mint theme
+    CardView(theme: Color.proBlue) // Blue theme
+    CardView(theme: Color.proGold) // Gold theme
+    CardView(theme: Color.proRuby) // Ruby theme
+    CardView(theme: LCHColor("#abcdef")) // Custom theme based on hex values
+    // We have 22 pre-made `pro` colors available. 
   }
 }
 
-struct ContainerComponentView: View {
+struct CardView: View {
   let title: String
   let subtitle: String
   let theme: LCHColor // This could very well be an `@Environment var`. Whatever floats your boat.
