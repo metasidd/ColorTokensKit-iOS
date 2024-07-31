@@ -30,7 +30,7 @@ Imagine you have a primary color used for your brand. This color is used in vari
 ```swift
 Text("Hello to ColorTokensKit")
   .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // Messy: Defining colors inline
-  .background(Color.brandColorBackground) // Defining variables per application: Often hardcoded. Changing various values associated with brandColor is hard and impractical.
+  .background(Color.brandColorBackground) // Custom variables: Often hardcoded. Changing various values associated with brandColor is hard and impractical.
   .background(Color.brandColor.backgroundPrimary) // New way: Semantic naming that enables reusabusability, predictability and enables accessible colors. 
 ```
 
@@ -232,7 +232,7 @@ extension Color {
 
 
 ### Step 3: Using them for UI
-We're all set up. You're ready to start using them in code. You can just use the extension on `Color` for themeless, gray components. Or, you can pass themes to your components for a more powerful setup. 
+We're all set up. You're ready to start using them in code. You can just use the extension on `Color` for themeless gray colors. OR, you can even pass themes to your components for a more powerful setup. 
 
 ```swift
 import ColorTokensKit
@@ -268,8 +268,17 @@ struct ContainerComponentView: View {
 }
 ```
 
+## Going beyond the basics
 
-## Usage Examples
+### Working with Themes
+
+### Making Exceptions for Dark mode
+
+### Defining Custom Tokens
+
+### Interpolating Colors
+
+## Conveniniece Functions
 
 ### Converting Colors
 ColorKit allows you to convert between different color spaces with ease. Here are some examples:
