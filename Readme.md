@@ -1,7 +1,7 @@
-# ColorTokensKit
-Built by designers, for developers. 
+# 🌈 ColorTokensKit 🌈
+By designers, for developers. 
 
-ColorTokensKit is a powerful design library that extends Swift's native capabilities. It offers ergonomic access to 1000's of pre-defined colors built using the LCH color system. 
+ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 1000's of pre-defined colors built using the LCH color system. 
 
 ## Table of Contents
 - [What are design tokens?](#what-are-design-tokens)
@@ -25,8 +25,16 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
 ## What are design tokens?
 Design tokens are a way to store design-related information such as colors, typography, spacing, and more in a reusable and scalable manner. They help create a consistent design language across different platforms and ensure that design changes can be easily managed and propagated.
 
-Imagine you have a primary color used for your brand. This color is used in various levels of brightness and saturation in various areas.  Instead of hardcoding each of the color values in multiple places, you define a design token named `primaryColor`. Now, whenever the primary color needs to change, you update just one token value, and all instances of `primaryColor` in your app automatically update. Design tokens ensure consistency and make it easier to maintain and update your design system.
+Imagine you have a primary color used for your brand. This color is used in various levels of brightness and saturation in various areas (backgrounds, text, hovers, buttons, onpress states etc).  Instead of hardcoding each of the color values in multiple places, you define a design token named `brandColor`. Now, whenever the brand color needs to be used, you just use `brandColor.backgroundPrimary`. If it needs to change, you update just one token value, and all instances of `brandColor` in your app automatically update. Design tokens ensure consistency and make it easier to maintain and update your design system.
 
+Design tokens also help with defining a semantic naming system. 
+```swift
+Text("Hello to ColorTokensKit")
+  .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // Old way: Defining colors inline
+  .background(Color.brandColorBackground) // Old-ish way: Often hardcoded many values. Changing various values associated with brandColor is hard and impractical.
+  .background(Color.brandColor.backgroundPrimary) // New way: Semantic naming that enables reusabusability and predictability. 
+  // Behind the scenes, brandColor uses an LCH color system to get a specific color. It gets the "hue" value from `brandColor` and calculates an accessibile background according to a few defined primitives.
+```
 
 ## Why LCH is better than RGB, or the HSL system
 The LCH color space (Lightness, Chroma, Hue) aligns more closely with human vision compared to RGB or HSL. This makes it ideal for tasks requiring color manipulation and accessibility. LCH colors are perceptually uniform, meaning, changes in lightness, chroma, or hue result in predictable visual changes. It keeps the yellows, and sky blues accessible and respectable.
