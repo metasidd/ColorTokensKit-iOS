@@ -5,7 +5,7 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
 
 - [What are design tokens?](#what-are-design-tokens)
 - [How does LCH work?](#how-does-lch-work)
-- [What does the code look like in practice?](#what-does-the-code-look-like-in-practice)
+- [Simple Example](#simple-example)
 - [Setting them up](#setting-them-up)
   - [Step 1: Define a color ramp for your brand](#step-1-define-a-color-ramp-for-your-brand)
   - [Step 2: Pick your custom design tokens](#step-2-pick-your-custom-design-tokens)
@@ -54,7 +54,7 @@ Text("Hello to ColorTokensKit")
 ```
 
 
-## Basic Example
+## Simple Example
 Let's create a simple container with a name and a subtitle. An extension on `Color` offers ready to use design tokens with a `Color.gray` color ramp
 
 You can use the pre-defined color tokens below (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`), or create custom ones to your needs. The library integrates seamlessly with SwiftUI and UIKit, allowing you to use color tokens in your views and UI components with minimal effort. 
@@ -104,10 +104,6 @@ public extension LCHColor {
     var surfacePrimary: Color { Color(light: _40, dark: _60).opacity(0.5) }
     var surfaceSecondary: Color { Color(light: _40, dark: _60).opacity(0.3) }
     var surfaceTertiary: Color { Color(light: _40, dark: _60).opacity(0.2) }
-
-    // Inverted surface colors
-    var invertedSurfacePrimary: Color { Color(light: _40, dark: _60).opacity(0.4)  }
-    var invertedSurfaceSecondary: Color { Color(light: _40, dark: _60).opacity(0.2) }
     
     // Inverted background colors
     var invertedBackgroundPrimary: Color { Color(light: _90, dark: _10) }
@@ -182,15 +178,7 @@ extension Color {
     }
     public static var surfaceTertiary: Color {
         .gray.surfaceTertiary
-    }
-    
-    // Inverted surface colors
-    public static var invertedSurfacePrimary: Color {
-        .gray.invertedSurfacePrimary
-    }
-    public static var invertedSurfaceSecondary: Color {
-        .gray.invertedForegroundSecondary
-    }
+    } 
     
     // Outline colors
     public static var outlinePrimary: Color {
@@ -240,12 +228,52 @@ import ColorTokensKit
 struct ContainerComponentView: View {
   let title: String
   let subtitle: String
-  let theme: LCHColor
+
+  var body: some View {
+    VStack {
+      Text(title)
+        .foregroundStyle(Color.foregroundPrimary) // Uses the darkest text color available
+      Text(subtitle)
+        .foregroundStyle(Color.foregroundSecondary) // Since it's a secondary piece of text, it uses a lighter shade available
+    }
+    .background(
+      RoundedRectangle(cornerRadius: 16) // Creates a rounded rectangle container that works in light & dark mode
+        .fill(Color.backgroundPrimary) // Uses `backgroundPrimary` as its base, resulting in a white background
+        .stroke(Color.outlineTertiary, lineWidth: 1) // Uses the lightest gray outline for a border
+    )
+  }
+}
+```
+
+## Going beyond the basics
+
+### Working with Themes
+Theming is made extremely ergonomic with this approach. You can pass values theme values as needed, and all children elements are dynamically assigned colors depending on the LCH color chosen.
+
+```swift
+import ColorTokensKit
+
+struct ContentView: View {
+  var body: some View {
+    ContainerComponentView() // Themeless
+    ContainerComponentView(theme: Color.proMint) // Mint theme
+    ContainerComponentView(theme: Color.proBlue) // Blue theme
+    ContainerComponentView(theme: Color.proGold) // Gold theme
+    ContainerComponentView(theme: Color.proRuby) // Ruby theme
+    ContainerComponentView(theme: LCHColor("#abcdef")) // Custom theme based on hex values
+    // We have 22 default "Pro" colors available. 
+  }
+}
+
+struct ContainerComponentView: View {
+  let title: String
+  let subtitle: String
+  let theme: LCHColor // This could very well be an `@Environment var`. Whatever floats your boat.
 
   init(
     title: String, 
     subtitle: String,
-    theme: LCHColor = Color.proGray // Default component would be themeless
+    theme: LCHColor = Color.proGray // Default component could be themeless, or have a default hue
     ) {
       self.title = title
       self.subtitle = subtitle
@@ -267,10 +295,6 @@ struct ContainerComponentView: View {
   }
 }
 ```
-
-## Going beyond the basics
-
-### Working with Themes
 
 ### Making Exceptions for Dark mode
 
