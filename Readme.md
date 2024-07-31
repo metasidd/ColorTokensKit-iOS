@@ -52,11 +52,13 @@ Text("Hello to ColorTokensKit")
 [Insert image]
 
 
-## Ok, show me how the ColorTokens kit works
-ColorTokensKit is designed to be intuitive and easy to use in your Swift code. You can access pre-defined colors or create custom ones using a simple, expressive syntax. The library integrates seamlessly with SwiftUI and UIKit, allowing you to use color tokens in your views and UI components with minimal effort. Code example:
+## Ok, show me the code
+You can access pre-defined color tokens (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`) or create custom ones using a simple, expressive syntax. The library integrates seamlessly with SwiftUI and UIKit, allowing you to use color tokens in your views and UI components with minimal effort. Code example:
 
 ```swift
-// A simple container with a name and a subtitle
+import ColorTokensKit
+
+// Let's create a simple container with a name and a subtitle
 // An extension on `Color` offers ready to use design tokens with a `Color.gray` color ramp
 VStack {
   Text("Title")
@@ -70,32 +72,6 @@ VStack {
     .stroke(Color.outlineTertiary, lineWidth: 1) // Uses the lightest gray outline for a border
 )
 ```
-
-```swift
-import ColorTokensKit
-
-let primaryColor = ColorTokens.primaryColor
-let backgroundColor = ColorTokens.backgroundColor
-let textColor = ColorTokens.textColor
-```
-
-## Introduction
-The LCH color space (Lightness, Chroma, Hue) is a representation of colors that aligns more closely with human vision compared to other color spaces like RGB or HSL. This makes it an excellent choice for tasks requiring color manipulation and accessibility.
-
-ColorKit provides a comprehensive set of tools to convert between various color spaces, interpolate colors, and use dynamic colors in SwiftUI and UIKit.
-
-```swift
-Text("Hello, World!")
-    .padding()
-    .background(Color(red: 0.5, green: 0.4, blue: 0.3))
-    .foregroundColor(Color(red: 1.0, green: 1.0, blue: 1.0))
-    .background(Color(red: 0.9, green: 0.9, blue: 0.9))
-```
-
-## Benefits of LCH Colors
-- **Perceptual Uniformity:** LCH colors are designed to reflect how humans perceive color differences, making them ideal for ensuring color contrast and accessibility.
-- **Better Color Manipulation:** Adjusting lightness, chroma, and hue in the LCH color space results in more predictable and visually consistent changes.
-- **Improved Accessibility:** By using LCH colors, developers can create designs that are more accessible to users with color vision deficiencies.
 
 ## Usage Examples
 
