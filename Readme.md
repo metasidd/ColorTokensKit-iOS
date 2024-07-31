@@ -1,15 +1,15 @@
 # 🌈 ColorTokensKit 🌈
-## 🚧🚧🚧🚧 THIS IS A WORK IN PROGRESS, USE AT YOUR OWN RISK 🚧🚧🚧🚧
+## 🚧🚧🚧🚧 THIS IS A WORK IN PROGRESS, USE AT YOUR OWN RISK. 🚧🚧🚧🚧
 
 By designers, for developers. 
 
-ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 1000's of pre-defined colors built using the LCH color system. 
+ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 100's of pre-defined colors built using the LCH color system. 
 
 - [What are design tokens?](#what-are-design-tokens)
 - [How does LCH work?](#how-does-lch-work)
 - [Simple Example](#simple-example)
 - [Setting them up](#setting-them-up)
-  - [Step 1: Define a color ramp for your brand](#step-1-define-a-color-ramp-for-your-brand)
+  - [Step 1: Define a color ramp for your brand](#step-1-define-default-tokens-for-all-hues)
   - [Step 2: Pick your custom design tokens](#step-2-pick-your-custom-design-tokens)
   - [Step 3: Using them for UI](#step-3-using-them-for-ui)
 - [Going beyond the basics](#going-beyond-the-basics)
@@ -20,7 +20,6 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
   - [Conveniniece Functions](#conveniniece-functions)
 - [Sample Application](#sample-application)
 - [Future ideas](#future-ideas)
-- [Resources](#resources)
 - [License](#license)
 
 ## What are design tokens?
@@ -372,9 +371,13 @@ print(interpolatedColor) // Output: LCHColor(l: 50, c: 45, h: 75)
 ```
 
 ### Conveniniece Functions
-ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, OKLAB, OKLCH etc. Here are some simple examples:
+ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, LAB, OKLAB, OKLCH etc. Here are some simple examples:
 
 ```swift
+
+// HEX to Color
+let color = Color(hex: "#abcdef")
+
 // RGB to LCH Color
 let rgbColor = Color(r: 0.5, g: 0.4, b: 0.3, alpha: 1.0)
 let lchColor = LCHColor(color: rgbColor)
@@ -408,6 +411,7 @@ Open `ColorGenerator.xcproject` from the File Explorer to explore the spectrum o
 ## Future Ideas
 - [] Offer `.lighten()`, `.darken()`, `.saturate()` and `.desaturate()` for LCH Colors
 - [] Create smooth gradients using LCH colors
+- [] Add resource links to Read Me
 - [] Basic Unit Tests
 - [] UI Snapshot Tests
 - [] Example Figma
