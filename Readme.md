@@ -17,7 +17,7 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
   - [Working with themes](#working-with-themes)
   - [Making exceptions for dark mode](#making-exceptions-for-dark-mode)
   - [Interpolating Colors](#interpolating-colors)
-  - [Conveniniece Functions](#conveniniece-functions)
+  - [Convenience Functions](#convenience-functions)
 - [Sample Application](#sample-application)
 - [Future ideas](#future-ideas)
 - [License](#license)
@@ -370,7 +370,7 @@ let interpolatedColor = color1.lerp(color2, t: 0.5)
 print(interpolatedColor) // Output: LCHColor(l: 50, c: 45, h: 75)
 ```
 
-### Conveniniece Functions
+### Convenience Functions
 ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, LAB, OKLAB, OKLCH etc. Here are some simple examples:
 
 ```swift
