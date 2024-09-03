@@ -5,6 +5,8 @@
 //  Created by Siddhant Mehta on 2024-06-10.
 //
 
+#if canImport(UIKit)
+
 import Foundation
 import UIKit
 
@@ -37,3 +39,5 @@ public extension UIColor {
         }
     }
 }
+
+#endif

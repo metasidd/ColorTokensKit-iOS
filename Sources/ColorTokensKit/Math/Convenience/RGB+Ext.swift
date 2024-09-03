@@ -70,6 +70,7 @@ public extension RGBColor {
         return toXYZ().toLCH()
     }
     
+    #if canImport(UIKit)
     /**
      Converts the RGB color to a `UIColor`.
      
@@ -87,6 +88,7 @@ public extension RGBColor {
     func color() -> UIColor {
         return UIColor(red: r, green: g, blue: b, alpha: alpha)
     }
+    #endif
     
     /**
      Linearly interpolates between the current RGB color and another RGB color.
