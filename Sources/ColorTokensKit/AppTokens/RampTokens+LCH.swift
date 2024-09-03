@@ -25,21 +25,21 @@ public extension LCHColor {
         ]
     }
     
-    var _0: Color { getColor(l: 100, c: 8) }
-    var _5: Color { getColor(l: 95, c: 12) }
-    var _10: Color { getColor(l: 90, c: 17) }
-    var _15: Color { getColor(l: 85, c: 23) }
-    var _20: Color { getColor(l: 80, c: 28) }
-    var _25: Color { getColor(l: 75, c: 32) }
-    var _30: Color { getColor(l: 70, c: 35) }
-    var _35: Color { getColor(l: 65, c: 40) }
-    var _40: Color { getColor(l: 60, c: 45) }
-    var _45: Color { getColor(l: 55, c: 50) }
-    var _50: Color { getColor(l: 50, c: 55) }
-    var _55: Color { getColor(l: 45, c: 60) }
-    var _60: Color { getColor(l: 40, c: 57) }
-    var _65: Color { getColor(l: 35, c: 53) }
-    var _70: Color { getColor(l: 30, c: 49) }
+    var _0: Color { getColor(l: 100, c: 10) }
+    var _5: Color { getColor(l: 95, c: 15) }
+    var _10: Color { getColor(l: 90, c: 20) }
+    var _15: Color { getColor(l: 85, c: 25) }
+    var _20: Color { getColor(l: 80, c: 30) }
+    var _25: Color { getColor(l: 75, c: 35) }
+    var _30: Color { getColor(l: 70, c: 40) }
+    var _35: Color { getColor(l: 65, c: 45) }
+    var _40: Color { getColor(l: 60, c: 50) }
+    var _45: Color { getColor(l: 55, c: 55) }
+    var _50: Color { getColor(l: 50, c: 60) }
+    var _55: Color { getColor(l: 45, c: 65) }
+    var _60: Color { getColor(l: 40, c: 60) }
+    var _65: Color { getColor(l: 35, c: 55) }
+    var _70: Color { getColor(l: 30, c: 50) }
     var _75: Color { getColor(l: 25, c: 45) }
     var _80: Color { getColor(l: 20, c: 40) }
     var _85: Color { getColor(l: 15, c: 35) }
@@ -48,21 +48,21 @@ public extension LCHColor {
     var _100: Color { getColor(l: 0, c: 20) }
 
     // Pastel colors (desaturated)
-    var _0_pastel: Color { getColor(l: 100, c: 10) }
-    var _5_pastel: Color { getColor(l: 95, c: 12) }
-    var _10_pastel: Color { getColor(l: 90, c: 14) }
-    var _15_pastel: Color { getColor(l: 85, c: 16) }
-    var _20_pastel: Color { getColor(l: 80, c: 18) }
-    var _25_pastel: Color { getColor(l: 75, c: 20) }
-    var _30_pastel: Color { getColor(l: 70, c: 22.5) }
-    var _35_pastel: Color { getColor(l: 65, c: 25) }
-    var _40_pastel: Color { getColor(l: 60, c: 28) }
-    var _45_pastel: Color { getColor(l: 55, c: 31) }
-    var _50_pastel: Color { getColor(l: 50, c: 34) }
-    var _55_pastel: Color { getColor(l: 45, c: 37) }
-    var _60_pastel: Color { getColor(l: 40, c: 40) }
-    var _65_pastel: Color { getColor(l: 35, c: 42.5) }
-    var _70_pastel: Color { getColor(l: 30, c: 45) }
+    var _0_pastel: Color { getColor(l: 100, c: 12) }
+    var _5_pastel: Color { getColor(l: 95, c: 14) }
+    var _10_pastel: Color { getColor(l: 90, c: 16) }
+    var _15_pastel: Color { getColor(l: 85, c: 18) }
+    var _20_pastel: Color { getColor(l: 80, c: 20) }
+    var _25_pastel: Color { getColor(l: 75, c: 22.5) }
+    var _30_pastel: Color { getColor(l: 70, c: 25) }
+    var _35_pastel: Color { getColor(l: 65, c: 28) }
+    var _40_pastel: Color { getColor(l: 60, c: 31) }
+    var _45_pastel: Color { getColor(l: 55, c: 34) }
+    var _50_pastel: Color { getColor(l: 50, c: 37) }
+    var _55_pastel: Color { getColor(l: 45, c: 40) }
+    var _60_pastel: Color { getColor(l: 40, c: 42.5) }
+    var _65_pastel: Color { getColor(l: 35, c: 45) }
+    var _70_pastel: Color { getColor(l: 30, c: 48) }
     var _75_pastel: Color { getColor(l: 25, c: 43) }
     var _80_pastel: Color { getColor(l: 20, c: 40) }
     var _85_pastel: Color { getColor(l: 15, c: 35) }
