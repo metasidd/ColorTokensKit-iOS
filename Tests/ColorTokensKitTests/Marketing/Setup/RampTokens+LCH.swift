@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ColorTokensKit
 
 public extension LCHColor {
     var allNormalColors: [Color] {
