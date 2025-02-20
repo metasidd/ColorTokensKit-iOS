@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ColorTokensKit
 
 public extension Color {
     // TODO: Replace these with other dynamic names?
@@ -42,10 +43,10 @@ public extension Color {
     static let proPink = LCHColor(h: 0.0)
     static let proRed = LCHColor(h: 10.0)
     static let proTomato = LCHColor(h: 20.0)
-    static let proOrange = LCHColor(h: 30.0)
-    static let proBrown = LCHColor(h: 45.0)
-    static let proGold = LCHColor(h: 70.0)
-    static let proYellow = LCHColor(h: 90.0)
+    static let proOrange = LCHColor(h: 35)
+    static let proBrown = LCHColor(h: 50)
+    static let proGold = LCHColor(h: 70)
+    static let proYellow = LCHColor(h: 85)
     static let proLime = LCHColor(h: 100.0)
     static let proOlive = LCHColor(h: 110.0)
     static let proGrass = LCHColor(h: 120.0)
@@ -54,11 +55,11 @@ public extension Color {
     static let proCyan = LCHColor(h: 180.0)
     static let proTeal = LCHColor(h: 190.0)
     static let proBlue = LCHColor(h: 210.0)
-    static let proSky = LCHColor(h: 230.0)
-    static let proIndigo = LCHColor(h: 260.0)
-    static let proIris = LCHColor(h: 295.0)
+    static let proSky = LCHColor(h: 235.0)
+    static let proIndigo = LCHColor(h: 270.0)
+    static let proIris = LCHColor(h: 292.5)
     static let proPurple = LCHColor(h: 310.0)
-    static let proViolet = LCHColor(h: 320.0)
+    static let proViolet = LCHColor(h: 325.0)
     static let proPlum = LCHColor(h: 345.0)
     static let proRuby = LCHColor(h: 360.0)
 }
