@@ -22,6 +22,6 @@ public struct LABColor: Hashable {
 
     func xyzCompand(_ v: CGFloat) -> CGFloat {
         let v3 = v * v * v
-        return v3 > Constants.LAB_E ? v3 : (v - Constants.LAB_16_116) / Constants.LAB_K_116
+        return v3 > ColorConstants.LAB_E ? v3 : (v - ColorConstants.LAB_16_116) / ColorConstants.LAB_K_116
     }
 }

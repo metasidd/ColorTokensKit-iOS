@@ -126,6 +126,26 @@ extension Color {
         let lchColor = LCHColor(color: self)
         return "L:\(Int(lchColor.l)) C:\(Int(lchColor.c)) H:\(Int(lchColor.h))"
     }
+    
+    // Convert to LCH
+    func toLCH() -> LCHColor {
+        RGBColor(color: self).toLCH()
+    }
+    
+    // Convert to RGB
+    func toRGB() -> RGBColor {
+        RGBColor(color: self)
+    }
+    
+    // Convert to LAB
+    func toLAB() -> LABColor {
+        RGBColor(color: self).toLAB()
+    }
+    
+    // Convert to XYZ
+    func toXYZ() -> XYZColor {
+        RGBColor(color: self).toXYZ()
+    }
 }
 
 #if canImport(UIKit)

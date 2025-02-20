@@ -17,14 +17,25 @@
 import Foundation
 
 public class ColorRampInterpolator {
+    // Cache interpolated ramps
+    private var interpolatedRamps: [Double: [ColorStop]] = [:]
     private let palettes: ColorPalettes?
+    private let defaultStop = ColorStop(lchString: "lch(70% 30 0)") // Default fallback
     
     public init() {
         self.palettes = ColorRampLoader.loadColorRamps()
     }
     
     public func interpolateRamp(forHue targetHue: Double) -> [ColorStop] {
-        guard let palettes = palettes else { return [] }
+        // Check cache first
+        let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
+        if let cached = interpolatedRamps[normalizedHue] {
+            return cached
+        }
+        
+        guard let palettes = palettes else { 
+            return [defaultStop] // Return default instead of empty array
+        }
         
         // Get all ramps sorted by hue
         let sortedRamps = palettes.colorRamps.sorted { ramp1, ramp2 in
@@ -35,7 +46,7 @@ public class ColorRampInterpolator {
         
         // Find bounding ramps
         guard let (lowerRamp, upperRamp) = findBoundingRamps(forHue: targetHue, in: sortedRamps) else {
-            return []
+            return [defaultStop] // Return default instead of empty array
         }
         
         // Get the first stop to determine hues
@@ -46,7 +57,14 @@ public class ColorRampInterpolator {
         let t = (targetHue - lowerHue) / (upperHue - lowerHue)
         
         // Interpolate between corresponding stops
-        return interpolateStops(from: lowerRamp, to: upperRamp, t: t)
+        let result = interpolateStops(from: lowerRamp, to: upperRamp, t: t)
+        
+        // Only cache non-empty results
+        if !result.isEmpty {
+            interpolatedRamps[normalizedHue] = result
+        }
+        
+        return result.isEmpty ? [defaultStop] : result
     }
     
     private func findBoundingRamps(forHue hue: Double, in ramps: [ColorRamp]) -> (ColorRamp, ColorRamp)? {
@@ -78,7 +96,9 @@ public class ColorRampInterpolator {
         let toStops = to.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
         
         // Ensure we have the same number of stops
-        guard fromStops.count == toStops.count else { return [] }
+        guard !fromStops.isEmpty, fromStops.count == toStops.count else { 
+            return [defaultStop] // Return default instead of empty array
+        }
         
         // Interpolate each corresponding pair of stops
         return zip(fromStops, toStops).map { fromPair, toPair in

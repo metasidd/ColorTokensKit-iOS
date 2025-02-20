@@ -29,9 +29,9 @@ public extension LABColor {
         let x = y + (a / 500)
         let z = y - (b / 200)
         return XYZColor(
-            x: xyzCompand(x) * Constants.LAB_X,
-            y: xyzCompand(y) * Constants.LAB_Y,
-            z: xyzCompand(z) * Constants.LAB_Z,
+            x: xyzCompand(x) * ColorConstants.LAB_X,
+            y: xyzCompand(y) * ColorConstants.LAB_Y,
+            z: xyzCompand(z) * ColorConstants.LAB_Z,
             alpha: alpha
         )
     }
@@ -52,7 +52,7 @@ public extension LABColor {
      */
     func toLCH() -> LCHColor {
         let c = sqrt(a * a + b * b)
-        let angle = atan2(b, a) * Constants.RAD_TO_DEG
+        let angle = atan2(b, a) * ColorConstants.RAD_TO_DEG
         let h = angle < 0 ? angle + 360 : angle
         return LCHColor(l: l, c: c, h: h, alpha: alpha)
     }

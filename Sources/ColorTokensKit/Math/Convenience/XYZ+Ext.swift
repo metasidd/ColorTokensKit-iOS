@@ -49,9 +49,9 @@ public extension XYZColor {
      ```
      */
     func toLAB() -> LABColor {
-        let fx = labCompand(x / Constants.LAB_X)
-        let fy = labCompand(y / Constants.LAB_Y)
-        let fz = labCompand(z / Constants.LAB_Z)
+        let fx = labCompand(x / ColorConstants.LAB_X)
+        let fy = labCompand(y / ColorConstants.LAB_Y)
+        let fz = labCompand(z / ColorConstants.LAB_Z)
         return LABColor(
             l: 116 * fy - 16,
             a: 500 * (fx - fy),

@@ -18,7 +18,7 @@ public extension LCHColor {
      The conversion is done by calculating the `a` and `b` components from the chroma and hue.
      */
     func toLAB() -> LABColor {
-        let rad = h / Constants.RAD_TO_DEG
+        let rad = h / ColorConstants.RAD_TO_DEG
         let a = cos(rad) * c
         let b = sin(rad) * c
         return LABColor(l: l, a: a, b: b, alpha: alpha)

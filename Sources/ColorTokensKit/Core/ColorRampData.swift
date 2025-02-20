@@ -12,18 +12,32 @@ public struct ColorStop {
         let range = NSRange(lchString.startIndex..<lchString.endIndex, in: lchString)
         
         if let match = regex.firstMatch(in: lchString, range: range) {
-            self.l = Double(lchString[Range(match.range(at: 1), in: lchString)!])!
-            self.c = Double(lchString[Range(match.range(at: 2), in: lchString)!])!
-            self.h = Double(lchString[Range(match.range(at: 3), in: lchString)!])!
+            let l = Double(lchString[Range(match.range(at: 1), in: lchString)!]) ?? 70
+            let c = Double(lchString[Range(match.range(at: 2), in: lchString)!]) ?? 30
+            let h = Double(lchString[Range(match.range(at: 3), in: lchString)!]) ?? 0
+            
+            // Validate and clamp values to valid ranges
+            self.l = max(0, min(l, 100))
+            self.c = max(0, min(c, 128))
+            self.h = (h.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         } else {
-            self.l = 0
-            self.c = 0
-            self.h = 0
             print("Failed to parse LCH string: \(lchString)")
+            // Use safe defaults
+            self.l = 70
+            self.c = 30
+            self.h = 0
         }
+    }
+    
+    // Add convenience initializer with validation
+    public init(l: Double, c: Double, h: Double) {
+        self.l = max(0, min(l, 100))
+        self.c = max(0, min(c, 128))
+        self.h = (h.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
     }
 }
 
+// Make internal since it's just used internally
 public struct ColorRamp {
     public let name: String
     public let stops: [String: ColorStop]
@@ -34,10 +48,11 @@ public struct ColorRamp {
     }
 }
 
+// Keep public as it's the main interface
 public struct ColorPalettes: Codable {
-    // The JSON is directly a dictionary of color ramps
     private var palettes: [String: [String: String]]
     
+    // Keep public as it's the API surface
     public var colorRamps: [ColorRamp] {
         palettes.map { name, stops in
             ColorRamp(
@@ -60,7 +75,15 @@ public struct ColorPalettes: Codable {
 }
 
 public enum ColorRampLoader {
+    // Cache the loaded palettes
+    private static var cachedPalettes: ColorPalettes?
+    
     public static func loadColorRamps() -> ColorPalettes? {
+        // Return cached version if available
+        if let cached = cachedPalettes {
+            return cached
+        }
+        
         guard let url = Bundle.module.url(forResource: "ColorPalettes", withExtension: "json"),
               let data = try? Data(contentsOf: url) else {
             print("Failed to load ColorPalettes.json")
@@ -69,6 +92,7 @@ public enum ColorRampLoader {
         
         do {
             let palettes = try JSONDecoder().decode(ColorPalettes.self, from: data)
+            cachedPalettes = palettes // Cache the loaded palettes
             return palettes
         } catch {
             print("Failed to decode ColorPalettes.json: \(error)")
