@@ -2,22 +2,22 @@ import SwiftUI
 import ColorTokensKit
 
 struct ColorSystemComparisonView: View {
-    // Using all hues to create a rainbow
-    let hues: [(name: String, color: LCHColor)] = {
-        ColorRampDefinition.predefinedRamps
-            .map { ramp in
-                (
-                    name: ramp.name.capitalized,
-                    color: LCHColor(
-                        l: ramp.lightness[7], // Using index 10 for middle lightness
-                        c: ramp.chroma[7],    // Using index 10 for middle chroma
-                        h: ramp.baseHue + ramp.hueShift[7]
-                    )
-                )
-            }
-            .sorted { $0.color.h < $1.color.h }
-            .filter { $0.name != "Gray" }
-    }()
+    let interpolator = ColorRampInterpolator()
+    let hueSteps = 14
+    
+    // Generate interpolated colors around the color wheel
+    var hues: [(name: String, color: LCHColor)] {
+        (0...hueSteps).map { step in
+            let hue = Double(step) * (360.0 / Double(hueSteps))
+            let stops = interpolator.interpolateRamp(forHue: hue)
+            let midPoint = stops[stops.count / 2] // Use middle stop for consistent brightness
+            
+            return (
+                name: "H\(Int(hue))",
+                color: LCHColor(l: 70, c: midPoint.c, h: midPoint.h)
+            )
+        }
+    }
     
     var body: some View {
         VStack(spacing: 48) {
