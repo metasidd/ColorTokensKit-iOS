@@ -3,7 +3,21 @@ import ColorTokensKit
 
 struct ColorSystemComparisonView: View {
     // Using all hues to create a rainbow
-    let hues = Color.allProHues.sorted(by: { $0.value.h < $1.value.h }).filter({ $0.value != Color.gray })
+    let hues: [(name: String, color: LCHColor)] = {
+        ColorRampDefinition.predefinedRamps
+            .map { ramp in
+                (
+                    name: ramp.name.capitalized,
+                    color: LCHColor(
+                        l: ramp.lightness[7], // Using index 10 for middle lightness
+                        c: ramp.chroma[7],    // Using index 10 for middle chroma
+                        h: ramp.baseHue + ramp.hueShift[7]
+                    )
+                )
+            }
+            .sorted { $0.color.h < $1.color.h }
+            .filter { $0.name != "Gray" }
+    }()
     
     var body: some View {
         VStack(spacing: 48) {
@@ -27,7 +41,7 @@ struct ColorSystemComparisonView: View {
             Rectangle()
                 .fill(
                     LinearGradient(
-                        colors: hues.map { $0.value._45 },
+                        colors: hues.map { $0.color.toColor() },
                         startPoint: .leading,
                         endPoint: .trailing
                     )
