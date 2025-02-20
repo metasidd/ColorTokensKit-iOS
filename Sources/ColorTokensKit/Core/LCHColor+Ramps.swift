@@ -47,14 +47,3 @@ extension LCHColor {
     public static var plumRamp: [LCHColor] { generateRamp(forHue: 345) }
     public static var rubyRamp: [LCHColor] { generateRamp(forHue: 360) }
 }
-
-extension ColorRampDefinition {
-    func toColor() -> LCHColor {
-        let midIndex = lightness.count / 2
-        return LCHColor(
-            l: lightness[midIndex],
-            c: chroma[midIndex],
-            h: baseHue + hueShift[midIndex]
-        )
-    }
-} 
