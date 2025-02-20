@@ -2,31 +2,29 @@ import SwiftUI
 import ColorTokensKit
 
 struct ColorGridView: View {
-    let colorPalettes = ColorRampLoader.loadColorRamps()
+    let interpolator = ColorRampInterpolator()
+    let hueSteps = 14
     
-    var sortedRamps: [ColorRamp]? {
-        colorPalettes?.colorRamps.sorted { ramp1, ramp2 in
-            // Get the first stop's hue value for comparison
-            let hue1 = ramp1.stops.first?.value.h ?? 0
-            let hue2 = ramp2.stops.first?.value.h ?? 0
-            
-            // Special case: always put gray first
-            if ramp1.name.lowercased() == "gray" { return true }
-            if ramp2.name.lowercased() == "gray" { return false }
-            
-            return hue1 < hue2
+    var colorRamps: [ColorRamp] {
+        // Generate hues at regular intervals
+        (0...hueSteps).map { step in
+            let hue = Double(step) * (360.0 / Double(hueSteps))
+            let stops = interpolator.interpolateRamp(forHue: hue)
+            return ColorRamp(
+                name: "H\(Int(hue))",
+                stops: Dictionary(
+                    uniqueKeysWithValues: stops.enumerated().map { index, stop in
+                        ("\(index)", stop)
+                    }
+                )
+            )
         }
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            if let ramps = sortedRamps {
-                ForEach(ramps, id: \.name) { ramp in
-                    ColorColumn(name: ramp.name, stops: ramp.stops)
-                }
-            } else {
-                Text("Failed to load color palettes")
-                    .foregroundStyle(.red)
+            ForEach(colorRamps, id: \.name) { ramp in
+                ColorColumn(name: ramp.name, stops: ramp.stops)
             }
         }
         .padding(MarketingStyle.pagePadding)
