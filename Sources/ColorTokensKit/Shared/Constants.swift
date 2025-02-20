@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ColorConstants {
+enum ColorConstants {
     // Color space constants
     static let RAD_TO_DEG = 180 / Double.pi
     static let LAB_E: CGFloat = 0.008856
@@ -16,10 +16,4 @@ public enum ColorConstants {
     static let LAB_X: CGFloat = 0.95047
     static let LAB_Y: CGFloat = 1
     static let LAB_Z: CGFloat = 1.08883
-    
-    // Color ramp constants
-    static let DEFAULT_ALPHA: CGFloat = 1.0
-    static let HUE_RANGE: ClosedRange<Double> = 0...360
-    static let LIGHTNESS_RANGE: ClosedRange<Double> = 0...100
-    static let CHROMA_RANGE: ClosedRange<Double> = 0...128
 }

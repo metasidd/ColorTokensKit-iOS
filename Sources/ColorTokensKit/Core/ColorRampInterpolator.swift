@@ -18,15 +18,15 @@ import Foundation
 
 public class ColorRampInterpolator {
     // Cache interpolated ramps
-    private var interpolatedRamps: [Double: [ColorStop]] = [:]
+    private var interpolatedRamps: [Double: [LCHColor]] = [:]
     private let palettes: ColorPalettes?
-    private let defaultStop = ColorStop(lchString: "lch(70% 30 0)") // Default fallback
+    private let defaultStop = LCHColor(lchString: "lch(70% 30 0)") // Default fallback
     
     public init() {
         self.palettes = ColorRampLoader.loadColorRamps()
     }
     
-    public func interpolateRamp(forHue targetHue: Double) -> [ColorStop] {
+    public func interpolateRamp(forHue targetHue: Double) -> [LCHColor] {
         // Check cache first
         let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         if let cached = interpolatedRamps[normalizedHue] {
@@ -68,8 +68,8 @@ public class ColorRampInterpolator {
     }
     
     private func findBoundingRamps(forHue hue: Double, in ramps: [ColorRamp]) -> (ColorRamp, ColorRamp)? {
-        guard let firstHue = ramps.first?.stops.first?.value.h,
-              let lastHue = ramps.last?.stops.first?.value.h,
+        guard let _ = ramps.first?.stops.first?.value.h,
+              let _ = ramps.last?.stops.first?.value.h,
               !ramps.isEmpty else {
             return nil
         }
@@ -90,7 +90,7 @@ public class ColorRampInterpolator {
         return (ramps[lowerIndex], ramps[upperIndex])
     }
     
-    private func interpolateStops(from: ColorRamp, to: ColorRamp, t: Double) -> [ColorStop] {
+    private func interpolateStops(from: ColorRamp, to: ColorRamp, t: Double) -> [LCHColor] {
         // Get sorted stops from both ramps
         let fromStops = from.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
         let toStops = to.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
@@ -105,7 +105,7 @@ public class ColorRampInterpolator {
             let fromStop = fromPair.value
             let toStop = toPair.value
             
-            return ColorStop(lchString: "lch(\(lerp(fromStop.l, toStop.l, t))% \(lerp(fromStop.c, toStop.c, t)) \(lerp(fromStop.h, toStop.h, t)))")
+            return LCHColor(lchString: "lch(\(lerp(fromStop.l, toStop.l, t))% \(lerp(fromStop.c, toStop.c, t)) \(lerp(fromStop.h, toStop.h, t)))")
         }
     }
     

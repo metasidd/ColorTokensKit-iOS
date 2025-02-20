@@ -14,7 +14,7 @@ struct ColorSystemComparisonView: View {
             // Safely get middle stop or use default
             let midPoint = stops.count > 0 ? 
                 stops[stops.count / 2] : 
-                ColorStop(lchString: "lch(70% 30 \(hue))")
+                LCHColor(lchString: "lch(70% 30 \(hue))")
             
             return (
                 name: "H\(Int(hue))",

@@ -55,4 +55,37 @@ public struct LCHColor: Hashable, Equatable {
         self.variableChroma = variableChroma
         self.variableHue = variableHue
     }
+    
+    // Parse "lch(97% 4.3 0)" format
+    public init(
+        lchString: String,
+        variableChroma: Bool = true,
+        variableHue: Bool = true
+    ) {
+        let pattern = #"lch\((\d+\.?\d*)%\s+(\d+\.?\d*)\s+(\d+\.?\d*)\)"#
+        let regex = try! NSRegularExpression(pattern: pattern)
+        let range = NSRange(lchString.startIndex..<lchString.endIndex, in: lchString)
+        
+        if let match = regex.firstMatch(in: lchString, range: range) {
+            let l = Double(lchString[Range(match.range(at: 1), in: lchString)!]) ?? 70
+            let c = Double(lchString[Range(match.range(at: 2), in: lchString)!]) ?? 30
+            let h = Double(lchString[Range(match.range(at: 3), in: lchString)!]) ?? 0
+            
+            // Validate and clamp values to valid ranges
+            
+            self.l = max(0, min(l, 100))
+            self.c = variableChroma ? max(0, min(c, 128)) : 0
+            self.h = variableHue ? (h.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360) : 0
+        } else {
+            print("Failed to parse LCH string: \(lchString)")
+            // Use safe defaults
+            self.l = 70
+            self.c = 30
+            self.h = 0
+        }
+        
+        self.alpha = 1.0
+        self.variableChroma = variableChroma
+        self.variableHue = variableHue
+    }
 }

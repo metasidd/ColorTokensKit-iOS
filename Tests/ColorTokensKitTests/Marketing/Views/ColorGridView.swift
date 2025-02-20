@@ -35,9 +35,9 @@ struct ColorGridView: View {
 
 struct ColorColumn: View {
     let name: String
-    let stops: [String: ColorStop]
+    let stops: [String: LCHColor]
     
-    var sortedStops: [(key: String, stop: ColorStop)] {
+    var sortedStops: [(key: String, stop: LCHColor)] {
         stops.map { (key: $0.key, stop: $0.value) }
             .sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
     }

@@ -1,48 +1,11 @@
 import Foundation
 
-public struct ColorStop {
-    public let l: Double
-    public let c: Double
-    public let h: Double
-    
-    public init(lchString: String) {
-        // Parse "lch(97% 4.3 0)" format
-        let pattern = #"lch\((\d+\.?\d*)%\s+(\d+\.?\d*)\s+(\d+\.?\d*)\)"#
-        let regex = try! NSRegularExpression(pattern: pattern)
-        let range = NSRange(lchString.startIndex..<lchString.endIndex, in: lchString)
-        
-        if let match = regex.firstMatch(in: lchString, range: range) {
-            let l = Double(lchString[Range(match.range(at: 1), in: lchString)!]) ?? 70
-            let c = Double(lchString[Range(match.range(at: 2), in: lchString)!]) ?? 30
-            let h = Double(lchString[Range(match.range(at: 3), in: lchString)!]) ?? 0
-            
-            // Validate and clamp values to valid ranges
-            self.l = max(0, min(l, 100))
-            self.c = max(0, min(c, 128))
-            self.h = (h.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
-        } else {
-            print("Failed to parse LCH string: \(lchString)")
-            // Use safe defaults
-            self.l = 70
-            self.c = 30
-            self.h = 0
-        }
-    }
-    
-    // Add convenience initializer with validation
-    public init(l: Double, c: Double, h: Double) {
-        self.l = max(0, min(l, 100))
-        self.c = max(0, min(c, 128))
-        self.h = (h.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
-    }
-}
-
 // Make internal since it's just used internally
 public struct ColorRamp {
     public let name: String
-    public let stops: [String: ColorStop]
+    public let stops: [String: LCHColor]
     
-    public init(name: String, stops: [String: ColorStop]) {
+    public init(name: String, stops: [String: LCHColor]) {
         self.name = name
         self.stops = stops
     }
@@ -57,7 +20,7 @@ public struct ColorPalettes: Codable {
         palettes.map { name, stops in
             ColorRamp(
                 name: name,
-                stops: stops.mapValues { ColorStop(lchString: $0) }
+                stops: stops.mapValues { LCHColor(lchString: $0) }
             )
         }
     }
