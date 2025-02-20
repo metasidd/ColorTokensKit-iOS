@@ -20,6 +20,7 @@ public struct MarketingAssets {
         // Generate each asset
         generateColorGrid(in: directory)
         generateColorSystemComparison(in: directory)
+        generateColorSpace3D(in: directory)
         
         logger.info("Completed marketing asset generation")
     }
@@ -64,6 +65,27 @@ public struct MarketingAssets {
         logger.info("Generating color system comparison image...")
         let view = ColorSystemComparisonView()
         saveImage(view, name: "color-system-comparison", size: ImageSize.size, in: directory)
+    }
+    
+    private static func generateColorSpace3D(in directory: URL) {
+        logger.info("Generating 3D color space visualization...")
+        
+        if let image = ColorSpace3DView.renderSnapshot(size: ImageSize.size) {
+            let fileURL = directory.appendingPathComponent("color-space-3d.png")
+            
+            if let tiffData = image.tiffRepresentation,
+               let bitmapImage = NSBitmapImageRep(data: tiffData),
+               let pngData = bitmapImage.representation(using: .png, properties: [:]) {
+                do {
+                    try pngData.write(to: fileURL)
+                    logger.info("Successfully saved color-space-3d.png")
+                } catch {
+                    logger.error("Failed to save color-space-3d.png: \(error.localizedDescription)")
+                }
+            }
+        } else {
+            logger.error("Failed to generate 3D visualization snapshot")
+        }
     }
     
     private static func saveImage(_ view: some View, name: String, size: CGSize, in directory: URL) {
