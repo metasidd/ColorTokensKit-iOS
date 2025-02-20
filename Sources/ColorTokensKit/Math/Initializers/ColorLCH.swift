@@ -16,6 +16,16 @@ public struct LCHColor: Hashable, Equatable {
     public let variableChroma: Bool
     public let variableHue: Bool
     
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(l)
+        hasher.combine(c)
+        hasher.combine(h)
+    }
+    
+    public static func == (lhs: LCHColor, rhs: LCHColor) -> Bool {
+        return lhs.l == rhs.l && lhs.c == rhs.c && lhs.h == rhs.h
+    }
+    
     public init (
         l: CGFloat = 0,
         c: CGFloat = 0,

@@ -10,20 +10,22 @@
 // and the LCH color space implementation.
 //
 
+import Foundation
+
 extension LCHColor {
-    static func generateRamp(forHue hue: Double) -> [LCHColor] {
-        let ramp = ColorRampInterpolator.interpolateRamp(forHue: hue)
-        return zip(zip(zip(ramp.lightness, ramp.chroma), ramp.hueShift), ColorRampDefinition.stops).map { values, stop in
-            let ((l, c), h) = values
-            let finalHue = (ramp.baseHue + h + 360).truncatingRemainder(dividingBy: 360)
-            return LCHColor(l: l, c: c, h: finalHue)
+    public static func generateRamp(forHue hue: Double) -> [LCHColor] {
+        let interpolator = ColorRampInterpolator()
+        let dataPoints = interpolator.interpolateRamp(forHue: hue)
+        
+        return dataPoints.map { point in
+            LCHColor(l: point.l, c: point.c, h: point.h)
         }
     }
     
     // Ramp getters for all predefined colors
     public static var grayRamp: [LCHColor] { generateRamp(forHue: 0) }
-    public static var pinkRamp: [LCHColor] { generateRamp(forHue: 0) }
-    public static var redRamp: [LCHColor] { generateRamp(forHue: 10) }
+    public static var pinkRamp: [LCHColor] { generateRamp(forHue: 350) }
+    public static var redRamp: [LCHColor] { generateRamp(forHue: 0) }
     public static var tomatoRamp: [LCHColor] { generateRamp(forHue: 20) }
     public static var orangeRamp: [LCHColor] { generateRamp(forHue: 35) }
     public static var brownRamp: [LCHColor] { generateRamp(forHue: 50) }

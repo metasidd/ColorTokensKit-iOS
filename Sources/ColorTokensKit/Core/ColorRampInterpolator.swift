@@ -14,35 +14,82 @@
 // This enables generation of harmonious color ramps for any hue value.
 //
 
-struct ColorRampInterpolator {
-    static func interpolateRamp(forHue hue: Double) -> ColorRampDefinition {
-        // Normalize hue to 0-360 range
-        let normalizedHue = (hue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
-        
-        // Find the two closest predefined ramps
-        let sortedRamps = ColorRampDefinition.predefinedRamps.sorted { abs($0.baseHue - normalizedHue) < abs($1.baseHue - normalizedHue) }
-        let ramp1 = sortedRamps[0]
-        let ramp2 = sortedRamps[1]
-        
-        // Calculate interpolation factor
-        let hueDiff = (ramp2.baseHue - ramp1.baseHue + 360).truncatingRemainder(dividingBy: 360)
-        let t = (normalizedHue - ramp1.baseHue + 360).truncatingRemainder(dividingBy: 360) / hueDiff
-        
-        // Interpolate all values
-        let interpolatedLightness = zip(ramp1.lightness, ramp2.lightness).map { lerp($0, $1, t) }
-        let interpolatedChroma = zip(ramp1.chroma, ramp2.chroma).map { lerp($0, $1, t) }
-        let interpolatedHueShift = zip(ramp1.hueShift, ramp2.hueShift).map { lerp($0, $1, t) }
-        
-        return ColorRampDefinition(
-            baseHue: normalizedHue,
-            name: "custom",
-            lightness: interpolatedLightness,
-            chroma: interpolatedChroma,
-            hueShift: interpolatedHueShift
-        )
+import Foundation
+
+public class ColorRampInterpolator {
+    private let palettes: ColorPalettes?
+    
+    public init() {
+        self.palettes = ColorRampLoader.loadColorRamps()
     }
     
-    private static func lerp(_ a: Double, _ b: Double, _ t: Double) -> Double {
+    public func interpolateRamp(forHue targetHue: Double) -> [ColorStop] {
+        guard let palettes = palettes else { return [] }
+        
+        // Get all ramps sorted by hue
+        let sortedRamps = palettes.colorRamps.sorted { ramp1, ramp2 in
+            let hue1 = ramp1.stops.first?.value.h ?? 0
+            let hue2 = ramp2.stops.first?.value.h ?? 0
+            return hue1 < hue2
+        }
+        
+        // Find bounding ramps
+        guard let (lowerRamp, upperRamp) = findBoundingRamps(forHue: targetHue, in: sortedRamps) else {
+            return []
+        }
+        
+        // Get the first stop to determine hues
+        let lowerHue = lowerRamp.stops.first?.value.h ?? 0
+        let upperHue = upperRamp.stops.first?.value.h ?? 0
+        
+        // Calculate interpolation factor
+        let t = (targetHue - lowerHue) / (upperHue - lowerHue)
+        
+        // Interpolate between corresponding stops
+        return interpolateStops(from: lowerRamp, to: upperRamp, t: t)
+    }
+    
+    private func findBoundingRamps(forHue hue: Double, in ramps: [ColorRamp]) -> (ColorRamp, ColorRamp)? {
+        guard let firstHue = ramps.first?.stops.first?.value.h,
+              let lastHue = ramps.last?.stops.first?.value.h,
+              !ramps.isEmpty else {
+            return nil
+        }
+        
+        // Handle wrap-around for hue
+        let normalizedHue = (hue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
+        
+        // Find the first ramp with hue greater than target
+        guard let upperIndex = ramps.firstIndex(where: { ramp in
+            let rampHue = ramp.stops.first?.value.h ?? 0
+            return rampHue >= normalizedHue
+        }) else {
+            // If not found, wrap around to first ramp
+            return (ramps.last!, ramps.first!)
+        }
+        
+        let lowerIndex = upperIndex == 0 ? ramps.count - 1 : upperIndex - 1
+        return (ramps[lowerIndex], ramps[upperIndex])
+    }
+    
+    private func interpolateStops(from: ColorRamp, to: ColorRamp, t: Double) -> [ColorStop] {
+        // Get sorted stops from both ramps
+        let fromStops = from.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
+        let toStops = to.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
+        
+        // Ensure we have the same number of stops
+        guard fromStops.count == toStops.count else { return [] }
+        
+        // Interpolate each corresponding pair of stops
+        return zip(fromStops, toStops).map { fromPair, toPair in
+            let fromStop = fromPair.value
+            let toStop = toPair.value
+            
+            return ColorStop(lchString: "lch(\(lerp(fromStop.l, toStop.l, t))% \(lerp(fromStop.c, toStop.c, t)) \(lerp(fromStop.h, toStop.h, t)))")
+        }
+    }
+    
+    private func lerp(_ a: Double, _ b: Double, _ t: Double) -> Double {
         return a + (b - a) * t
     }
 } 
