@@ -20,13 +20,13 @@ public class ColorRampInterpolator {
     // Cache interpolated ramps
     private var interpolatedRamps: [Double: [LCHColor]] = [:]
     private let palettes: ColorPalettes?
-    private let defaultStop = LCHColor(lchString: "lch(70% 30 0)") // Default fallback
+    private let defaultStop = LCHColor(lchString: "lch(0% 100 100)") // Default fallback
     
     public init() {
         self.palettes = ColorRampLoader.loadColorRamps()
     }
     
-    public func interpolateRamp(forHue targetHue: Double) -> [LCHColor] {
+    public func getCalculatedColorRamp(forHue targetHue: Double) -> [LCHColor] {
         // Check cache first
         let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         if let cached = interpolatedRamps[normalizedHue] {
@@ -105,7 +105,9 @@ public class ColorRampInterpolator {
             let fromStop = fromPair.value
             let toStop = toPair.value
             
-            return LCHColor(lchString: "lch(\(lerp(fromStop.l, toStop.l, t))% \(lerp(fromStop.c, toStop.c, t)) \(lerp(fromStop.h, toStop.h, t)))")
+            return LCHColor(
+                lchString: "lch(\(lerp(fromStop.l, toStop.l, t))% \(lerp(fromStop.c, toStop.c, t)) \(lerp(fromStop.h, toStop.h, t)))"
+            )
         }
     }
     

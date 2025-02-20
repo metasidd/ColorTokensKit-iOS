@@ -9,7 +9,7 @@ struct ColorSystemComparisonView: View {
     var hues: [(name: String, color: LCHColor)] {
         (0...hueSteps).map { step in
             let hue = Double(step) * (360.0 / Double(hueSteps))
-            let stops = interpolator.interpolateRamp(forHue: hue)
+            let stops = interpolator.getCalculatedColorRamp(forHue: hue)
             
             // Safely get middle stop or use default
             let midPoint = stops.count > 0 ? 

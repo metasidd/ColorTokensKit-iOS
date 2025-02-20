@@ -9,7 +9,7 @@ struct ColorGridView: View {
         // Generate hues at regular intervals
         (0...hueSteps).map { step in
             let hue = Double(step) * (360.0 / Double(hueSteps))
-            let stops = interpolator.interpolateRamp(forHue: hue)
+            let stops = interpolator.getCalculatedColorRamp(forHue: hue)
             return ColorRamp(
                 name: "H\(Int(hue))",
                 stops: Dictionary(

@@ -21,7 +21,7 @@ extension LCHColor {
     private static let interpolator = ColorRampInterpolator()
     
     public static func generateProRamp(forHue hue: Double) -> [LCHColor] {
-        let dataPoints = interpolator.interpolateRamp(forHue: hue)
+        let dataPoints = interpolator.getCalculatedColorRamp(forHue: hue)
         return dataPoints.map { point in
             LCHColor(l: point.l, c: point.c, h: point.h)
         }
@@ -83,7 +83,7 @@ extension LCHColor {
     
     // Initialize with hue but use interpolation system
     public init(h: Double, variableChroma: Bool = true, variableHue: Bool = true) {
-        let dataPoints = LCHColor.interpolator.interpolateRamp(forHue: h)
+        let dataPoints = LCHColor.interpolator.getCalculatedColorRamp(forHue: h)
         let midPoint = dataPoints[dataPoints.count / 2]
         self.init(
             l: midPoint.l,
