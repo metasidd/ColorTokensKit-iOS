@@ -29,9 +29,9 @@ struct ColorGridView: View {
                     .foregroundStyle(.red)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(MarketingStyle.pagePadding)
         .background(MarketingStyle.backgroundColor)
+        .background(Color.white)
     }
 }
 
@@ -46,26 +46,22 @@ struct ColorColumn: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Text(name)
-                .font(.caption)
             HStack(spacing: 0) {
                 ForEach(sortedStops, id: \.key) { pair in
                     let color = LCHColor(l: pair.stop.l, c: pair.stop.c, h: pair.stop.h)
-                    Rectangle()
-                        .fill(color.toColor())
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .overlay {
-                            VStack(spacing: 2) {
-                                Text(pair.key)
-                                    .font(.system(size: 8))
-                                Text("H:\(Int(pair.stop.h))")
-                                    .font(.system(size: 8))
-                            }
-                            .foregroundStyle(pair.stop.l > 50 ? Color.black : Color.white)
-                        }
+                    
+                    VStack(spacing: 2) {
+                        Text(pair.key)
+                        Text("H:\(Int(pair.stop.h))")
+                    }
+                    .font(.system(size: 8))
+                    .foregroundStyle(pair.stop.l > 50 ? Color.black : Color.white)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(color.toColor())
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
