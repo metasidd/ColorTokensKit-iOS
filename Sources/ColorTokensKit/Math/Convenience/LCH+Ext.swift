@@ -87,8 +87,6 @@ public extension LCHColor {
        - c: The chroma value to use. If `nil`, the current chroma is used.
        - h: The hue value to use. If `nil`, the current hue is used.
        - alpha: The alpha value to use. If `nil`, the current alpha is used.
-       - variableChroma: A boolean indicating whether chroma should be variable. If `nil`, the current value is used.
-       - variableHue: A boolean indicating whether hue should be variable. If `nil`, the current value is used.
      
      - Returns: A `Color` initialized with the adjusted LCH values.
      
@@ -98,17 +96,13 @@ public extension LCHColor {
         l: CGFloat? = nil,
         c: CGFloat? = nil,
         h: CGFloat? = nil,
-        alpha: CGFloat? = nil,
-        variableChroma: Bool? = nil,
-        variableHue: Bool? = nil
+        alpha: CGFloat? = nil
     ) -> Color {
         return LCHColor(
             l: l ?? self.l,
-            c: (variableChroma ?? self.variableChroma) ? (c ?? self.c) : 0,
-            h: (variableHue ?? self.variableHue) ? (h ?? self.h) : 0,
-            alpha: alpha ?? self.alpha,
-            variableChroma: variableChroma ?? self.variableChroma,
-            variableHue: variableHue ?? self.variableHue
+            c: c ?? 0,
+            h: h ?? 0,
+            alpha: alpha ?? self.alpha
         ).toColor()
     }
     
