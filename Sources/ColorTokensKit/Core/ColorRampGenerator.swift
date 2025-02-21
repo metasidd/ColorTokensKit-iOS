@@ -17,7 +17,8 @@
 import Foundation
 
 public class ColorRampGenerator {
-    private var interpolatedRamps: [String: [LCHColor]] = [:]
+    // Make this static to share cache across instances
+    private static var interpolatedRamps: [String: [LCHColor]] = [:]
     private let colorPaletteData: ColorPaletteData
     
     /// Initializes the color ramp generator with required palette data
@@ -43,8 +44,8 @@ public class ColorRampGenerator {
         // Generate cache key combining hue and steps
         let cacheKey = "H\(normalizedHue)-\(steps)"
         
-        // Check cache first
-        if let cached = interpolatedRamps[cacheKey] {
+        // Check static cache first
+        if let cached = ColorRampGenerator.interpolatedRamps[cacheKey] {
             return cached
         }
         
@@ -69,8 +70,8 @@ public class ColorRampGenerator {
         // Interpolate between corresponding stops
         let result = interpolateStops(from: lowerRamp, to: upperRamp, t: t)
         
-        // Cache the result
-        interpolatedRamps[cacheKey] = result
+        // Cache in static dictionary
+        ColorRampGenerator.interpolatedRamps[cacheKey] = result
         
         return result
     }
