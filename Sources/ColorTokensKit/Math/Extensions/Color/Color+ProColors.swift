@@ -72,15 +72,4 @@ extension Color {
             "Ruby": proRuby
         ]
     }
-
-    // MARK: - Color Stop Accessors
-    
-    /// Returns an array of all color stops
-    private var allStops: [LCHColor] {
-        let ramp = ColorRampGenerator().getColorRamp(
-            forHue: self.toLCH().h,
-            steps: ColorConstants.rampStops
-        )
-        return ramp.map { $0 }
-    }
 }
