@@ -33,12 +33,12 @@ public class ColorRampGenerator {
     ///   - targetHue: The target hue value (0-360 degrees)
     ///   - steps: Optional number of steps in the ramp (defaults to palette's step count)
     /// - Returns: Array of LCHColors representing the color ramp
-    public func getColorRamp(forHue targetHue: Double, steps: Int? = nil) -> [LCHColor] {
+    public func getColorRamp(forHue targetHue: Double, steps: Int = 20) -> [LCHColor] {
         // Normalize the input hue to 0-360 range
         let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         
         // Generate cache key combining hue and steps
-        let cacheKey = "H\(normalizedHue)-\(steps ?? 0)"
+        let cacheKey = "H\(normalizedHue)-\(steps)"
         
         // Check cache first
         if let cached = interpolatedRamps[cacheKey] {

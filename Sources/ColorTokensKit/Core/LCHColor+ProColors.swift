@@ -20,37 +20,30 @@ extension LCHColor {
     // Create a shared interpolator instance to avoid creating new ones repeatedly
     private static let interpolator = ColorRampGenerator()
     
-    public static func generateProRamp(forHue hue: Double) -> [LCHColor] {
-        let dataPoints = interpolator.getColorRamp(forHue: hue)
-        return dataPoints.map { point in
-            LCHColor(l: point.l, c: point.c, h: point.h)
-        }
-    }
-    
     // Pro color getters
-    public static var proGray: LCHColor { generateProRamp(forHue: 0)[5] }
-    public static var proPink: LCHColor { generateProRamp(forHue: 350)[5] }
-    public static var proRed: LCHColor { generateProRamp(forHue: 0)[5] }
-    public static var proTomato: LCHColor { generateProRamp(forHue: 20)[5] }
-    public static var proOrange: LCHColor { generateProRamp(forHue: 35)[5] }
-    public static var proBrown: LCHColor { generateProRamp(forHue: 50)[5] }
-    public static var proGold: LCHColor { generateProRamp(forHue: 70)[5] }
-    public static var proYellow: LCHColor { generateProRamp(forHue: 85)[5] }
-    public static var proLime: LCHColor { generateProRamp(forHue: 100)[5] }
-    public static var proOlive: LCHColor { generateProRamp(forHue: 110)[5] }
-    public static var proGrass: LCHColor { generateProRamp(forHue: 120)[5] }
-    public static var proGreen: LCHColor { generateProRamp(forHue: 140)[5] }
-    public static var proMint: LCHColor { generateProRamp(forHue: 160)[5] }
-    public static var proCyan: LCHColor { generateProRamp(forHue: 180)[5] }
-    public static var proTeal: LCHColor { generateProRamp(forHue: 190)[5] }
-    public static var proBlue: LCHColor { generateProRamp(forHue: 210)[5] }
-    public static var proSky: LCHColor { generateProRamp(forHue: 235)[5] }
-    public static var proIndigo: LCHColor { generateProRamp(forHue: 270)[5] }
-    public static var proIris: LCHColor { generateProRamp(forHue: 292.5)[5] }
-    public static var proPurple: LCHColor { generateProRamp(forHue: 310)[5] }
-    public static var proViolet: LCHColor { generateProRamp(forHue: 325)[5] }
-    public static var proPlum: LCHColor { generateProRamp(forHue: 345)[5] }
-    public static var proRuby: LCHColor { generateProRamp(forHue: 360)[5] }
+    public static var proGray: LCHColor { generatePrimaryColor(forHue: 0) }
+    public static var proPink: LCHColor { generatePrimaryColor(forHue: 350) }
+    public static var proRed: LCHColor { generatePrimaryColor(forHue: 0) }
+    public static var proTomato: LCHColor { generatePrimaryColor(forHue: 20) }
+    public static var proOrange: LCHColor { generatePrimaryColor(forHue: 35) }
+    public static var proBrown: LCHColor { generatePrimaryColor(forHue: 50) }
+    public static var proGold: LCHColor { generatePrimaryColor(forHue: 70) }
+    public static var proYellow: LCHColor { generatePrimaryColor(forHue: 85) }
+    public static var proLime: LCHColor { generatePrimaryColor(forHue: 100) }
+    public static var proOlive: LCHColor { generatePrimaryColor(forHue: 110) }
+    public static var proGrass: LCHColor { generatePrimaryColor(forHue: 120) }
+    public static var proGreen: LCHColor { generatePrimaryColor(forHue: 140) }
+    public static var proMint: LCHColor { generatePrimaryColor(forHue: 160) }
+    public static var proCyan: LCHColor { generatePrimaryColor(forHue: 180) }
+    public static var proTeal: LCHColor { generatePrimaryColor(forHue: 190) }
+    public static var proBlue: LCHColor { generatePrimaryColor(forHue: 210) }
+    public static var proSky: LCHColor { generatePrimaryColor(forHue: 235) }
+    public static var proIndigo: LCHColor { generatePrimaryColor(forHue: 270) }
+    public static var proIris: LCHColor { generatePrimaryColor(forHue: 292.5) }
+    public static var proPurple: LCHColor { generatePrimaryColor(forHue: 310) }
+    public static var proViolet: LCHColor { generatePrimaryColor(forHue: 325) }
+    public static var proPlum: LCHColor { generatePrimaryColor(forHue: 345) }
+    public static var proRuby: LCHColor { generatePrimaryColor(forHue: 360) }
     
     // Dictionary of all pro colors
     public static var allProHues: [String: LCHColor] {
@@ -81,19 +74,10 @@ extension LCHColor {
         ]
     }
     
-    // Initialize with hue but use interpolation system
-    public init(h: Double, variableChroma: Bool = true, variableHue: Bool = true) {
-        let dataPoints = LCHColor.interpolator.getColorRamp(forHue: h)
-        let midPoint = dataPoints[dataPoints.count / 2]
-        self.init(
-            l: midPoint.l,
-            c: midPoint.c,
-            h: midPoint.h
-        )
+    private static func generatePrimaryColor(forHue hue: Double) -> LCHColor {
+        let steps = 10
+        let dataPoints = interpolator.getColorRamp(forHue: hue, steps: steps)
+        let primaryColor = dataPoints[Int(steps/2)]
+        return LCHColor(l: primaryColor.l, c: primaryColor.c, h: primaryColor.h)
     }
-    
-    // Add a method to get the full ramp for any color
-    func getRamp() -> [LCHColor] {
-        return LCHColor.generateProRamp(forHue: self.h)
-    }
-} 
+}
