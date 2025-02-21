@@ -2,7 +2,7 @@ import SwiftUI
 import ColorTokensKit
 
 struct ColorSystemComparisonView: View {
-    let interpolator = ColorRampInterpolator()
+    let interpolator = ColorRampGenerator()
     let hueSteps = 14
     
     // Generate interpolated colors around the color wheel

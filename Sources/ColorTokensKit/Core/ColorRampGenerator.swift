@@ -1,5 +1,5 @@
 //
-// ColorRampInterpolator.swift
+// ColorRampGenerator.swift
 // ColorTokensKit
 //
 // Provides interpolation functionality between color ramps.
@@ -16,14 +16,13 @@
 
 import Foundation
 
-public class ColorRampInterpolator {
+public class ColorRampGenerator {
     // Cache interpolated ramps
     private var interpolatedRamps: [Double: [LCHColor]] = [:]
-    private let palettes: ColorPalettes?
-    private let defaultStop = LCHColor(lchString: "lch(0% 100 100)") // Default fallback
+    private let colorPaletteData: ColorPaletteData?
     
     public init() {
-        self.palettes = ColorRampLoader.loadColorRamps()
+        self.colorPaletteData = ColorRampLoader.loadColorRamps()
     }
     
     public func getCalculatedColorRamp(forHue targetHue: Double) -> [LCHColor] {
@@ -33,12 +32,13 @@ public class ColorRampInterpolator {
             return cached
         }
         
-        guard let palettes = palettes else { 
-            return [defaultStop] // Return default instead of empty array
+        guard let colorPaletteData = colorPaletteData else {
+            assertionFailure("Unable to get any palettes")
+            return []
         }
         
         // Get all ramps sorted by hue
-        let sortedRamps = palettes.colorRamps.sorted { ramp1, ramp2 in
+        let sortedRamps = colorPaletteData.colorRamps.sorted { ramp1, ramp2 in
             let hue1 = ramp1.stops.first?.value.h ?? 0
             let hue2 = ramp2.stops.first?.value.h ?? 0
             return hue1 < hue2
@@ -46,7 +46,8 @@ public class ColorRampInterpolator {
         
         // Find bounding ramps
         guard let (lowerRamp, upperRamp) = findBoundingRamps(forHue: targetHue, in: sortedRamps) else {
-            return [defaultStop] // Return default instead of empty array
+            assertionFailure("Unable to get any palettes")
+            return []
         }
         
         // Get the first stop to determine hues
@@ -64,7 +65,12 @@ public class ColorRampInterpolator {
             interpolatedRamps[normalizedHue] = result
         }
         
-        return result.isEmpty ? [defaultStop] : result
+        guard !result.isEmpty else {
+            assertionFailure("Unable to generate a palette")
+            return []
+        }
+        
+        return result
     }
     
     private func findBoundingRamps(forHue hue: Double, in ramps: [ColorRamp]) -> (ColorRamp, ColorRamp)? {
@@ -95,9 +101,10 @@ public class ColorRampInterpolator {
         let fromStops = from.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
         let toStops = to.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
         
-        // Ensure we have the same number of stops
-        guard !fromStops.isEmpty, fromStops.count == toStops.count else { 
-            return [defaultStop] // Return default instead of empty array
+        guard !fromStops.isEmpty,
+                fromStops.count == toStops.count else {
+            assertionFailure("Unable to generate a palette")
+            return []
         }
         
         // Interpolate each corresponding pair of stops

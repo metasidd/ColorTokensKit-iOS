@@ -12,11 +12,11 @@ public struct ColorRamp {
 }
 
 // Keep public as it's the main interface
-public struct ColorPalettes: Codable {
+struct ColorPaletteData: Codable {
     private var palettes: [String: [String: String]]
     
     // Keep public as it's the API surface
-    public var colorRamps: [ColorRamp] {
+    var colorRamps: [ColorRamp] {
         palettes.map { name, stops in
             ColorRamp(
                 name: name,
@@ -39,9 +39,9 @@ public struct ColorPalettes: Codable {
 
 public enum ColorRampLoader {
     // Cache the loaded palettes
-    private static var cachedPalettes: ColorPalettes?
+    private static var cachedPalettes: ColorPaletteData?
     
-    public static func loadColorRamps() -> ColorPalettes? {
+    static func loadColorRamps() -> ColorPaletteData? {
         // Return cached version if available
         if let cached = cachedPalettes {
             return cached
@@ -54,7 +54,7 @@ public enum ColorRampLoader {
         }
         
         do {
-            let palettes = try JSONDecoder().decode(ColorPalettes.self, from: data)
+            let palettes = try JSONDecoder().decode(ColorPaletteData.self, from: data)
             cachedPalettes = palettes // Cache the loaded palettes
             return palettes
         } catch {

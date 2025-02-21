@@ -18,7 +18,7 @@ extension LCHColor {
     // MARK: - Pro Colors
     
     // Create a shared interpolator instance to avoid creating new ones repeatedly
-    private static let interpolator = ColorRampInterpolator()
+    private static let interpolator = ColorRampGenerator()
     
     public static func generateProRamp(forHue hue: Double) -> [LCHColor] {
         let dataPoints = interpolator.getCalculatedColorRamp(forHue: hue)

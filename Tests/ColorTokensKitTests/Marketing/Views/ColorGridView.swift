@@ -2,7 +2,7 @@ import SwiftUI
 import ColorTokensKit
 
 struct ColorGridView: View {
-    let interpolator = ColorRampInterpolator()
+    let interpolator = ColorRampGenerator()
     let hueSteps = 14
     
     var colorRamps: [ColorRamp] {
