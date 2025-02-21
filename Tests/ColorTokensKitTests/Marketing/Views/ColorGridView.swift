@@ -23,14 +23,10 @@ private struct ColorColumn: View {
     let name: String
     let color: LCHColor
     
-    private var stops: [LCHColor] {
-        ColorRampGenerator().getColorRamp(forHue: color.h)
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                ForEach(Array(stops.enumerated()), id: \.offset) { index, stop in
+                ForEach(Array(color.allStops.enumerated()), id: \.offset) { index, stop in
                     VStack(spacing: 2) {
                         Text("\(index)")
                         Text("H:\(Int(stop.h))")

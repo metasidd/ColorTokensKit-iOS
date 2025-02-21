@@ -122,8 +122,8 @@ public extension LCHColor {
     
     func getColor(at index: Int) -> LCHColor {
         let rampGenerator = ColorRampGenerator()
-        let ramp = rampGenerator.getColorRamp(forHue: h)
-        let clampedIndex = max(ramp.count, index)
-        return ramp[clampedIndex-1]
+        let ramp = rampGenerator.getColorRamp(forHue: self.h)
+        let clampedIndex = min(index, ramp.count - 1)
+        return ramp[clampedIndex]
     }
 }

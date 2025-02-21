@@ -120,11 +120,13 @@ public class ColorRampGenerator {
             let fromStop = fromStops[fromIndex].value
             let toStop = toStops[toIndex].value
             
-            return LCHColor(
+            let interpolatedColor = LCHColor(
                 l: lerp(fromStop.l, toStop.l, t),
                 c: lerp(fromStop.c, toStop.c, t),
                 h: lerpHue(fromStop.h, toStop.h, t)
             )
+            
+            return interpolatedColor
         }
     }
     
