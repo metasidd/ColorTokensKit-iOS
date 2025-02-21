@@ -33,7 +33,10 @@ public class ColorRampGenerator {
     ///   - targetHue: The target hue value (0-360 degrees)
     ///   - steps: Optional number of steps in the ramp (defaults to palette's step count)
     /// - Returns: Array of LCHColors representing the color ramp
-    public func getColorRamp(forHue targetHue: Double, steps: Int = 20) -> [LCHColor] {
+    public func getColorRamp(forHue targetHue: Double, steps: Int? = nil) -> [LCHColor] {
+        // Assign a constant value
+        let steps = steps ?? ColorConstants.rampStops
+        
         // Normalize the input hue to 0-360 range
         let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         
@@ -104,10 +107,18 @@ public class ColorRampGenerator {
         let fromStops = from.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
         let toStops = to.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
         
-        // Interpolate each corresponding pair of stops
-        return zip(fromStops, toStops).map { fromPair, toPair in
-            let fromStop = fromPair.value
-            let toStop = toPair.value
+        // Create evenly spaced indices for the requested number of steps
+        let stepSize = 1.0 / Double(ColorConstants.rampStops - 1)
+        
+        return (0..<ColorConstants.rampStops).map { step in
+            let progress = Double(step) * stepSize
+            
+            // Find the bounding stops in both ramps
+            let fromIndex = Int((Double(fromStops.count - 1) * progress).rounded())
+            let toIndex = Int((Double(toStops.count - 1) * progress).rounded())
+            
+            let fromStop = fromStops[fromIndex].value
+            let toStop = toStops[toIndex].value
             
             return LCHColor(
                 l: lerp(fromStop.l, toStop.l, t),

@@ -2,18 +2,17 @@ import SwiftUI
 import ColorTokensKit
 
 struct ColorSystemComparisonView: View {
-    let interpolator = ColorRampGenerator()
-    let hueSteps = 14
+    private let hueSteps = 20
     
     // Generate interpolated colors around the color wheel
     var hues: [(name: String, color: LCHColor)] {
         (0...hueSteps).map { step in
             let hue = Double(step) * (360.0 / Double(hueSteps))
-            let stops = interpolator.getColorRamp(forHue: hue)
+            let stops = ColorRampGenerator().getColorRamp(forHue: hue)
             
             // Safely get middle stop or use default
             let midPoint = stops.count > 0 ? 
-                stops[stops.count / 2] : 
+                stops[Int(stops.count / 2)] : 
                 LCHColor(lchString: "lch(70% 30 \(hue))")
             
             return (

@@ -111,4 +111,19 @@ public extension LCHColor {
             variableHue: variableHue ?? self.variableHue
         ).toColor()
     }
+    
+    static func getPrimaryColor(forHue hue: Double) -> LCHColor {
+        let steps = ColorConstants.rampStops
+        let rampGenerator = ColorRampGenerator()
+        let dataPoints = rampGenerator.getColorRamp(forHue: hue, steps: steps)
+        let primaryColor = dataPoints[Int(steps/2) - 2]
+        return LCHColor(l: primaryColor.l, c: primaryColor.c, h: primaryColor.h)
+    }
+    
+    func getColor(at index: Int) -> LCHColor {
+        let rampGenerator = ColorRampGenerator()
+        let ramp = rampGenerator.getColorRamp(forHue: h)
+        let clampedIndex = max(ramp.count, index)
+        return ramp[clampedIndex-1]
+    }
 }

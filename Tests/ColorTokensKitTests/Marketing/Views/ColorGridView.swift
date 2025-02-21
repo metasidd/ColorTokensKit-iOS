@@ -2,29 +2,15 @@ import SwiftUI
 import ColorTokensKit
 
 struct ColorGridView: View {
-    let interpolator = ColorRampGenerator()
-    let hueSteps = 14
-    
-    var colorRamps: [ColorRamp] {
-        // Generate hues at regular intervals
-        (0...hueSteps).map { step in
-            let hue = Double(step) * (360.0 / Double(hueSteps))
-            let stops = interpolator.getColorRamp(forHue: hue)
-            return ColorRamp(
-                name: "H\(Int(hue))",
-                stops: Dictionary(
-                    uniqueKeysWithValues: stops.enumerated().map { index, stop in
-                        ("\(index)", stop)
-                    }
-                )
-            )
-        }
+    private var colorRamps: [(name: String, color: LCHColor)] {
+        Color.allProHues.map { (name: $0.key, color: $0.value) }
+            .sorted { $0.color.h < $1.color.h }
     }
     
     var body: some View {
         VStack(spacing: 0) {
             ForEach(colorRamps, id: \.name) { ramp in
-                ColorColumn(name: ramp.name, stops: ramp.stops)
+                ColorColumn(name: ramp.name, color: ramp.color)
             }
         }
         .padding(MarketingStyle.pagePadding)
@@ -33,29 +19,26 @@ struct ColorGridView: View {
     }
 }
 
-struct ColorColumn: View {
+private struct ColorColumn: View {
     let name: String
-    let stops: [String: LCHColor]
+    let color: LCHColor
     
-    var sortedStops: [(key: String, stop: LCHColor)] {
-        stops.map { (key: $0.key, stop: $0.value) }
-            .sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
+    private var stops: [LCHColor] {
+        ColorRampGenerator().getColorRamp(forHue: color.h)
     }
     
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                ForEach(sortedStops, id: \.key) { pair in
-                    let color = LCHColor(l: pair.stop.l, c: pair.stop.c, h: pair.stop.h)
-                    
+                ForEach(Array(stops.enumerated()), id: \.offset) { index, stop in
                     VStack(spacing: 2) {
-                        Text(pair.key)
-                        Text("H:\(Int(pair.stop.h))")
+                        Text("\(index)")
+                        Text("H:\(Int(stop.h))")
                     }
                     .font(.system(size: 8))
-                    .foregroundStyle(pair.stop.l > 50 ? Color.black : Color.white)
+                    .foregroundStyle(stop.l > 50 ? Color.black : Color.white)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(color.toColor())
+                    .background(stop.toColor())
                 }
             }
         }
