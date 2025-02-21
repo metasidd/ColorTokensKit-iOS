@@ -113,20 +113,41 @@ public class ColorRampGenerator {
         return (0..<ColorConstants.rampStops).map { step in
             let progress = Double(step) * stepSize
             
-            // Find the bounding stops in both ramps
-            let fromIndex = Int((Double(fromStops.count - 1) * progress).rounded())
-            let toIndex = Int((Double(toStops.count - 1) * progress).rounded())
+            // Instead of rounding, find the bounding indices and interpolate between them
+            let fromFloatIndex = Double(fromStops.count - 1) * progress
+            let fromLowerIndex = Int(floor(fromFloatIndex))
+            let fromUpperIndex = Int(ceil(fromFloatIndex))
+            let fromFraction = fromFloatIndex - Double(fromLowerIndex)
             
-            let fromStop = fromStops[fromIndex].value
-            let toStop = toStops[toIndex].value
+            let toLowerIndex = Int(floor(Double(toStops.count - 1) * progress))
+            let toUpperIndex = Int(ceil(Double(toStops.count - 1) * progress))
+            let toFraction = Double(toStops.count - 1) * progress - Double(toLowerIndex)
             
-            let interpolatedColor = LCHColor(
-                l: lerp(fromStop.l, toStop.l, t),
-                c: lerp(fromStop.c, toStop.c, t),
-                h: lerpHue(fromStop.h, toStop.h, t)
+            // Get the bounding colors from both ramps
+            let fromLower = fromStops[fromLowerIndex].value
+            let fromUpper = fromStops[min(fromUpperIndex, fromStops.count - 1)].value
+            let toLower = toStops[toLowerIndex].value
+            let toUpper = toStops[min(toUpperIndex, toStops.count - 1)].value
+            
+            // Interpolate within each ramp first
+            let fromInterpolated = LCHColor(
+                l: lerp(fromLower.l, fromUpper.l, fromFraction),
+                c: lerp(fromLower.c, fromUpper.c, fromFraction),
+                h: lerpHue(fromLower.h, fromUpper.h, fromFraction)
             )
             
-            return interpolatedColor
+            let toInterpolated = LCHColor(
+                l: lerp(toLower.l, toUpper.l, toFraction),
+                c: lerp(toLower.c, toUpper.c, toFraction),
+                h: lerpHue(toLower.h, toUpper.h, toFraction)
+            )
+            
+            // Then interpolate between the ramps
+            return LCHColor(
+                l: lerp(fromInterpolated.l, toInterpolated.l, t),
+                c: lerp(fromInterpolated.c, toInterpolated.c, t),
+                h: lerpHue(fromInterpolated.h, toInterpolated.h, t)
+            )
         }
     }
     
