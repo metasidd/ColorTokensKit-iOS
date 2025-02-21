@@ -15,7 +15,7 @@ import Foundation
 extension LCHColor {
     public static func generateRamp(forHue hue: Double) -> [LCHColor] {
         let interpolator = ColorRampGenerator()
-        let dataPoints = interpolator.getCalculatedColorRamp(forHue: hue)
+        let dataPoints = interpolator.getColorRamp(forHue: hue)
         
         return dataPoints.map { point in
             LCHColor(l: point.l, c: point.c, h: point.h)

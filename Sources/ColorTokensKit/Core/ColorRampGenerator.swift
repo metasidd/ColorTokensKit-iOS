@@ -25,7 +25,7 @@ public class ColorRampGenerator {
         self.colorPaletteData = ColorRampLoader.loadColorRamps()
     }
     
-    public func getCalculatedColorRamp(forHue targetHue: Double) -> [LCHColor] {
+    public func getColorRamp(forHue targetHue: Double) -> [LCHColor] {
         // Check cache first
         let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         if let cached = interpolatedRamps[normalizedHue] {
