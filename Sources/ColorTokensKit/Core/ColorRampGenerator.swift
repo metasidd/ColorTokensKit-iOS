@@ -33,8 +33,9 @@ public class ColorRampGenerator {
     /// - Parameters:
     ///   - targetHue: The target hue value (0-360 degrees)
     ///   - steps: Optional number of steps in the ramp (defaults to palette's step count)
+    ///   - isGrayscale: Whether to generate a grayscale ramp (ignoring hue)
     /// - Returns: Array of LCHColors representing the color ramp
-    public func getColorRamp(forHue targetHue: Double, steps: Int? = nil) -> [LCHColor] {
+    public func getColorRamp(forHue targetHue: Double, steps: Int? = nil, isGrayscale: Bool = false) -> [LCHColor] {
         // Assign a constant value
         let steps = steps ?? ColorConstants.rampStops
         
@@ -42,19 +43,31 @@ public class ColorRampGenerator {
         let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         
         // Generate cache key combining hue and steps
-        let cacheKey = "H\(normalizedHue)-\(steps)"
+        let cacheKey = isGrayscale ? "gray-\(steps)" : "H\(normalizedHue)-\(steps)"
         
         // Check static cache first
         if let cached = ColorRampGenerator.interpolatedRamps[cacheKey] {
             return cached
         }
         
-        // Get all ramps sorted by hue
-        let sortedRamps = colorPaletteData.colorRamps.sorted { ramp1, ramp2 in
-            let hue1 = ramp1.stops.first?.value.h ?? 0
-            let hue2 = ramp2.stops.first?.value.h ?? 0
-            return hue1 < hue2
+        // If grayscale is requested, use the gray ramp from palette data
+        if isGrayscale {
+            let grayRamp = colorPaletteData.colorRamps.first { $0.name == "gray" }
+            if let grayRamp = grayRamp {
+                let result = interpolateStops(from: grayRamp, to: grayRamp, t: 0)
+                ColorRampGenerator.interpolatedRamps[cacheKey] = result
+                return result
+            }
         }
+        
+        // Get all ramps sorted by hue, excluding gray
+        let sortedRamps = colorPaletteData.colorRamps
+            .filter { $0.name != "gray" }
+            .sorted { ramp1, ramp2 in
+                let hue1 = ramp1.stops.first?.value.h ?? 0
+                let hue2 = ramp2.stops.first?.value.h ?? 0
+                return hue1 < hue2
+            }
         
         // Find bounding ramps
         let (lowerRamp, upperRamp) = findBoundingRamps(forHue: normalizedHue, in: sortedRamps)

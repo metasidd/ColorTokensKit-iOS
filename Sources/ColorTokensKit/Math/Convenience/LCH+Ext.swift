@@ -106,17 +106,24 @@ public extension LCHColor {
         ).toColor()
     }
     
-    static func getPrimaryColor(forHue hue: Double) -> LCHColor {
+    static func getPrimaryColor(forHue hue: Double, isGrayscale: Bool = false) -> LCHColor {
         let steps = ColorConstants.rampStops
         let rampGenerator = ColorRampGenerator()
-        let dataPoints = rampGenerator.getColorRamp(forHue: hue, steps: steps)
+        let dataPoints = rampGenerator.getColorRamp(forHue: hue, steps: steps, isGrayscale: isGrayscale)
         let primaryColor = dataPoints[Int(steps/2) - 2]
-        return LCHColor(l: primaryColor.l, c: primaryColor.c, h: primaryColor.h)
+        
+        return LCHColor(
+            l: primaryColor.l,
+            c: primaryColor.c,
+            h: primaryColor.h,
+            alpha: primaryColor.alpha
+        )
     }
     
     func getColor(at index: Int) -> LCHColor {
         let rampGenerator = ColorRampGenerator()
-        let ramp = rampGenerator.getColorRamp(forHue: self.h)
+        let isGrayscale = c <= 0.1
+        let ramp = rampGenerator.getColorRamp(forHue: self.h, isGrayscale: isGrayscale)
         let clampedIndex = min(index, ramp.count - 1)
         return ramp[clampedIndex]
     }

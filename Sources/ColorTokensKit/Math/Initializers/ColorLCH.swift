@@ -21,7 +21,9 @@ public struct LCHColor: Hashable, Equatable {
     }
     
     public static func == (lhs: LCHColor, rhs: LCHColor) -> Bool {
-        return lhs.l == rhs.l && lhs.c == rhs.c && lhs.h == rhs.h
+        return lhs.l == rhs.l && 
+               lhs.c == rhs.c && 
+               lhs.h == rhs.h
     }
     
     public init (

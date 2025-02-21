@@ -19,7 +19,7 @@ extension Color {
     // MARK: - Pro Colors
     
     // Pro color getters
-    public static var proGray: LCHColor { LCHColor.getPrimaryColor(forHue: 0) }
+    public static var proGray: LCHColor { LCHColor.getPrimaryColor(forHue: 0, isGrayscale: true) }
     public static var proPink: LCHColor { LCHColor.getPrimaryColor(forHue: 0) }
     public static var proRed: LCHColor { LCHColor.getPrimaryColor(forHue: 10) }
     public static var proTomato: LCHColor { LCHColor.getPrimaryColor(forHue: 20) }
