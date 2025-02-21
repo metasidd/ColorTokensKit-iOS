@@ -29,13 +29,14 @@ extension Color {
     public static var proYellow: LCHColor { LCHColor.getPrimaryColor(forHue: 85) }
     public static var proLime: LCHColor { LCHColor.getPrimaryColor(forHue: 100) }
     public static var proOlive: LCHColor { LCHColor.getPrimaryColor(forHue: 110) }
-    public static var proGrass: LCHColor { LCHColor.getPrimaryColor(forHue: 120) }
+    public static var proGrass: LCHColor { LCHColor.getPrimaryColor(forHue: 125) }
     public static var proGreen: LCHColor { LCHColor.getPrimaryColor(forHue: 140) }
     public static var proMint: LCHColor { LCHColor.getPrimaryColor(forHue: 160) }
-    public static var proCyan: LCHColor { LCHColor.getPrimaryColor(forHue: 180) }
+    public static var proCyan: LCHColor { LCHColor.getPrimaryColor(forHue: 175) }
     public static var proTeal: LCHColor { LCHColor.getPrimaryColor(forHue: 190) }
     public static var proBlue: LCHColor { LCHColor.getPrimaryColor(forHue: 210) }
     public static var proSky: LCHColor { LCHColor.getPrimaryColor(forHue: 235) }
+    public static var proCobalt: LCHColor { LCHColor.getPrimaryColor(forHue: 250) }
     public static var proIndigo: LCHColor { LCHColor.getPrimaryColor(forHue: 270) }
     public static var proIris: LCHColor { LCHColor.getPrimaryColor(forHue: 292.5) }
     public static var proPurple: LCHColor { LCHColor.getPrimaryColor(forHue: 310) }
