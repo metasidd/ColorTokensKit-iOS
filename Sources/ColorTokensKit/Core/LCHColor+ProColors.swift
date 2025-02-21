@@ -22,8 +22,8 @@ extension LCHColor {
     
     // Pro color getters
     public static var proGray: LCHColor { generatePrimaryColor(forHue: 0) }
-    public static var proPink: LCHColor { generatePrimaryColor(forHue: 350) }
-    public static var proRed: LCHColor { generatePrimaryColor(forHue: 0) }
+    public static var proPink: LCHColor { generatePrimaryColor(forHue: 0) }
+    public static var proRed: LCHColor { generatePrimaryColor(forHue: 10) }
     public static var proTomato: LCHColor { generatePrimaryColor(forHue: 20) }
     public static var proOrange: LCHColor { generatePrimaryColor(forHue: 35) }
     public static var proBrown: LCHColor { generatePrimaryColor(forHue: 50) }
