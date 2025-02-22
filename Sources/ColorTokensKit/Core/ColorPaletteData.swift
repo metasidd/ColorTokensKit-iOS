@@ -1,9 +1,8 @@
 import Foundation
 
-// Make internal since it's just used internally
-public struct ColorRamp {
-    public let name: String
-    public let stops: [String: LCHColor]
+struct ColorRamp {
+    let name: String
+    let stops: [String: LCHColor]
     
     public init(name: String, stops: [String: LCHColor]) {
         self.name = name
@@ -11,7 +10,6 @@ public struct ColorRamp {
     }
 }
 
-// Keep public as it's the main interface
 struct ColorPaletteData: Codable {
     private var palettes: [String: [String: String]]
     
