@@ -9,11 +9,8 @@ import Foundation
 import SwiftUI
 
 public extension LABColor {
-    /**
-     Converts the LAB color to the XYZ color space.
-
-     - Returns: An `XYZColor` representation of the current `LABColor`.
-     */
+    /// Converts the LAB color to the XYZ color space.
+    /// - Returns: An `XYZColor` representation of the current `LABColor`.
     func toXYZ() -> XYZColor {
         let y = (l + 16) / 116
         let x = y + (a / 500)
@@ -26,11 +23,8 @@ public extension LABColor {
         )
     }
 
-    /**
-     Converts the LAB color to the LCH color space.
-
-     - Returns: An `LCHColor` representation of the current `LABColor`.
-     */
+    /// Converts the LAB color to the LCH color space.
+    /// - Returns: An `LCHColor` representation of the current `LABColor`.
     func toLCH() -> LCHColor {
         let c = sqrt(a * a + b * b)
         let angle = atan2(b, a) * ColorConstants.RAD_TO_DEG
@@ -38,11 +32,8 @@ public extension LABColor {
         return LCHColor(l: l, c: c, h: h, alpha: alpha)
     }
 
-    /**
-     Converts the LAB color to the RGB color space.
-
-     - Returns: An `RGBColor` representation of the current `LABColor`.
-     */
+    /// Converts the LAB color to the RGB color space.
+    /// - Returns: An `RGBColor` representation of the current `LABColor`.
     func toRGB() -> RGBColor {
         return toXYZ().toRGB()
     }
