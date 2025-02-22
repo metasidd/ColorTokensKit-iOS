@@ -1,12 +1,12 @@
-import SwiftUI
 import ColorTokensKit
+import SwiftUI
 
 struct ColorGridView: View {
     private var colorRamps: [(name: String, color: LCHColor)] {
         Color.allProHues.map { (name: $0.key, color: $0.value) }
             .sorted { $0.color.h < $1.color.h }
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             ForEach(colorRamps, id: \.name) { ramp in
@@ -22,7 +22,7 @@ struct ColorGridView: View {
 private struct ColorColumn: View {
     let name: String
     let color: LCHColor
-    
+
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
@@ -46,4 +46,4 @@ private struct ColorColumn: View {
     ColorGridView()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
-} 
+}

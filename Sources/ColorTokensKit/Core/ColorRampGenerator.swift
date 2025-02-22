@@ -20,15 +20,15 @@ public class ColorRampGenerator {
     // Make this static to share cache across instances
     private static var interpolatedRamps: [String: [LCHColor]] = [:]
     private let colorPaletteData: ColorPaletteData
-    
+
     /// Initializes the color ramp generator with required palette data
     public init() {
         guard let data = ColorRampLoader.loadColorRamps() else {
             fatalError("Required color palette data is missing")
         }
-        self.colorPaletteData = data
+        colorPaletteData = data
     }
-    
+
     /// Generates a color ramp for a given hue value
     /// - Parameters:
     ///   - targetHue: The target hue value (0-360 degrees)
@@ -38,7 +38,7 @@ public class ColorRampGenerator {
     public func getColorRamp(forHue targetHue: Double, steps: Int? = nil, isGrayscale: Bool = false) -> [LCHColor] {
         // Assign a constant value
         let steps = steps ?? ColorConstants.rampStops
-        
+
         // Handle grayscale and generate appropriate cache key
         let cacheKey = {
             if isGrayscale {
@@ -50,12 +50,12 @@ public class ColorRampGenerator {
                 return "H\(normalizedHue)-\(steps)"
             }
         }()
-        
+
         // Check static cache first
         if let cached = ColorRampGenerator.interpolatedRamps[cacheKey] {
             return cached
         }
-        
+
         // If grayscale is requested, use the gray ramp from palette data
         if isGrayscale {
             let grayRamp = colorPaletteData.colorRamps.first { $0.name == "gray" }
@@ -65,7 +65,7 @@ public class ColorRampGenerator {
                 return result
             }
         }
-        
+
         // Get all ramps sorted by hue, excluding gray
         let sortedRamps = colorPaletteData.colorRamps
             .filter { $0.name != "gray" }
@@ -74,27 +74,27 @@ public class ColorRampGenerator {
                 let hue2 = ramp2.stops.first?.value.h ?? 0
                 return hue1 < hue2
             }
-        
+
         // Find bounding ramps
         let (lowerRamp, upperRamp) = findBoundingRamps(forHue: targetHue, in: sortedRamps)
-        
+
         // Get the first stop to determine hues
         let lowerHue = lowerRamp.stops.first?.value.h ?? 0
         let upperHue = upperRamp.stops.first?.value.h ?? 0
-        
+
         // Calculate interpolation factor with proper wrapping
         let hueDiff = (upperHue - lowerHue + 360).truncatingRemainder(dividingBy: 360)
         let t = (targetHue - lowerHue + 360).truncatingRemainder(dividingBy: 360) / hueDiff
-        
+
         // Interpolate between corresponding stops
         let result = interpolateStops(from: lowerRamp, to: upperRamp, t: t)
-        
+
         // Cache in static dictionary
         ColorRampGenerator.interpolatedRamps[cacheKey] = result
-        
+
         return result
     }
-    
+
     /// Finds the two color ramps that bound the target hue
     /// - Parameters:
     ///   - hue: Target hue value
@@ -105,17 +105,17 @@ public class ColorRampGenerator {
         guard ramps.count > 1 else {
             return (ramps[0], ramps[0])
         }
-        
+
         // Find the first ramp with hue greater than target
         let upperIndex = ramps.firstIndex { ramp in
             let rampHue = ramp.stops.first?.value.h ?? 0
             return rampHue >= hue
         } ?? 0
-        
+
         let lowerIndex = upperIndex == 0 ? ramps.count - 1 : upperIndex - 1
         return (ramps[lowerIndex], ramps[upperIndex])
     }
-    
+
     /// Interpolates between corresponding color stops of two ramps
     /// - Parameters:
     ///   - from: Starting color ramp
@@ -126,42 +126,42 @@ public class ColorRampGenerator {
         // Get sorted stops from both ramps
         let fromStops = from.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
         let toStops = to.stops.sorted { Int($0.key) ?? 0 < Int($1.key) ?? 0 }
-        
+
         // Create evenly spaced indices for the requested number of steps
         let stepSize = 1.0 / Double(ColorConstants.rampStops - 1)
-        
-        return (0..<ColorConstants.rampStops).map { step in
+
+        return (0 ..< ColorConstants.rampStops).map { step in
             let progress = Double(step) * stepSize
-            
+
             // Instead of rounding, find the bounding indices and interpolate between them
             let fromFloatIndex = Double(fromStops.count - 1) * progress
             let fromLowerIndex = Int(floor(fromFloatIndex))
             let fromUpperIndex = Int(ceil(fromFloatIndex))
             let fromFraction = fromFloatIndex - Double(fromLowerIndex)
-            
+
             let toLowerIndex = Int(floor(Double(toStops.count - 1) * progress))
             let toUpperIndex = Int(ceil(Double(toStops.count - 1) * progress))
             let toFraction = Double(toStops.count - 1) * progress - Double(toLowerIndex)
-            
+
             // Get the bounding colors from both ramps
             let fromLower = fromStops[fromLowerIndex].value
             let fromUpper = fromStops[min(fromUpperIndex, fromStops.count - 1)].value
             let toLower = toStops[toLowerIndex].value
             let toUpper = toStops[min(toUpperIndex, toStops.count - 1)].value
-            
+
             // Interpolate within each ramp first
             let fromInterpolated = LCHColor(
                 l: lerp(fromLower.l, fromUpper.l, fromFraction),
                 c: lerp(fromLower.c, fromUpper.c, fromFraction),
                 h: lerpHue(fromLower.h, fromUpper.h, fromFraction)
             )
-            
+
             let toInterpolated = LCHColor(
                 l: lerp(toLower.l, toUpper.l, toFraction),
                 c: lerp(toLower.c, toUpper.c, toFraction),
                 h: lerpHue(toLower.h, toUpper.h, toFraction)
             )
-            
+
             // Then interpolate between the ramps
             return LCHColor(
                 l: lerp(fromInterpolated.l, toInterpolated.l, t),
@@ -170,7 +170,7 @@ public class ColorRampGenerator {
             )
         }
     }
-    
+
     /// Linear interpolation between two values
     /// - Parameters:
     ///   - a: Starting value
@@ -180,7 +180,7 @@ public class ColorRampGenerator {
     private func lerp(_ a: Double, _ b: Double, _ t: Double) -> Double {
         return a + (b - a) * t
     }
-    
+
     /// Interpolates between two hue angles, taking the shortest path around the color wheel
     /// - Parameters:
     ///   - h1: Starting hue angle (0-360)
@@ -192,5 +192,4 @@ public class ColorRampGenerator {
         let shortestPath = diff <= 180 ? diff : diff - 360
         return (h1 + shortestPath * t + 360).truncatingRemainder(dividingBy: 360)
     }
-} 
-
+}

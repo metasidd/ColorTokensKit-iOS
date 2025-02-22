@@ -1,22 +1,22 @@
 //
-//  ContentView.swift
+//  HuesView.swift
 //  ColorGenerator
 //
 //  Created by Siddhant Mehta on 2024-06-08.
 //
 
-import SwiftUI
-import Routing
 import ColorTokensKit
+import Routing
+import SwiftUI
 
 struct HuesView: View {
     @State var viewModel = HuesViewModel()
     @StateObject var router: Router<GlobalRouter>
-    
+
     init(router: Router<GlobalRouter>) {
         _router = StateObject(wrappedValue: router)
     }
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -34,23 +34,22 @@ struct HuesView: View {
             .navigationTitle("Color Book")
         }
     }
-    
 }
 
 struct HueColorGroup: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var router: Router<GlobalRouter>
-    
+
     let lchColor: LCHColor
     let name: String
     @State var collapsed: Bool = true
-    
+
     var body: some View {
         VStack(spacing: 4) {
             hueColorButton(lchColor: lchColor)
         }
     }
-    
+
     private func hueColorButton(lchColor: LCHColor) -> some View {
         return Button {
             withAnimation {
@@ -79,7 +78,7 @@ struct HueColorGroup: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
-    
+
     private func hueRampView(lchColor: LCHColor) -> some View {
         let colorRamp = colorScheme == .light ? lchColor.allNormalColors.reversed() : lchColor.allPastelColors
         return HStack(spacing: 0) {

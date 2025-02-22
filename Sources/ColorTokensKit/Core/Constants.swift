@@ -16,6 +16,6 @@ enum ColorConstants {
     static let LAB_X: CGFloat = 0.95047
     static let LAB_Y: CGFloat = 1
     static let LAB_Z: CGFloat = 1.08883
-    
+
     static let rampStops: Int = 20
 }

@@ -5,8 +5,8 @@
 //  Created by Siddhant Mehta on 2024-06-08.
 //
 
-import SwiftUI
 import Routing
+import SwiftUI
 
 @main
 struct ColorGeneratorApp: App {

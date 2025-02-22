@@ -1,5 +1,5 @@
 //
-//  LABColor.swift
+//  ColorLAB.swift
 //
 //
 //  Original repo: https://github.com/timrwood/ColorSpaces
@@ -8,12 +8,12 @@
 import Foundation
 
 public struct LABColor: Hashable {
-    public let l: CGFloat     //    0..100
-    public let a: CGFloat     // -128..128
-    public let b: CGFloat     // -128..128
+    public let l: CGFloat //    0..100
+    public let a: CGFloat // -128..128
+    public let b: CGFloat // -128..128
     public let alpha: CGFloat //    0..1
-    
-    public init (l: CGFloat, a: CGFloat, b: CGFloat, alpha: CGFloat) {
+
+    public init(l: CGFloat, a: CGFloat, b: CGFloat, alpha: CGFloat) {
         self.l = l
         self.a = a
         self.b = b

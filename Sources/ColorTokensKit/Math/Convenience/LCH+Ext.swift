@@ -12,9 +12,9 @@ import SwiftUI
 public extension LCHColor {
     /**
      Converts the LCH color to the LAB color space.
-     
+
      - Returns: An `LABColor` representation of the current `LCHColor`.
-     
+
      The conversion is done by calculating the `a` and `b` components from the chroma and hue.
      */
     func toLAB() -> LABColor {
@@ -23,50 +23,50 @@ public extension LCHColor {
         let b = sin(rad) * c
         return LABColor(l: l, a: a, b: b, alpha: alpha)
     }
-    
+
     /**
      Converts the LCH color to the XYZ color space.
-     
+
      - Returns: An `XYZColor` representation of the current `LCHColor`.
-     
+
      This method first converts the color to LAB and then to XYZ.
      */
     func toXYZ() -> XYZColor {
         return toLAB().toXYZ()
     }
-    
+
     /**
      Converts the LCH color to the RGB color space.
-     
+
      - Returns: An `RGBColor` representation of the current `LCHColor`.
-     
+
      This method first converts the color to XYZ and then to RGB.
      */
     func toRGB() -> RGBColor {
         return toXYZ().toRGB()
     }
-    
+
     /**
      Converts the LCH color to a SwiftUI `Color`.
-     
+
      - Returns: A `Color` representation of the current `LCHColor`.
-     
+
      This method converts the color to RGB and initializes a `Color` with the resulting values.
      */
     func toColor() -> Color {
-        let rgb = self.toRGB()
+        let rgb = toRGB()
         return Color(red: rgb.r, green: rgb.g, blue: rgb.b)
     }
-    
+
     /**
      Linearly interpolates between the current LCH color and another LCH color.
-     
+
      - Parameters:
        - other: The target `LCHColor` to interpolate towards.
        - t: The interpolation factor, ranging from 0 to 1.
-     
+
      - Returns: A new `LCHColor` that is the result of the interpolation.
-     
+
      The interpolation is done by calculating the intermediate lightness, chroma, and hue.
      */
     func lerp(_ other: LCHColor, t: CGFloat) -> LCHColor {
@@ -78,18 +78,18 @@ public extension LCHColor {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
-    
+
     /**
      Creates a new `Color` by adjusting the current LCH values.
-     
+
      - Parameters:
        - l: The lightness value to use. If `nil`, the current lightness is used.
        - c: The chroma value to use. If `nil`, the current chroma is used.
        - h: The hue value to use. If `nil`, the current hue is used.
        - alpha: The alpha value to use. If `nil`, the current alpha is used.
-     
+
      - Returns: A `Color` initialized with the adjusted LCH values.
-     
+
      This method allows for the creation of new colors with adjusted properties while maintaining flexibility with optional parameters.
      */
     func getColor(
@@ -105,13 +105,13 @@ public extension LCHColor {
             alpha: alpha ?? self.alpha
         ).toColor()
     }
-    
+
     static func getPrimaryColor(forHue hue: Double, isGrayscale: Bool = false) -> LCHColor {
         let steps = ColorConstants.rampStops
         let rampGenerator = ColorRampGenerator()
         let dataPoints = rampGenerator.getColorRamp(forHue: hue, steps: steps, isGrayscale: isGrayscale)
-        let primaryColor = dataPoints[Int(steps/2) - 2]
-        
+        let primaryColor = dataPoints[Int(steps / 2) - 2]
+
         return LCHColor(
             l: primaryColor.l,
             c: primaryColor.c,
@@ -119,11 +119,11 @@ public extension LCHColor {
             alpha: primaryColor.alpha
         )
     }
-    
+
     func getColor(at index: Int) -> LCHColor {
         let rampGenerator = ColorRampGenerator()
         let isGrayscale = c <= 0.1
-        let ramp = rampGenerator.getColorRamp(forHue: self.h, isGrayscale: isGrayscale)
+        let ramp = rampGenerator.getColorRamp(forHue: h, isGrayscale: isGrayscale)
         let clampedIndex = min(index, ramp.count - 1)
         return ramp[clampedIndex]
     }
