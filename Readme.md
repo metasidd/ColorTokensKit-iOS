@@ -20,7 +20,9 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
 - [License](#license)
 
 ## What are design tokens?
-Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus on color tokens. These tokens allow designers and developers to maintain consistency across an application, making it easier to update and maintain the visual language of your iOS app.
+Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus on color tokens. 
+
+![Cover Image](/Tests/ColorTokensKitTests/Exports/color-grid.png)
 
 #### Let's take an example
 Imagine you have a primary color used for your brand. This color is used in various levels of brightness and saturation in various areas (backgrounds, text, hovers, buttons, onpress states etc). Instead of hardcoding each of the color values in multiple places, you define a design token named `brandColor`. Now, whenever the brand color needs to be used, you just use `brandColor.backgroundPrimary`. If it needs to change, you update just one token value, and all instances of `brandColor` in your app automatically update. Design tokens ensure consistency and make it easier to maintain and update your design system.
@@ -38,7 +40,7 @@ Text("Hello to ColorTokensKit")
 The LCH (**L**ightness, **C**hroma, **H**ue) color system offers significant advantages over RGB and HSL based initializers. LCH is "perceptually uniform", meaning changes in color values correspond more closely to how humans perceive color differences. This makes it easier to create harmonious color palettes, ensure proper contrast for accessibility, and make predictable color adjustments. Unlike RGB or HSL, LCH also supports a wider gamut of colors and provides more intuitive control over color properties, making it an excellent choice for modern iOS app development.
 
 #### RGB vs LCH color ramps
-[Insert image]
+![Cover Image](/Tests/ColorTokensKitTests/Exports/color-system-comparison.png)
 
 #### Let's take an example
 
