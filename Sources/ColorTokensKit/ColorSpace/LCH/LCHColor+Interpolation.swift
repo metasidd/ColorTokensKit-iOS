@@ -18,4 +18,4 @@ public extension LCHColor {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
-} 
+}

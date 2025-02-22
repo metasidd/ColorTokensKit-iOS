@@ -32,4 +32,4 @@ public extension LCHColor {
         let rgb = toRGB()
         return Color(red: rgb.r, green: rgb.g, blue: rgb.b)
     }
-} 
+}

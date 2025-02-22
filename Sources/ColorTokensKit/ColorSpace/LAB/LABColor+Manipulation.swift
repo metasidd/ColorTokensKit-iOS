@@ -11,13 +11,13 @@ import SwiftUI
 public extension LABColor {
     /**
      Creates a new LABColor with adjusted components.
-     
+
      - Parameters:
        - l: New lightness value. If nil, uses current value.
        - a: New a value. If nil, uses current value.
        - b: New b value. If nil, uses current value.
        - alpha: New alpha value. If nil, uses current value.
-     
+
      - Returns: A new LABColor with the adjusted components.
      */
     func with(
@@ -33,14 +33,14 @@ public extension LABColor {
             alpha: alpha ?? self.alpha
         )
     }
-    
+
     /**
      Adjusts the lightness of the color.
-     
+
      - Parameter amount: The amount to adjust the lightness by.
      - Returns: A new LABColor with adjusted lightness.
      */
     func adjustLightness(by amount: CGFloat) -> LABColor {
         return with(l: max(0, min(100, l + amount)))
     }
-} 
+}

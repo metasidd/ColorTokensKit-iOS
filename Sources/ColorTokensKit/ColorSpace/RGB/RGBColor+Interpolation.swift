@@ -15,4 +15,4 @@ public extension RGBColor {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
-} 
+}

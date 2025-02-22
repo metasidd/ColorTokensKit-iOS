@@ -31,4 +31,4 @@ public extension Color {
         let lchColor = LCHColor(color: self)
         return "L:\(Int(lchColor.l)) C:\(Int(lchColor.c)) H:\(Int(lchColor.h))"
     }
-} 
+}

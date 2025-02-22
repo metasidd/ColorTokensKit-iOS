@@ -29,9 +29,9 @@ public extension RGBColor {
     }
 
     #if canImport(UIKit)
-    /// Converts to UIColor
-    func color() -> UIColor {
-        return UIColor(red: r, green: g, blue: b, alpha: alpha)
-    }
+        /// Converts to UIColor
+        func color() -> UIColor {
+            return UIColor(red: r, green: g, blue: b, alpha: alpha)
+        }
     #endif
-} 
+}

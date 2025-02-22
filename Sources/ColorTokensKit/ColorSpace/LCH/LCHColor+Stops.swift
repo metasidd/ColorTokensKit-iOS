@@ -1,5 +1,5 @@
 //
-//  LCH+ColorStops.swift
+//  LCHColor+Stops.swift
 //  ColorTokensKit
 //
 //  Created by Siddhant Mehta on 2025-02-21.
@@ -8,7 +8,7 @@
 public extension LCHColor {
     var allStops: [LCHColor] {
         [
-            _50, _100, _150, _200, _250, _300, _350, _400, _450, _500, _550, _600, _650, _700, _750, _800, _850, _900, _950, _1000
+            _50, _100, _150, _200, _250, _300, _350, _400, _450, _500, _550, _600, _650, _700, _750, _800, _850, _900, _950, _1000,
         ]
     }
 

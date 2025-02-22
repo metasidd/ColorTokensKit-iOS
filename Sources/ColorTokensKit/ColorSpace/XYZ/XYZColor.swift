@@ -1,5 +1,5 @@
 //
-//  ColorXYZ.swift
+//  XYZColor.swift
 //
 //  Original repo: https://github.com/timrwood/ColorSpaces
 //

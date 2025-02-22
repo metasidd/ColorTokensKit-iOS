@@ -35,4 +35,4 @@ public extension XYZColor {
     func toLCH() -> LCHColor {
         return toLAB().toLCH()
     }
-} 
+}

@@ -15,4 +15,4 @@ public extension XYZColor {
             alpha: alpha + (other.alpha - alpha) * t
         )
     }
-} 
+}

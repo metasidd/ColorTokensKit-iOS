@@ -1,5 +1,5 @@
 //
-//  ColorLCH.swift
+//  LCHColor.swift
 //
 //  Original repo: https://github.com/timrwood/ColorSpaces
 //
@@ -62,7 +62,7 @@ public struct LCHColor: Hashable, Equatable {
         } else {
             l = 70 // Default lightness
             c = 30 // Default chroma
-            h = 0  // Default hue
+            h = 0 // Default hue
         }
 
         alpha = 1.0

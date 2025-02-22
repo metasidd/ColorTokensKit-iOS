@@ -7,4 +7,4 @@ import Foundation
 
 public extension XYZColor {
     // TODO: Implement manipulation methods
-} 
+}

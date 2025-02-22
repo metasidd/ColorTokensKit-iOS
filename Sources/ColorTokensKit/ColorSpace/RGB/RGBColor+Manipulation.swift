@@ -21,4 +21,4 @@ public extension RGBColor {
             alpha: alpha ?? self.alpha
         )
     }
-} 
+}

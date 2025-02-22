@@ -1,5 +1,5 @@
 //
-//  ColorLAB.swift
+//  LABColor.swift
 //
 //
 //  Original repo: https://github.com/timrwood/ColorSpaces
