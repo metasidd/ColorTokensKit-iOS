@@ -1,5 +1,5 @@
 # 🌈 ColorTokensKit 🌈
-## 🚧🚧🚧🚧 THIS IS A WORK IN PROGRESS, USE AT YOUR OWN RISK. 🚧🚧🚧🚧
+## 🚧🚧🚧🚧 THIS IS A WORK IN PROGRESS. RELEASE COMING SOON. 🚧🚧🚧🚧
 
 By designers, for developers. 
 
