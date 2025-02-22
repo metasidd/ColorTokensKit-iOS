@@ -1,6 +1,5 @@
 //
-//  ColorLCH.swift
-//
+//  LCHColor.swift
 //
 //  Original repo: https://github.com/timrwood/ColorSpaces
 //
@@ -9,9 +8,9 @@ import Foundation
 import SwiftUI
 
 public struct LCHColor: Hashable, Equatable {
-    public let l: CGFloat // 0..100. How bright or dark the color is.
-    public let c: CGFloat // 0..128. How much saturation the color holds.
-    public let h: CGFloat // 0..360. What hue it picks.
+    public let l: CGFloat // 0..100. Lightness
+    public let c: CGFloat // 0..128. Chroma
+    public let h: CGFloat // 0..360. Hue
     public let alpha: CGFloat // 0..1
 
     public func hash(into hasher: inout Hasher) {
@@ -38,9 +37,7 @@ public struct LCHColor: Hashable, Equatable {
         self.alpha = alpha
     }
 
-    public init(
-        color: Color
-    ) {
+    public init(color: Color) {
         let lchColor = RGBColor(color: color).toLCH()
         l = lchColor.l
         c = lchColor.c
@@ -48,10 +45,8 @@ public struct LCHColor: Hashable, Equatable {
         alpha = lchColor.alpha
     }
 
-    // Parse "lch(97% 4.3 0)" format
-    public init(
-        lchString: String
-    ) {
+    /// Parse "lch(97% 4.3 0)" format
+    public init(lchString: String) {
         let pattern = #"lch\((\d+\.?\d*)%\s+(\d+\.?\d*)\s+(\d+\.?\d*)\)"#
         let regex = try! NSRegularExpression(pattern: pattern)
         let range = NSRange(lchString.startIndex ..< lchString.endIndex, in: lchString)
@@ -61,17 +56,13 @@ public struct LCHColor: Hashable, Equatable {
             let c = Double(lchString[Range(match.range(at: 2), in: lchString)!]) ?? 30
             let h = Double(lchString[Range(match.range(at: 3), in: lchString)!]) ?? 0
 
-            // Validate and clamp values to valid ranges
-
             self.l = max(0, min(l, 100))
             self.c = max(0, min(c, 128))
             self.h = (h.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
         } else {
-            print("Failed to parse LCH string: \(lchString)")
-            // Use safe defaults
-            l = 70
-            c = 30
-            h = 0
+            l = 70 // Default lightness
+            c = 30 // Default chroma
+            h = 0 // Default hue
         }
 
         alpha = 1.0

@@ -1,8 +1,7 @@
 //
-//  ColorXYZ.swift
+//  XYZColor.swift
 //
-//
-//  Built off of the original repo of: https://github.com/timrwood/ColorSpaces
+//  Original repo: https://github.com/timrwood/ColorSpaces
 //
 
 import Foundation

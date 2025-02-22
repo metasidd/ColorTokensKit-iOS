@@ -4,7 +4,11 @@ import SwiftUI
 struct ColorGridView: View {
     private var colorRamps: [(name: String, color: LCHColor)] {
         Color.allProHues.map { (name: $0.key, color: $0.value) }
-            .sorted { $0.color.h < $1.color.h }
+            .sorted { lhs, rhs in
+                if lhs.name == "Gray" { return true }
+                if rhs.name == "Gray" { return false }
+                return lhs.color.h < rhs.color.h
+            }
     }
 
     var body: some View {
