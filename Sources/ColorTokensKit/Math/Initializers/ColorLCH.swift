@@ -9,40 +9,71 @@ import Foundation
 import SwiftUI
 
 public struct LCHColor: Hashable, Equatable {
-    public let l: CGFloat     // 0..100. How bright or dark the color is.
-    public let c: CGFloat     // 0..128. How much saturation the color holds.
-    public let h: CGFloat     // 0..360. What hue it picks.
+    public let l: CGFloat // 0..100. How bright or dark the color is.
+    public let c: CGFloat // 0..128. How much saturation the color holds.
+    public let h: CGFloat // 0..360. What hue it picks.
     public let alpha: CGFloat // 0..1
-    public let variableChroma: Bool
-    public let variableHue: Bool
-    
-    public init (
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(l)
+        hasher.combine(c)
+        hasher.combine(h)
+    }
+
+    public static func == (lhs: LCHColor, rhs: LCHColor) -> Bool {
+        return lhs.l == rhs.l &&
+            lhs.c == rhs.c &&
+            lhs.h == rhs.h
+    }
+
+    public init(
         l: CGFloat = 0,
         c: CGFloat = 0,
         h: CGFloat = 0,
-        alpha: CGFloat = 1.0,
-        variableChroma: Bool = true,
-        variableHue: Bool = true
+        alpha: CGFloat = 1.0
     ) {
         self.l = l
-        self.c = variableChroma ? c : 0
-        self.h = variableHue ? h : 0
+        self.c = c
+        self.h = h
         self.alpha = alpha
-        self.variableChroma = variableChroma
-        self.variableHue = variableHue
     }
-    
-    public init (
-        color: Color,
-        variableChroma: Bool = true,
-        variableHue: Bool = true
+
+    public init(
+        color: Color
     ) {
         let lchColor = RGBColor(color: color).toLCH()
-        self.l = lchColor.l
-        self.c = variableChroma ? lchColor.c : 0
-        self.h = variableHue ? lchColor.h : 0
-        self.alpha = lchColor.alpha
-        self.variableChroma = variableChroma
-        self.variableHue = variableHue
+        l = lchColor.l
+        c = lchColor.c
+        h = lchColor.h
+        alpha = lchColor.alpha
+    }
+
+    // Parse "lch(97% 4.3 0)" format
+    public init(
+        lchString: String
+    ) {
+        let pattern = #"lch\((\d+\.?\d*)%\s+(\d+\.?\d*)\s+(\d+\.?\d*)\)"#
+        let regex = try! NSRegularExpression(pattern: pattern)
+        let range = NSRange(lchString.startIndex ..< lchString.endIndex, in: lchString)
+
+        if let match = regex.firstMatch(in: lchString, range: range) {
+            let l = Double(lchString[Range(match.range(at: 1), in: lchString)!]) ?? 70
+            let c = Double(lchString[Range(match.range(at: 2), in: lchString)!]) ?? 30
+            let h = Double(lchString[Range(match.range(at: 3), in: lchString)!]) ?? 0
+
+            // Validate and clamp values to valid ranges
+
+            self.l = max(0, min(l, 100))
+            self.c = max(0, min(c, 128))
+            self.h = (h.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
+        } else {
+            print("Failed to parse LCH string: \(lchString)")
+            // Use safe defaults
+            l = 70
+            c = 30
+            h = 0
+        }
+
+        alpha = 1.0
     }
 }

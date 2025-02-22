@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  XYZ+Ext.swift
+//
 //
 //  Created by Siddhant Mehta on 2024-07-29.
 //
@@ -12,11 +12,11 @@ import SwiftUI
 public extension XYZColor {
     /**
      Converts the XYZ color to the RGB color space.
-     
+
      - Returns: An `RGBColor` representation of the current `XYZColor`.
-     
+
      The conversion is done using the XYZ to sRGB conversion formula.
-     
+
      Example:
      ```swift
      let xyzColor = XYZColor(x: 0.357, y: 0.333, z: 0.285, alpha: 1.0)
@@ -25,22 +25,22 @@ public extension XYZColor {
      ```
      */
     func toRGB() -> RGBColor {
-        let r = (x *  3.2404542) + (y * -1.5371385) + (z * -0.4985314)
-        let g = (x * -0.9692660) + (y *  1.8760108) + (z *  0.0415560)
-        let b = (x *  0.0556434) + (y * -0.2040259) + (z *  1.0572252)
+        let r = (x * 3.2404542) + (y * -1.5371385) + (z * -0.4985314)
+        let g = (x * -0.9692660) + (y * 1.8760108) + (z * 0.0415560)
+        let b = (x * 0.0556434) + (y * -0.2040259) + (z * 1.0572252)
         let R = sRGBCompand(r)
         let G = sRGBCompand(g)
         let B = sRGBCompand(b)
         return RGBColor(r: R, g: G, b: B, alpha: alpha)
     }
-    
+
     /**
      Converts the XYZ color to the LAB color space.
-     
+
      - Returns: An `LABColor` representation of the current `XYZColor`.
-     
+
      The conversion is done using the XYZ to LAB conversion formula.
-     
+
      Example:
      ```swift
      let xyzColor = XYZColor(x: 0.357, y: 0.333, z: 0.285, alpha: 1.0)
@@ -49,9 +49,9 @@ public extension XYZColor {
      ```
      */
     func toLAB() -> LABColor {
-        let fx = labCompand(x / Constants.LAB_X)
-        let fy = labCompand(y / Constants.LAB_Y)
-        let fz = labCompand(z / Constants.LAB_Z)
+        let fx = labCompand(x / ColorConstants.LAB_X)
+        let fy = labCompand(y / ColorConstants.LAB_Y)
+        let fz = labCompand(z / ColorConstants.LAB_Z)
         return LABColor(
             l: 116 * fy - 16,
             a: 500 * (fx - fy),
@@ -59,14 +59,14 @@ public extension XYZColor {
             alpha: alpha
         )
     }
-    
+
     /**
      Converts the XYZ color to the LCH color space.
-     
+
      - Returns: An `LCHColor` representation of the current `XYZColor`.
-     
+
      This method first converts the color to LAB and then to LCH.
-     
+
      Example:
      ```swift
      let xyzColor = XYZColor(x: 0.357, y: 0.333, z: 0.285, alpha: 1.0)
@@ -77,18 +77,18 @@ public extension XYZColor {
     func toLCH() -> LCHColor {
         return toLAB().toLCH()
     }
-    
+
     /**
      Linearly interpolates between the current XYZ color and another XYZ color.
-     
+
      - Parameters:
        - other: The target `XYZColor` to interpolate towards.
        - t: The interpolation factor, ranging from 0 to 1.
-     
+
      - Returns: A new `XYZColor` that is the result of the interpolation.
-     
+
      The interpolation is done by calculating the intermediate X, Y, Z, and alpha values.
-     
+
      Example:
      ```swift
      let xyzColor1 = XYZColor(x: 0.357, y: 0.333, z: 0.285, alpha: 1.0)
@@ -106,4 +106,3 @@ public extension XYZColor {
         )
     }
 }
-

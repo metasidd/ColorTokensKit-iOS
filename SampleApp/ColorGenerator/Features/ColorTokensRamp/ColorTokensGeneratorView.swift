@@ -1,38 +1,37 @@
 //
-//  ColorGeneratorView.swift
+//  ColorTokensGeneratorView.swift
 //  ColorGenerator
 //
 //  Created by Siddhant Mehta on 2024-06-08.
 //
 
-import SwiftUI
 import ColorTokensKit
-
+import SwiftUI
 
 struct ColorTokensGeneratorView: View {
     @StateObject var viewModel: ColorTokensGeneratorViewModel
-    
+
     init(lchColor: LCHColor) {
         _viewModel = StateObject(wrappedValue: ColorTokensGeneratorViewModel(lchColor: lchColor))
     }
-    
+
     private let containerVStackPadding: CGFloat = 4
-    
+
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
                 sectionHeader(title: "Foreground Colors")
                 foregroundColors()
-                
+
                 sectionHeader(title: "Inverted Foreground Colors")
                 invertedForegroundColors()
-                
+
                 sectionHeader(title: "Background Colors")
                 backgroundColors()
-                
+
                 sectionHeader(title: "Inverted Background Colors")
                 invertedBackgroundColors()
-                
+
                 sectionHeader(title: "Outline Colors")
                 outlineColors()
             }
@@ -40,7 +39,7 @@ struct ColorTokensGeneratorView: View {
         }
         .navigationTitle("Color Tokens")
     }
-    
+
     private func foregroundColors() -> some View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
@@ -62,7 +61,7 @@ struct ColorTokensGeneratorView: View {
                 .fill(viewModel.lchColor.backgroundPrimary)
         )
     }
-    
+
     private func invertedForegroundColors() -> some View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
@@ -84,7 +83,7 @@ struct ColorTokensGeneratorView: View {
                 .fill(viewModel.lchColor.invertedBackgroundPrimary)
         )
     }
-    
+
     private func backgroundColors() -> some View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
@@ -102,7 +101,7 @@ struct ColorTokensGeneratorView: View {
         }
         .foregroundStyle(viewModel.lchColor.foregroundPrimary)
     }
-    
+
     private func invertedBackgroundColors() -> some View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
@@ -120,7 +119,7 @@ struct ColorTokensGeneratorView: View {
         }
         .foregroundStyle(viewModel.lchColor.invertedForegroundPrimary)
     }
-    
+
     private func outlineColors() -> some View {
         VStack(spacing: containerVStackPadding) {
             ColorBox(
@@ -144,7 +143,7 @@ struct ColorTokensGeneratorView: View {
         }
         .foregroundStyle(viewModel.lchColor.foregroundPrimary)
     }
-    
+
     private func sectionHeader(title: String) -> some View {
         VStack(alignment: .leading) {
             Text(title)
@@ -157,14 +156,14 @@ struct ColorTokensGeneratorView: View {
 
 struct ColorBox: View {
     @Environment(\.colorScheme) var colorScheme
-    
+
     let title: String
     let subtitle: String
     let foregroundColor: Color?
     let backgroundColor: Color?
     let outlineColor: Color?
     let cornerRadius: CGFloat = 16
-    
+
     init(
         title: String,
         subtitle: String = "",
@@ -178,7 +177,7 @@ struct ColorBox: View {
         self.backgroundColor = backgroundColor
         self.outlineColor = outlineColor
     }
-    
+
     private var colorToUse: Color {
         if let foregroundColor {
             return foregroundColor
@@ -190,15 +189,15 @@ struct ColorBox: View {
             return Color.clear
         }
     }
-    
+
     private var hexString: String {
         return colorToUse.toHex()
     }
-    
+
     private var lchString: String {
         return "(\(colorToUse.getLCHString()))"
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
@@ -220,7 +219,6 @@ struct ColorBox: View {
         )
     }
 }
-
 
 #Preview {
     ColorTokensGeneratorView(lchColor: Color.proPurple)

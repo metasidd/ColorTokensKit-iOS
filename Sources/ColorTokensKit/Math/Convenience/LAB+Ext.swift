@@ -1,6 +1,6 @@
 //
 //  LAB+Ext.swift
-//  
+//
 //
 //  Created by Siddhant Mehta on 2024-07-29.
 //
@@ -12,11 +12,11 @@ import SwiftUI
 public extension LABColor {
     /**
      Converts the LAB color to the XYZ color space.
-     
+
      - Returns: An `XYZColor` representation of the current `LABColor`.
-     
+
      The conversion is done using the LAB to XYZ conversion formula.
-     
+
      Example:
      ```swift
      let labColor = LABColor(l: 50, a: 25, b: 25, alpha: 1.0)
@@ -29,20 +29,20 @@ public extension LABColor {
         let x = y + (a / 500)
         let z = y - (b / 200)
         return XYZColor(
-            x: xyzCompand(x) * Constants.LAB_X,
-            y: xyzCompand(y) * Constants.LAB_Y,
-            z: xyzCompand(z) * Constants.LAB_Z,
+            x: xyzCompand(x) * ColorConstants.LAB_X,
+            y: xyzCompand(y) * ColorConstants.LAB_Y,
+            z: xyzCompand(z) * ColorConstants.LAB_Z,
             alpha: alpha
         )
     }
-    
+
     /**
      Converts the LAB color to the LCH color space.
-     
+
      - Returns: An `LCHColor` representation of the current `LABColor`.
-     
+
      The conversion is done by calculating the chroma and hue from the `a` and `b` components.
-     
+
      Example:
      ```swift
      let labColor = LABColor(l: 50, a: 25, b: 25, alpha: 1.0)
@@ -52,18 +52,18 @@ public extension LABColor {
      */
     func toLCH() -> LCHColor {
         let c = sqrt(a * a + b * b)
-        let angle = atan2(b, a) * Constants.RAD_TO_DEG
+        let angle = atan2(b, a) * ColorConstants.RAD_TO_DEG
         let h = angle < 0 ? angle + 360 : angle
         return LCHColor(l: l, c: c, h: h, alpha: alpha)
     }
-    
+
     /**
      Converts the LAB color to the RGB color space.
-     
+
      - Returns: An `RGBColor` representation of the current `LABColor`.
-     
+
      This method first converts the color to XYZ and then to RGB.
-     
+
      Example:
      ```swift
      let labColor = LABColor(l: 50, a: 25, b: 25, alpha: 1.0)
@@ -74,18 +74,18 @@ public extension LABColor {
     func toRGB() -> RGBColor {
         return toXYZ().toRGB()
     }
-    
+
     /**
      Linearly interpolates between the current LAB color and another LAB color.
-     
+
      - Parameters:
        - other: The target `LABColor` to interpolate towards.
        - t: The interpolation factor, ranging from 0 to 1.
-     
+
      - Returns: A new `LABColor` that is the result of the interpolation.
-     
+
      The interpolation is done by calculating the intermediate lightness, `a`, and `b` values.
-     
+
      Example:
      ```swift
      let labColor1 = LABColor(l: 50, a: 25, b: 25, alpha: 1.0)
@@ -103,4 +103,3 @@ public extension LABColor {
         )
     }
 }
-

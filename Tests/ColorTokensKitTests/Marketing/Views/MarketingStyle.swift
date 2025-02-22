@@ -9,4 +9,4 @@ public enum ImageSize {
 public enum MarketingStyle {
     static let pagePadding: CGFloat = 64
     static let backgroundColor = Color.black.opacity(0.05)
-} 
+}

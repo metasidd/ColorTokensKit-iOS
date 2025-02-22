@@ -5,21 +5,21 @@
 //  Created by Siddhant Mehta on 2024-06-09.
 //
 
-import SwiftUI
-import Routing
 import ColorTokensKit
+import Routing
+import SwiftUI
 
 enum GlobalRouter: Routable {
     case colorRampView(LCHColor)
-    
+
     @ViewBuilder
-    func viewToDisplay(router: Router<GlobalRouter>) -> some View {
+    func viewToDisplay(router _: Router<GlobalRouter>) -> some View {
         switch self {
-        case .colorRampView(let lchColor):
+        case let .colorRampView(lchColor):
             ColorTokensGeneratorView(lchColor: lchColor)
         }
     }
-    
+
     var navigationType: NavigationType {
         switch self {
         case .colorRampView:

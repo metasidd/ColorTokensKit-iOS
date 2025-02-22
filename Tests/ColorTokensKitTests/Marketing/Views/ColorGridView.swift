@@ -1,85 +1,49 @@
-import SwiftUI
 import ColorTokensKit
+import SwiftUI
 
 struct ColorGridView: View {
-    private let primaryColors = Color.allProHues.sorted { pair1, pair2 in
-        // Always put gray first
-        if pair1.key == "Gray" { return true }
-        if pair2.key == "Gray" { return false }
-        // Then sort the rest by hue
-        return pair1.value.h < pair2.value.h
+    private var colorRamps: [(name: String, color: LCHColor)] {
+        Color.allProHues.map { (name: $0.key, color: $0.value) }
+            .sorted { $0.color.h < $1.color.h }
     }
-    private let secondaryValues: [LCHColor] = Color.allProHues.first!.value.allNormalColors.map({ LCHColor(color: $0) })
-    private let gridSpacing: CGFloat = 0
-    
-    // Define the LCH values for each step based on RampTokens+LCH.swift
-    
+
     var body: some View {
-        VStack(spacing: 32) {
-            VStack(spacing: gridSpacing) {
-                headerRow
-                colorRows
+        VStack(spacing: 0) {
+            ForEach(colorRamps, id: \.name) { ramp in
+                ColorColumn(name: ramp.name, color: ramp.color)
             }
         }
         .padding(MarketingStyle.pagePadding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(MarketingStyle.backgroundColor)
         .background(Color.white)
     }
-    
-    private var headerRow: some View {
-        HStack(spacing: gridSpacing) {
-            // Empty cell for hue names
-            Text("")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.white)
-            
-            // Lightness value headers
-            ForEach(Array(secondaryValues.enumerated()), id: \.offset) { index, secondaryValue in
-                Text("L\(Int(secondaryValue.l))")
-                    .font(.system(.caption, design: .monospaced))
+}
+
+private struct ColorColumn: View {
+    let name: String
+    let color: LCHColor
+
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                ForEach(Array(color.allStops.enumerated()), id: \.offset) { index, stop in
+                    VStack(spacing: 2) {
+                        Text("\(index)")
+                        Text("H:\(Int(stop.h))")
+                    }
+                    .font(.system(size: 8))
+                    .foregroundStyle(stop.l > 50 ? Color.black : Color.white)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.white)
+                    .background(stop.toColor())
+                }
             }
         }
-    }
-    
-    private var colorRows: some View {
-        ForEach(primaryColors, id: \.key) { name, primaryColor in
-            colorRow(name: name, primaryColor: primaryColor)
-        }
-    }
-    
-    private func colorRow(name: String, primaryColor: LCHColor) -> some View {
-        return HStack(spacing: gridSpacing) {
-            // Hue name
-            hueNameCell(name: name)
-            
-            // Color cells
-            ForEach(Array(secondaryValues.enumerated()), id: \.offset) { index, secondaryValue in
-                let color: LCHColor = name == "Gray" ? LCHColor(l: secondaryValue.l, c: 0, h: 0) : LCHColor(l: secondaryValue.l, c: secondaryValue.c, h: primaryColor.h)
-                let _ = print("Color: \(name), lightness: \(secondaryValue.l), h: \(color.h), c: \(color.c)")
-                colorCell(color: color, lightness: Int(secondaryValue.l))
-            }
-        }
-    }
-    
-    private func hueNameCell(name: String) -> some View {
-        Text(name)
-            .font(.system(.caption, design: .monospaced))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.white)
-    }
-    
-    private func colorCell(color: LCHColor, lightness: Int) -> some View {
-        Text("\(lightness)")
-            .font(.system(size: 10, design: .monospaced))
-            .foregroundStyle(lightness > 50 ? color._80 : color._20)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(color.toColor())
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 #Preview {
     ColorGridView()
-        .frame(width: ImageSize.width, height: ImageSize.height)
-} 
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white)
+}

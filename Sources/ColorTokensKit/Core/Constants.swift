@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum Constants {
+enum ColorConstants {
+    // Color space constants
     static let RAD_TO_DEG = 180 / Double.pi
     static let LAB_E: CGFloat = 0.008856
     static let LAB_16_116: CGFloat = 0.1379310
@@ -15,4 +16,6 @@ enum Constants {
     static let LAB_X: CGFloat = 0.95047
     static let LAB_Y: CGFloat = 1
     static let LAB_Z: CGFloat = 1.08883
+
+    static let rampStops: Int = 20
 }

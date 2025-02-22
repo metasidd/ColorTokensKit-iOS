@@ -5,20 +5,20 @@
 //  Created by Siddhant Mehta on 2024-06-09.
 //
 
-import SwiftUI
 import Routing
+import SwiftUI
 
 struct MainView: View {
     @StateObject var router: Router<GlobalRouter>
-    
+
     init(router: Router<GlobalRouter>) {
         _router = StateObject(wrappedValue: router)
     }
-    
+
     var body: some View {
         tabStructure
     }
-             
+
     private var tabStructure: some View {
         TabView {
             RoutingView(GlobalRouter.self) { router in
@@ -27,9 +27,8 @@ struct MainView: View {
             .tabItem {
                 Label("All Colors", systemImage: "paintpalette")
             }
-            
-            
-            RoutingView(GlobalRouter.self) { router in
+
+            RoutingView(GlobalRouter.self) { _ in
                 ColorTokensGeneratorView(lchColor: Color.proLime)
             }
             .tabItem {
