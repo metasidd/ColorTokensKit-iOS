@@ -6,6 +6,11 @@
 //
 
 import SwiftUI
+import Foundation
+
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// Extension to `Color` providing additional initializers and utilities.
 /// More info on how color conversions are happening: https://en.wikipedia.org/wiki/HSL_and_HSV#HSV_to_HSL
@@ -21,7 +26,7 @@ public extension Color {
 
      This initializer converts HSL to HSV (Hue, Saturation, Brightness) and initializes a `Color`.
      */
-    public init(h hue: Double, s saturation: Double, l lightness: Double, a opacity: Double = 1) {
+    init(h hue: Double, s saturation: Double, l lightness: Double, a opacity: Double = 1) {
         let brightness = lightness + saturation * min(lightness, 1 - lightness)
         let saturation = brightness == 0 ? 0 : 2 * (1 - lightness / brightness)
 
@@ -36,7 +41,7 @@ public extension Color {
 
      The initializer processes the hex string and converts it to RGB (or ARGB) values to initialize a `Color`.
      */
-    public init(hex: String) {
+    init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
 
         // Validate the hex code
@@ -77,7 +82,7 @@ public extension Color {
      print(hexValue) // Output: "7F7F7F"
      ```
      */
-    public func toHex() -> String {
+    func toHex() -> String {
         let resolvedColor = resolve(in: .init())
 
         // Ensure RGB values are within [0, 1]
@@ -116,7 +121,7 @@ public extension Color {
      print(lchString) // Output: "L:53 C:0 H:0"
      ```
      */
-    public func getLCHString() -> String {
+    func getLCHString() -> String {
         let lchColor = LCHColor(color: self)
         return "L:\(Int(lchColor.l)) C:\(Int(lchColor.c)) H:\(Int(lchColor.h))"
     }
@@ -141,6 +146,7 @@ public extension Color {
         RGBColor(color: self).toXYZ()
     }
     
+    #if canImport(UIKit)
     /**
      Initializes a `Color` with different colors for light and dark modes.
 
@@ -150,7 +156,7 @@ public extension Color {
 
      This initializer dynamically provides the appropriate color based on the current user interface style.
      */
-    public init(
+    init(
         light lightModeColor: @escaping @autoclosure () -> Color,
         dark darkModeColor: @escaping @autoclosure () -> Color
     ) {
@@ -169,7 +175,7 @@ public extension Color {
 
      This initializer dynamically provides the appropriate color based on the current user interface style.
      */
-    public init(
+    init(
         light lightModeColor: @escaping @autoclosure () -> LCHColor,
         dark darkModeColor: @escaping @autoclosure () -> LCHColor
     ) {
@@ -178,4 +184,5 @@ public extension Color {
             dark: UIColor(darkModeColor().toColor())
         ))
     }
+    #endif
 }

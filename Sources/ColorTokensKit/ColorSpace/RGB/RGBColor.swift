@@ -1,7 +1,6 @@
 //
 //  ColorRGB.swift
 //
-//
 //  Original repo: https://github.com/timrwood/ColorSpaces
 //
 
