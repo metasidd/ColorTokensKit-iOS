@@ -6,15 +6,10 @@
 //
 
 import SwiftUI
-#if canImport(UIKit)
-    import UIKit
-#elseif canImport(AppKit)
-    import AppKit
-#endif
 
 /// Extension to `Color` providing additional initializers and utilities.
 /// More info on how color conversions are happening: https://en.wikipedia.org/wiki/HSL_and_HSV#HSV_to_HSL
-extension Color {
+public extension Color {
     /**
      Initializes a `Color` using HSL (Hue, Saturation, Lightness) values.
 
@@ -145,121 +140,42 @@ extension Color {
     func toXYZ() -> XYZColor {
         RGBColor(color: self).toXYZ()
     }
+    
+    /**
+     Initializes a `Color` with different colors for light and dark modes.
+
+     - Parameters:
+       - lightModeColor: The color to use in light mode.
+       - darkModeColor: The color to use in dark mode.
+
+     This initializer dynamically provides the appropriate color based on the current user interface style.
+     */
+    public init(
+        light lightModeColor: @escaping @autoclosure () -> Color,
+        dark darkModeColor: @escaping @autoclosure () -> Color
+    ) {
+        self.init(UIColor(
+            light: UIColor(lightModeColor()),
+            dark: UIColor(darkModeColor())
+        ))
+    }
+    
+    /**
+     Initializes a `LCHColor` with different colors for light and dark modes.
+
+     - Parameters:
+       - lightModeColor: The color to use in light mode.
+       - darkModeColor: The color to use in dark mode.
+
+     This initializer dynamically provides the appropriate color based on the current user interface style.
+     */
+    public init(
+        light lightModeColor: @escaping @autoclosure () -> LCHColor,
+        dark darkModeColor: @escaping @autoclosure () -> LCHColor
+    ) {
+        self.init(UIColor(
+            light: UIColor(lightModeColor().toColor()),
+            dark: UIColor(darkModeColor().toColor())
+        ))
+    }
 }
-
-#if canImport(UIKit)
-
-    /// Extension to `UIColor` providing support for dynamic colors based on the user interface style (light or dark mode).
-    public extension UIColor {
-        /**
-         Initializes a `UIColor` with different colors for light and dark modes.
-
-         - Parameters:
-           - lightModeColor: The color to use in light mode.
-           - darkModeColor: The color to use in dark mode.
-
-         This initializer dynamically provides the appropriate color based on the current user interface style.
-         */
-        convenience init(
-            light lightModeColor: @escaping @autoclosure () -> UIColor,
-            dark darkModeColor: @escaping @autoclosure () -> UIColor
-        ) {
-            self.init { traitCollection in
-                switch traitCollection.userInterfaceStyle {
-                case .light:
-                    return lightModeColor()
-                case .dark:
-                    return darkModeColor()
-                default:
-                    return lightModeColor()
-                }
-            }
-        }
-    }
-
-    /// Extension to `Color` providing support for dynamic colors based on the user interface style (light or dark mode).
-    public extension Color {
-        /**
-         Initializes a `Color` with different colors for light and dark modes.
-
-         - Parameters:
-           - lightModeColor: The color to use in light mode.
-           - darkModeColor: The color to use in dark mode.
-
-         This initializer dynamically provides the appropriate color based on the current user interface style.
-         */
-        init(
-            light lightModeColor: @escaping @autoclosure () -> Color,
-            dark darkModeColor: @escaping @autoclosure () -> Color
-        ) {
-            self.init(UIColor(
-                light: UIColor(lightModeColor()),
-                dark: UIColor(darkModeColor())
-            ))
-        }
-
-        /**
-         Initializes a `LCHColor` with different colors for light and dark modes.
-
-         - Parameters:
-           - lightModeColor: The color to use in light mode.
-           - darkModeColor: The color to use in dark mode.
-
-         This initializer dynamically provides the appropriate color based on the current user interface style.
-         */
-        init(
-            light lightModeColor: @escaping @autoclosure () -> LCHColor,
-            dark darkModeColor: @escaping @autoclosure () -> LCHColor
-        ) {
-            self.init(UIColor(
-                light: UIColor(lightModeColor().toColor()),
-                dark: UIColor(darkModeColor().toColor())
-            ))
-        }
-    }
-
-#elseif canImport(AppKit)
-
-    /// Extension to `Color` providing support for dynamic colors based on the user interface style (light or dark mode).
-    /// Source: https://www.jessesquires.com/blog/2023/07/11/creating-dynamic-colors-in-swiftui/
-    public extension Color {
-        /**
-         Initializes a `Color` with different colors for light and dark modes.
-
-         - Parameters:
-           - lightModeColor: The color to use in light mode.
-           - darkModeColor: The color to use in dark mode.
-
-         This initializer dynamically provides the appropriate color based on the current user interface style.
-         */
-        init(
-            light lightModeColor: @escaping @autoclosure () -> Color,
-            dark darkModeColor: @escaping @autoclosure () -> Color
-        ) {
-            self.init(
-                nsColor: NSColor(
-                    name: nil,
-                    dynamicProvider: { appearance in
-                        switch appearance.name {
-                        case .aqua,
-                             .vibrantLight,
-                             .accessibilityHighContrastAqua,
-                             .accessibilityHighContrastVibrantLight:
-                            return NSColor(lightModeColor())
-
-                        case .darkAqua,
-                             .vibrantDark,
-                             .accessibilityHighContrastDarkAqua,
-                             .accessibilityHighContrastVibrantDark:
-                            return NSColor(darkModeColor())
-
-                        default:
-                            assertionFailure("Unknown appearance: \(appearance.name)")
-                            return NSColor(lightModeColor())
-                        }
-                    }
-                )
-            )
-        }
-    }
-#endif
