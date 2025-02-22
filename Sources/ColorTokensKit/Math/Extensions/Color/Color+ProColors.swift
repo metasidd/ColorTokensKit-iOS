@@ -69,7 +69,7 @@ public extension Color {
             "Purple": proPurple,
             "Violet": proViolet,
             "Plum": proPlum,
-            "Ruby": proRuby,
+            "Ruby": proRuby
         ]
     }
 }
