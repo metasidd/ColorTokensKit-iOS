@@ -200,6 +200,25 @@ extension Color {
             dark: UIColor(darkModeColor())
         ))
     }
+    
+    /**
+     Initializes a `LCHColor` with different colors for light and dark modes.
+     
+     - Parameters:
+       - lightModeColor: The color to use in light mode.
+       - darkModeColor: The color to use in dark mode.
+     
+     This initializer dynamically provides the appropriate color based on the current user interface style.
+     */
+    public init(
+        light lightModeColor: @escaping @autoclosure () -> LCHColor,
+        dark darkModeColor: @escaping @autoclosure () -> LCHColor
+    ) {
+        self.init(UIColor(
+            light: UIColor(lightModeColor().toColor()),
+            dark: UIColor(darkModeColor().toColor())
+        ))
+    }
 }
 
 #elseif canImport(AppKit)

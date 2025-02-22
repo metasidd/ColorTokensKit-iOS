@@ -20,7 +20,7 @@ extension Color {
     
     // Pro color getters
     public static var proGray: LCHColor { LCHColor.getPrimaryColor(forHue: 0, isGrayscale: true) }
-    public static var proPink: LCHColor { LCHColor.getPrimaryColor(forHue: 0) }
+    public static var proPink: LCHColor { LCHColor.getPrimaryColor(forHue: 5) }
     public static var proRed: LCHColor { LCHColor.getPrimaryColor(forHue: 10) }
     public static var proTomato: LCHColor { LCHColor.getPrimaryColor(forHue: 20) }
     public static var proOrange: LCHColor { LCHColor.getPrimaryColor(forHue: 35) }
@@ -41,8 +41,8 @@ extension Color {
     public static var proIris: LCHColor { LCHColor.getPrimaryColor(forHue: 292.5) }
     public static var proPurple: LCHColor { LCHColor.getPrimaryColor(forHue: 310) }
     public static var proViolet: LCHColor { LCHColor.getPrimaryColor(forHue: 325) }
-    public static var proPlum: LCHColor { LCHColor.getPrimaryColor(forHue: 345) }
-    public static var proRuby: LCHColor { LCHColor.getPrimaryColor(forHue: 360) }
+    public static var proPlum: LCHColor { LCHColor.getPrimaryColor(forHue: 342.5) }
+    public static var proRuby: LCHColor { LCHColor.getPrimaryColor(forHue: 355) }
     
     // Dictionary of all pro colors
     public static var allProHues: [String: LCHColor] {

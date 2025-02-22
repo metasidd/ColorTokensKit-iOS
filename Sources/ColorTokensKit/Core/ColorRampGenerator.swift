@@ -39,11 +39,17 @@ public class ColorRampGenerator {
         // Assign a constant value
         let steps = steps ?? ColorConstants.rampStops
         
-        // Normalize the input hue to 0-360 range
-        let normalizedHue = (targetHue.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
-        
-        // Generate cache key combining hue and steps
-        let cacheKey = isGrayscale ? "gray-\(steps)" : "H\(normalizedHue)-\(steps)"
+        // Handle grayscale and generate appropriate cache key
+        let cacheKey = {
+            if isGrayscale {
+                return "gray-\(steps)"
+            } else {
+                // For color ramps, normalize hue to 0-359 range
+                // This ensures consistent interpolation around the color wheel
+                let normalizedHue = targetHue.truncatingRemainder(dividingBy: 360)
+                return "H\(normalizedHue)-\(steps)"
+            }
+        }()
         
         // Check static cache first
         if let cached = ColorRampGenerator.interpolatedRamps[cacheKey] {
@@ -70,7 +76,7 @@ public class ColorRampGenerator {
             }
         
         // Find bounding ramps
-        let (lowerRamp, upperRamp) = findBoundingRamps(forHue: normalizedHue, in: sortedRamps)
+        let (lowerRamp, upperRamp) = findBoundingRamps(forHue: targetHue, in: sortedRamps)
         
         // Get the first stop to determine hues
         let lowerHue = lowerRamp.stops.first?.value.h ?? 0
@@ -78,7 +84,7 @@ public class ColorRampGenerator {
         
         // Calculate interpolation factor with proper wrapping
         let hueDiff = (upperHue - lowerHue + 360).truncatingRemainder(dividingBy: 360)
-        let t = (normalizedHue - lowerHue + 360).truncatingRemainder(dividingBy: 360) / hueDiff
+        let t = (targetHue - lowerHue + 360).truncatingRemainder(dividingBy: 360) / hueDiff
         
         // Interpolate between corresponding stops
         let result = interpolateStops(from: lowerRamp, to: upperRamp, t: t)
