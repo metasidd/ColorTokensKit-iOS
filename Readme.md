@@ -50,27 +50,6 @@ Text("Hello to ColorTokensKit")
     .background(Color(l: 0.32, c: 0.44, h: 0.9)) // LCH: Perceptually uniform; consistent brightness and saturation across hues
 ```
 
-## Simple Example
-Let's create a simple container with a name and a subtitle. An extension on `Color` offers ready-to-use design tokens with a `Color.gray` color ramp.
-
-You can use the pre-defined color tokens below (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`), or create custom ones to your needs. The library integrates seamlessly with SwiftUI and UIKit, allowing you to use color tokens in your views and UI components with minimal effort. 
-
-```swift
-import ColorTokensKit
-
-VStack {
-  Text("Title")
-    .foregroundStyle(Color.foregroundPrimary) // Uses the darkest text color available
-  Text("Subtitle")
-    .foregroundStyle(Color.foregroundSecondary) // Since it's a secondary piece of text, it uses a lighter shade available
-}
-.background(
-  RoundedRectangle(cornerRadius: 16) // Creates a rounded rectangle container that works in light & dark mode
-    .fill(Color.backgroundPrimary) // Uses `backgroundPrimary` as its base, resulting in a white background
-    .stroke(Color.outlineTertiary, lineWidth: 1) // Uses the lightest gray outline for a border
-)
-```
-
 ## Setting it up
 
 ColorTokensKit provides a flexible framework for defining your own color stops and extensions. You can start by defining your own color tokens in your project. Here's an example of how you might define these:
@@ -209,14 +188,17 @@ public extension LCHColor {
 }
 ```
 
-## Using them in the UI
+## Getting Started
 
-Once you've defined your color tokens, you can use them in your SwiftUI views to ensure consistent theming across your application. Here's an example of how you can apply these tokens:
+#### Basic Example
+Let's create a simple container with a name and a subtitle. An extension on `Color` offers ready-to-use design tokens with a `Color.proGray` color ramp.
+
+You can use the pre-defined color tokens below (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`), or create custom ones to your needs. The library integrates seamlessly with SwiftUI and UIKit, allowing you to use color tokens in your views and UI components with minimal effort. 
 
 ```swift
-import SwiftUI
+import ColorTokensKit
 
-struct ThemedView: View {
+struct CardView: View {
     var body: some View {
         VStack {
             Text("Welcome to ColorTokensKit")
@@ -230,8 +212,22 @@ struct ThemedView: View {
         .shadow(color: Color.outlinePrimary, radius: 5) // Uses the primary outline color available as a shadow
     }
 }
+```
 
-## Going beyond the basics
+### Exceptions for Dark mode
+Some things just translate 1:1 in dark mode. In that case, you can easily select a different design token for it.
+
+For example, this approach below allows light mode to have themed green text, whereas dark mode would have dark gray text. The benefit of using the LCH system is that they'll offer the same levels of lightness to keep your UI looking beautiful.
+
+```swift
+struct CardView: View {
+  @Environment(\.colorScheme) var colorScheme
+  var body: some View {
+    Text("Hello World")
+      .foregroundStyle(colorScheme == .light ? Color.positive.foregroundPrimary : Color.foregroundSecondary)
+  }
+}
+```
 
 ### Working with Themes
 Theming is made extremely ergonomic with this approach. You can pass theme values as needed, and all children elements are dynamically assigned colors depending on the LCH color chosen.
@@ -279,23 +275,6 @@ struct CardView: View {
         .fill(theme.backgroundPrimary) // Uses `backgroundPrimary` as its base, resulting in a white background
         .stroke(theme.outlineTertiary, lineWidth: 1) // Uses the lightest gray outline for a border
     )
-  }
-}
-```
-
-### Making Exceptions for Dark mode
-Some things just don't look good in dark mode. In that case, you can easily select a different design token for it.
-
-For example, this approach below allows light mode to have themed green text, whereas dark mode would have dark gray text. The benefit of using the LCH system is that they'll offer the same levels of lightness to keep your UI looking beautiful.
-
-```swift
-import SwiftUI
-
-struct CardView: View {
-  @Environment(\.colorScheme) var colorScheme
-  var body: some View {
-    Text("Hello World")
-      .foregroundStyle(colorScheme == .light ? Color.positive.foregroundPrimary : Color.foregroundPrimary)
   }
 }
 ```
