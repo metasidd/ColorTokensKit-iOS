@@ -16,8 +16,7 @@ import Foundation
 import SwiftUI
 
 public extension Color {
-    // MARK: - Pro Colors
-
+    
     // Pro color getters
     static var proGray: LCHColor { LCHColor.getPrimaryColor(forHue: 0, isGrayscale: true) }
     static var proPink: LCHColor { LCHColor.getPrimaryColor(forHue: 5) }
