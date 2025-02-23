@@ -3,8 +3,8 @@ import SwiftUI
 
 struct CoverImageView: View {
     private let hueSteps: Int = 12
-    private let gridSpacing: Double = 4
-    private let colorSize: Double = 64
+    private let gridSpacing: Double = 2
+    private let colorSize: Double = 80
     
     var hues: [(name: String, colors: [LCHColor])] {
         (0 ... hueSteps).map { step in
