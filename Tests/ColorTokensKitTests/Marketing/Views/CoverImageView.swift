@@ -2,7 +2,8 @@ import ColorTokensKit
 import SwiftUI
 
 struct CoverImageView: View {
-    private let gridSpacing: Double = 1
+    private let gridSpacing: Double = 8
+    private let colorSize: Double = 64
     
     // Pre-select a fixed set of color ramps by picking alternate hues
     private var fixedColorRamps: [(name: String, colors: [LCHColor])] {
@@ -71,11 +72,11 @@ struct CoverImageView: View {
 
     private func colorBlock(for color: LCHColor) -> some View {
         let isCircle = Bool.random()
-        return RoundedRectangle(cornerRadius: isCircle ? 32 : 16)
+        return RoundedRectangle(cornerRadius: isCircle ? colorSize/2 : colorSize/4)
             .fill(color.toColor())
             .frame(
-                width: isCircle ? 48: 64,
-                height: 48
+                width: isCircle ? colorSize: colorSize * 1.5,
+                height: colorSize
             )
     }
 
