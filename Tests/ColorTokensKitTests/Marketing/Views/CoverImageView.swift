@@ -44,18 +44,18 @@ struct CoverImageView: View {
     
     private var titleView: some View {
         VStack(alignment: .leading, spacing: 4) {
-            HStack(spacing: 4) {
+            HStack(spacing: 8) {
                 Image(systemName: "swift")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 16)
+                    .frame(maxWidth: 24)
                 
                 Text("Color Tokens for Swift")
-                    .font(.title)
+                    .font(.largeTitle)
                     .fontWeight(.bold)
             }
             Text("Your one-stop shop for accessible and uniform colors")
-                .font(.title3)
+                .font(.title)
                 .opacity(0.7)
         }
         .fontDesign(.monospaced)
