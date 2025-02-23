@@ -23,8 +23,8 @@ public struct MarketingAssets {
         generateColorSystemComparison(in: directory)
         generateCoverImage(in: directory)
         generateSimpleCardViewImage(in: directory)
+        generateSimpleCardViewDarkModeImage(in: directory)
         generatePillViewImage(in: directory)
-        generateThemedCardViewImage(in: directory)
 
         logger.info("Completed marketing asset generation")
     }
@@ -46,23 +46,23 @@ public struct MarketingAssets {
         let view = CoverImageView()
         saveImage(view, name: "cover-image", size: ImageSize.size, in: directory)
     }
-
+    
     private static func generateSimpleCardViewImage(in directory: URL) {
         logger.info("Generating simple card view image...")
-        let view = SimpleCardView()
+        let view = ThemedCardView()
         saveImage(view, name: "simple-card-view", size: ImageSize.size, in: directory)
+    }
+    
+    private static func generateSimpleCardViewDarkModeImage(in directory: URL) {
+        logger.info("Generating simple card view image...")
+        let view = ThemedCardView().preferredColorScheme(.dark)
+        saveImage(view, name: "simple-card-dark-mode-view", size: ImageSize.size, in: directory)
     }
 
     private static func generatePillViewImage(in directory: URL) {
         logger.info("Generating pill view image...")
         let view = PillView()
         saveImage(view, name: "pill-view", size: ImageSize.size, in: directory)
-    }
-
-    private static func generateThemedCardViewImage(in directory: URL) {
-        logger.info("Generating themed card view image...")
-        let view = ThemedCardViewPreview()
-        saveImage(view, name: "themed-card-view", size: ImageSize.size, in: directory)
     }
     
     private static func saveImage(_ view: some View, name: String, size: CGSize, in directory: URL) {
