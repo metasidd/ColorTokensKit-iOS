@@ -3,7 +3,7 @@ import SwiftUI
 
 struct CoverImageView: View {
     private let hueSteps: Int = 12
-    private let gridSpacing: Double = 2
+    private let gridSpacing: Double = 0
     private let colorSize: Double = 80
     
     var hues: [(name: String, colors: [LCHColor])] {
@@ -45,7 +45,7 @@ struct CoverImageView: View {
             // Shuffle shapes to randomly distribute circles and squares
             shapes.shuffle()
             
-            return HStack {
+            return HStack(spacing: gridSpacing) {
                 ForEach(shuffledColors.indices, id: \.self) { index in
                     let isCircle = shapes[index]
                     colorBlock(for: shuffledColors[index], isCircle: isCircle)
