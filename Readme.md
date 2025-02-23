@@ -31,9 +31,9 @@ Imagine you have a primary color used for your brand. This color is used in vari
 
 ```swift
 Text("Hello to ColorTokensKit")
-  .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // Messy: Defining colors inline
-  .background(Color.brandColorBackground) // Custom Variables: Often hardcoded. Changing various values associated with brandColor is hard and impractical.
-  .background(Color.brandColor.backgroundPrimary) // Design Tokens: Semantic naming that enables reusability, predictability and enables accessible colors. 
+  .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // ❌ Messy & unscalable
+  .background(Color.brandColorBackground) // ❌ Needs many variables, hard to maintain
+  .background(Color.brandColor.backgroundPrimary) // ✅ Semantic naming, reusability, with accessible colors. 
 ```
 
  Behind the scenes, `brandColor` uses an LCH color system to get a specific color. It gets the "hue" value from `brandColor` and calculates an accessible color ramp based on a few defined primitives.
@@ -41,18 +41,7 @@ Text("Hello to ColorTokensKit")
 ## What is the LCH color system? 
 The LCH (**L**ightness, **C**hroma, **H**ue) color system offers significant advantages over RGB and HSL based initializers. LCH is "perceptually uniform", meaning changes in color values correspond more closely to how humans perceive color differences. This makes it easier to create harmonious color palettes, ensure proper contrast for accessibility, and make predictable color adjustments. Unlike RGB or HSL, LCH also supports a wider gamut of colors and provides more intuitive control over color properties, making it an excellent choice for modern iOS app development.
 
-#### RGB vs LCH color ramps
 ![Cover Image](/Tests/ColorTokensKitTests/Exports/color-system-comparison.png)
-
-#### Let's take an example
-
-```swift
-Text("Hello to ColorTokensKit")
-    .background(Color("#8080FF")) // HEX: Handpicked colors that aren't easy to scale to various use cases. Lots of room for error
-    .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // RGB: Inconsistent brightness across colors
-    .background(Color(h: 0.24, s: 0.32, l: 0.44)) // HSL: Inconsistent color intensity. Some colors like yellow are brighter than others, making it hard to read
-    .background(Color(l: 0.32, c: 0.44, h: 0.9)) // LCH: Perceptually uniform; consistent brightness and saturation across hues
-```
 
 ## Setting it up
 
@@ -195,6 +184,8 @@ public extension LCHColor {
 ## Getting Started
 
 #### Basic Example
+![Cover Image](/Tests/ColorTokensKitTests/Exports/pill-view.png)
+
 Let's create a simple container with a name and a subtitle. An extension on `Color` offers ready-to-use design tokens with a `Color.proGray` color ramp.
 
 You can use the pre-defined color tokens below (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`), or create custom ones to your needs. The library integrates seamlessly with SwiftUI and UIKit, allowing you to use color tokens in your views and UI components with minimal effort. 
@@ -210,31 +201,33 @@ struct CardView: View {
             Text("This is a subtitle")
                 .foregroundStyle(Color.foregroundSecondary) // Uses a lighter shade of the foreground color
         }
-        .padding()
         .background(Color.backgroundPrimary) // Uses the primary background color available
-        .cornerRadius(10)
-        .shadow(color: Color.outlinePrimary, radius: 5) // Uses the primary outline color available as a shadow
+        .shadow(color: Color.outlineSecondary, radius: 5) // Uses the primary outline color available as a shadow
     }
 }
 ```
 
-### Exceptions for Dark mode
-Some things just translate 1:1 in dark mode. In that case, you can easily select a different design token for it.
+### Themes & Dark mode
+![Cover Image](/Tests/ColorTokensKitTests/Exports/simple-card-view.png)
+![Cover Image](/Tests/ColorTokensKitTests/Exports/simple-card-dark-mode-view.png)
 
-For example, this approach below allows light mode to have themed green text, whereas dark mode would have dark gray text. The benefit of using the LCH system is that they'll offer the same levels of lightness to keep your UI looking beautiful.
+Theming is made extremely ergonomic with this approach. You can pass theme values as needed, and all children elements are dynamically assigned colors depending on the LCH color chosen.
+
+Some things just don't translate well in dark mode. In that case, you can easily make an exception for it.
 
 ```swift
 struct CardView: View {
   @Environment(\.colorScheme) var colorScheme
   var body: some View {
     Text("Hello World")
-      .foregroundStyle(colorScheme == .light ? Color.positive.foregroundPrimary : Color.foregroundSecondary)
+      .foregroundStyle(
+        colorScheme == .light ? Color.foregroundPrimary : Color.foregroundSecondary
+       )
   }
 }
 ```
 
 ### Working with Themes
-Theming is made extremely ergonomic with this approach. You can pass theme values as needed, and all children elements are dynamically assigned colors depending on the LCH color chosen.
 
 ```swift
 import ColorTokensKit
