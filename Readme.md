@@ -1,7 +1,7 @@
-![Cover Image](/Tests/ColorTokensKitTests/Exports/cover-image.png)
-
 # 🌈 ColorTokensKit 🌈
-## 🚧 STABLE RELEASE COMING SOON 🚧
+#### 🚧 STABLE RELEASE COMING SOON 🚧
+
+![Cover Image](/Tests/ColorTokensKitTests/Exports/cover-image.png)
 
 By designers, for developers. 
 
