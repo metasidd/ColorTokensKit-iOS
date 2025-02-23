@@ -38,14 +38,23 @@ struct CoverImageView: View {
 
     private func colorRow(for colors: [LCHColor]) -> some View {
         HStack(spacing: gridSpacing) {
-            ForEach(slightlyShuffle(colors), id: \.self) { color in
-                colorBlock(for: color)
+            let shuffledColors = slightlyShuffle(colors)
+            let halfCount = shuffledColors.count / 2
+            var shapes = Array(repeating: true, count: halfCount) + Array(repeating: false, count: shuffledColors.count - halfCount)
+            
+            // Shuffle shapes to randomly distribute circles and squares
+            shapes.shuffle()
+            
+            return HStack {
+                ForEach(shuffledColors.indices, id: \.self) { index in
+                    let isCircle = shapes[index]
+                    colorBlock(for: shuffledColors[index], isCircle: isCircle)
+                }
             }
         }
     }
 
-    private func colorBlock(for color: LCHColor) -> some View {
-        let isCircle = Bool.random()
+    private func colorBlock(for color: LCHColor, isCircle: Bool) -> some View {
         return RoundedRectangle(cornerRadius: isCircle ? colorSize/2 : colorSize/4)
             .fill(color.toColor())
             .frame(
@@ -57,7 +66,7 @@ struct CoverImageView: View {
     private func slightlyShuffle(_ colors: [LCHColor]) -> [LCHColor] {
         var shuffledColors = colors
         for i in shuffledColors.indices {
-            let swapIndex = i + Int.random(in: -2...2)
+            let swapIndex = i + Int.random(in: -1...1) // Slight shuffle range
             if swapIndex >= 0 && swapIndex < shuffledColors.count {
                 shuffledColors.swapAt(i, swapIndex)
             }
