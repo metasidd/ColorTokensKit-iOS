@@ -34,7 +34,7 @@ struct ThemedCardView: View {
     
     var body: some View {
         VStack(spacing: 64) {
-            Group {
+            VStack {
                 if colorScheme == .light {
                     Text("🌈 Tokens for text, backgrounds, outlines, and more")
                 } else {
@@ -52,6 +52,7 @@ struct ThemedCardView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .fontDesign(.monospaced)
         .padding(MarketingStyle.pagePadding)
         .background(Color.backgroundPrimary)
     }
@@ -111,7 +112,6 @@ struct ThemedCardView: View {
             x: 0,
             y: colorScheme == .dark ? 0 : 8
         )
-        .fontDesign(.monospaced)
     }
     
     private func statRow(label: String, value: String, theme: LCHColor) -> some View {
