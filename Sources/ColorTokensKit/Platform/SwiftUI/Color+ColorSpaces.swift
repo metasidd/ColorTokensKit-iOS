@@ -25,10 +25,4 @@ public extension Color {
     func toXYZ() -> XYZColor {
         RGBColor(color: self).toXYZ()
     }
-
-    /// Get LCH string representation
-    func getLCHString() -> String {
-        let lchColor = LCHColor(color: self)
-        return "L:\(Int(lchColor.l)) C:\(Int(lchColor.c)) H:\(Int(lchColor.h))"
-    }
 }
