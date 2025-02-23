@@ -20,6 +20,7 @@ public struct MarketingAssets {
         // Generate each asset
         generateColorGrid(in: directory)
         generateColorSystemComparison(in: directory)
+        generateCoverImage(in: directory)
 
         logger.info("Completed marketing asset generation")
     }
@@ -64,6 +65,12 @@ public struct MarketingAssets {
         logger.info("Generating color system comparison image...")
         let view = ColorSystemComparisonView()
         saveImage(view, name: "color-system-comparison", size: ImageSize.size, in: directory)
+    }
+
+    private static func generateCoverImage(in directory: URL) {
+        logger.info("Generating cover image...")
+        let view = CoverImageView()
+        saveImage(view, name: "cover-image", size: ImageSize.size, in: directory)
     }
 
     private static func saveImage(_ view: some View, name: String, size: CGSize, in directory: URL) {
