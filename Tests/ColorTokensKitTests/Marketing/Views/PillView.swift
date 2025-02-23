@@ -27,7 +27,7 @@ struct PillView: View {
                 
                 HStack(spacing: 16) {
                     ForEach(nativeColors, id: \.name) { colorInfo in
-                        makePill(text: "\(colorInfo.name) Pill", 
+                        makePill(text: "\(colorInfo.name) Pill",
                                color: colorInfo.color)
                     }
                 }
@@ -46,7 +46,6 @@ struct PillView: View {
         .font(.system(size: 36, weight: .black, design: .monospaced))
         .padding(MarketingStyle.pagePadding)
         .frame(maxWidth: .infinity, alignment: .center)
-        .background(Color.white)
     }
     
     private func makePill(text: String, color: Color) -> some View {
