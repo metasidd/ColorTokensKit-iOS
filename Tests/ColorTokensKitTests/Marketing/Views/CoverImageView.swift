@@ -2,6 +2,8 @@ import ColorTokensKit
 import SwiftUI
 
 struct CoverImageView: View {
+    private let gridSpacing: Double = 1
+    
     // Pre-select a fixed set of color ramps by picking alternate hues
     private var fixedColorRamps: [(name: String, colors: [LCHColor])] {
         let allHues = Color.allProHues
@@ -15,7 +17,7 @@ struct CoverImageView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 1) {
+        VStack(alignment: .leading, spacing: gridSpacing) {
             let sortedRamp = fixedColorRamps.sorted { $0.colors.first?.h ?? 0 < $1.colors.first?.h ?? 0 }
             
             titleView
@@ -48,11 +50,11 @@ struct CoverImageView: View {
                     .frame(maxWidth: 16)
                 
                 Text("Color Tokens for Swift")
-                    .font(.title3)
+                    .font(.title)
                     .fontWeight(.bold)
             }
             Text("Your one-stop shop for accessible and uniform colors")
-                .font(.body)
+                .font(.title3)
                 .opacity(0.7)
         }
         .fontDesign(.monospaced)
@@ -60,7 +62,7 @@ struct CoverImageView: View {
     }
 
     private func colorRow(for colors: [LCHColor]) -> some View {
-        HStack(spacing: 1) {
+        HStack(spacing: gridSpacing) {
             ForEach(slightlyShuffle(colors), id: \.self) { color in
                 colorBlock(for: color)
             }
@@ -69,11 +71,11 @@ struct CoverImageView: View {
 
     private func colorBlock(for color: LCHColor) -> some View {
         let isCircle = Bool.random()
-        return RoundedRectangle(cornerRadius: isCircle ? 32 : 8)
+        return RoundedRectangle(cornerRadius: isCircle ? 32 : 16)
             .fill(color.toColor())
             .frame(
-                width: isCircle ? 32: 48,
-                height: 32
+                width: isCircle ? 48: 64,
+                height: 48
             )
     }
 
