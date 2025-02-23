@@ -50,19 +50,19 @@ public struct MarketingAssets {
     private static func generateSimpleCardViewImage(in directory: URL) {
         logger.info("Generating simple card view image...")
         let view = SimpleCardView()
-        saveImage(view, name: "simple-card-view", size: CGSize(width: 400, height: 200), in: directory)
+        saveImage(view, name: "simple-card-view", size: ImageSize.size, in: directory)
     }
 
     private static func generatePillViewImage(in directory: URL) {
         logger.info("Generating pill view image...")
         let view = PillView()
-        saveImage(view, name: "pill-view", size: CGSize(width: 400, height: 100), in: directory)
+        saveImage(view, name: "pill-view", size: ImageSize.size, in: directory)
     }
 
     private static func generateThemedCardViewImage(in directory: URL) {
         logger.info("Generating themed card view image...")
         let view = ThemedCardViewPreview()
-        saveImage(view, name: "themed-card-view", size: CGSize(width: 400, height: 300), in: directory)
+        saveImage(view, name: "themed-card-view", size: ImageSize.size, in: directory)
     }
     
     private static func saveImage(_ view: some View, name: String, size: CGSize, in directory: URL) {
