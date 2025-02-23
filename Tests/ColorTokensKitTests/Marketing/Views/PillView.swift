@@ -3,22 +3,27 @@ import ColorTokensKit
 
 struct PillView: View {
     private let nativeColors: [(name: String, color: Color)] = [
+        ("Gray", .gray),
         ("Red", .red),
         ("Blue", .blue),
-        ("Green", .green)
+        ("Green", .green),
+        ("Yellow", .yellow),
+        ("Purple", .purple)
     ]
     
     private let colorTokenColors: [(name: String, color: LCHColor)] = [
+        ("Gray", Color.proGray),
         ("Red", Color.proRed),
         ("Blue", Color.proIndigo),
-        ("Green", Color.proGreen)
+        ("Green", Color.proGreen),
+        ("Yellow", Color.proYellow),
+        ("Purple", Color.proPurple)
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 32) {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Native SwiftUI Colors")
-                    .font(.system(.title2, design: .monospaced))
+        VStack(alignment: .center, spacing: 128) {
+            VStack(alignment: .center, spacing: 48) {
+                Text("👎 With SwiftUI Colors")
                 
                 HStack(spacing: 16) {
                     ForEach(nativeColors, id: \.name) { colorInfo in
@@ -28,9 +33,8 @@ struct PillView: View {
                 }
             }
             
-            VStack(alignment: .leading, spacing: 16) {
-                Text("ColorTokensKit Colors")
-                    .font(.system(.title2, design: .monospaced))
+            VStack(alignment: .center, spacing: 48) {
+                Text("🔥 With Color Tokens")
                 
                 HStack(spacing: 16) {
                     ForEach(Array(colorTokenColors), id: \.name) { name, color in
@@ -39,24 +43,29 @@ struct PillView: View {
                 }
             }
         }
+        .font(.system(size: 36, weight: .black, design: .monospaced))
         .padding(MarketingStyle.pagePadding)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .center)
         .background(Color.white)
     }
     
     private func makePill(text: String, color: Color) -> some View {
         Text(text)
-            .padding()
-            .background(color.opacity(0.2))
+            .font(.title)
             .foregroundColor(color)
+            .padding(.horizontal, 32)
+            .padding(.vertical, 12)
+            .background(color.opacity(0.2))
             .clipShape(Capsule())
     }
     
     private func makeThemedPill(text: String, theme: LCHColor) -> some View {
         Text(text)
-            .padding()
-            .background(theme.backgroundSecondary)
+            .font(.title)
             .foregroundColor(theme.foregroundSecondary)
+            .padding(.horizontal, 32)
+            .padding(.vertical, 12)
+            .background(theme.backgroundSecondary)
             .clipShape(Capsule())
     }
 }
