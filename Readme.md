@@ -214,7 +214,7 @@ print(uiColor) // Output: UIDeviceRGBColorSpace 0.5 0.4 0.3 1
 
 ```
 
-## Future Ideas
+# Future Ideas
 - [ ] Offer `.lighten()`, `.darken()`, `.saturate()` and `.desaturate()` for LCH Colors
 - [ ] Create smooth gradients using LCH colors
 - [ ] Add resource links to Read Me
@@ -224,5 +224,5 @@ print(uiColor) // Output: UIDeviceRGBColorSpace 0.5 0.4 0.3 1
 - [ ] Custom Lightness, Chroma or Hue curves
 - [ ] Any other feedback?
 
-## License
+# License
 The source code for the site is licensed under the MIT license, which you can find in the MIT-LICENSE.txt file.
