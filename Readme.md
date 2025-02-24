@@ -1,4 +1,4 @@
-# 🌈 ColorTokensKit 🌈
+# 🌈 ColorTokensKit - Alpha
 By designers, for developers. 
 
 ![Cover Image](/Tests/ColorTokensKitTests/Exports/cover-image.png)
@@ -6,6 +6,8 @@ By designers, for developers.
 # Features
 
 ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 100's of pre-defined colors built using the LCH color system. 
+
+> **Note:** The broader concept of LCH-based design tokens are trusted, and utilized by leading companies like Linear, Slack, Stripe, Zapier and others.
 
 - 📱 Designed for apps of all sizes
 - ⭐️ Easy to use color token APIs
@@ -15,6 +17,21 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
 - 🌈 Built-in theming for all apps
 - 🎛️ Easy conversions between RGB/HSL/LCH/LAB/XYZ spaces
 - 🕊️ No dependencies
+
+# Why Native Apple Colors Aren't Enough
+
+Swift's native color system provides only basic functionality for color representation. Native colors are limited to RGB and HSL, which do not offer perceptual uniformity. This can lead to inconsistent color experiences across different devices and environments. 
+
+Additionally, native colors do not inherently support accessible contrast ratios, dark mode or theming, making it challenging to maintain a cohesive design system. ColorTokensKit addresses these limitations by leveraging the LCH color system, which provides a more intuitive and flexible approach to color management.
+
+```swift
+Text("The Everything Company")
+  .background(Color(hex: "#FA3499")) // ❌ Please don't do this
+  .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // ❌ Messy & unscalable
+  .background(Color.red.secondary) // ❌ No control, limited to few colors
+  .background(Color.brandColorBackground) // ❌ Needs many variables, hard to maintain, not responsive to dark mode, probably not accessible
+  .background(Color.brandColor.backgroundPrimary) // ✅ Semantic naming, accessible, responsive to dark mode, and ergonomic. 
+```
 
 # But wait, what are design tokens?
 Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus just on colors. 
@@ -26,7 +43,7 @@ The LCH (**L**ightness, **C**hroma, **H**ue) color system offers significant adv
 
 ![Color System Comparison](/Tests/ColorTokensKitTests/Exports/color-system-comparison.png)
 
-# Can you give me some examples?
+# Can you give me a quick example?
 Imagine you have a primary color used for your brand. This color is used in various levels of brightness and saturation in various areas (backgrounds, text, hovers, buttons, onpress states etc). 
 
 Instead of hardcoding each of the color values in multiple places, you define a design token named `brandColor`. 
@@ -39,16 +56,23 @@ extension Color {
 }
 ```
 
-Now, whenever the brand color needs to be used, you just use `brandColor.backgroundPrimary`. If the hue needs to change, you update just one token value, and all instances of `brandColor` in your app automatically update to the new colors. 
+Now, whenever the brand color needs to be used, you just use `brandColor.backgroundPrimary`. If the hue needs to change, you update just one token value, and all instances of `brandColor` in your app automatically update to the new colors.
 
 ```swift
-Text("Hello to ColorTokensKit")
-  .background(Color(red: 0.5, green: 0.5, blue: 1.0)) // ❌ Messy & unscalable
-  .background(Color.brandColorBackground) // ❌ Needs many variables, hard to maintain
-  .background(Color.brandColor.backgroundPrimary) // ✅ Semantic naming, reusability, with accessible colors. 
+VStack {
+  Text("The Everything Company")
+    .foregroundStyle(Color.brandColor.foregroundPrimary) // ✅ A dark text color that's accessible by default
+  }
+  .padding(8)
+  .background(Color.brandColor.backgroundPrimary) // ✅ A balanced background color that's accessible
+  .overlay(
+    RoundedRectangle(cornerRadius: 16)
+      .stroke(Color.brandColor.outlineTertiary, lineWidth: 1) // ✅ A suitable outline that's not too dark or light
+  )
+}
 ```
 
-Design tokens ensure consistency and make it easier to maintain and update your design system.
+And VOILA! You also now support dark mode out of the box.
 
 # Installation
 

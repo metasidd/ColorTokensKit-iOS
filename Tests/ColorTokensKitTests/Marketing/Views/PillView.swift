@@ -29,11 +29,11 @@ struct PillView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 128) {
             VStack(alignment: .center, spacing: 48) {
-                VStack(spacing: 8) {
+                VStack(spacing: 12) {
                     Text("👎 SwiftUI Colors")
                         .font(.system(size: 32, weight: .black))
                         .foregroundStyle(Color.foregroundPrimary)
-                    Text("Limited, not balanced, and not customizable")
+                    Text("Limited, inconsistent brightness, not customizable")
                         .font(.system(size: 24, weight: .regular))
                         .foregroundStyle(Color.foregroundTertiary)
                 }
@@ -56,28 +56,28 @@ struct PillView: View {
             }
             
             VStack(alignment: .center, spacing: 48) {
-                VStack(spacing: 8) {
-                    Text("🔥 Example Color Tokens")
+                VStack(spacing: 12) {
+                    Text("🔥 ColorTokensKit")
                         .foregroundStyle(Color.foregroundPrimary)
                         .font(.system(size: 32, weight: .black))
                     
-                    Text("Unlimited colors, balanced for depth,  customizable to your brand")
+                    Text("Unlimited colors, uniform brightness, dark mode support,  customizable")
                         .font(.system(size: 24, weight: .regular))
                         .foregroundStyle(Color.foregroundTertiary)
                 }
                 
                 VStack(spacing: 16) {
-                    let numberOfItemsPerRow = Int(colorRamps.count / 3)
+                    let numberOfItemsPerRow = Int(ceil(Double(colorRamps.count) / 3.0))
                     
                     HStack(spacing: 16) {
-                        ForEach(colorRamps.dropLast(numberOfItemsPerRow * 2), id: \.name) { colorInfo in
+                        ForEach(colorRamps.prefix(numberOfItemsPerRow), id: \.name) { colorInfo in
                             makeThemedPill(text: "\(colorInfo.name)",
                                      theme: colorInfo.color)
                         }
                     }
                     
                     HStack(spacing: 16) {
-                        ForEach(colorRamps.dropFirst(numberOfItemsPerRow).dropLast(numberOfItemsPerRow), id: \.name) { colorInfo in
+                        ForEach(colorRamps.dropFirst(numberOfItemsPerRow).prefix(numberOfItemsPerRow), id: \.name) { colorInfo in
                             makeThemedPill(text: "\(colorInfo.name)",
                                      theme: colorInfo.color)
                         }
