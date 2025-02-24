@@ -32,7 +32,6 @@ struct CoverImageView: View {
             }
         }
         .padding(0)
-        .background(Color.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
