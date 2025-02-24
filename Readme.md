@@ -5,7 +5,7 @@ By designers, for developers.
 
 # Features
 
-ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 100's of pre-defined colors built using the LCH color system. 
+ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and thousands of accessible colors. 
 
 - 📱 Designed for Apple apps
 - ⭐️ Easy to use color token APIs
