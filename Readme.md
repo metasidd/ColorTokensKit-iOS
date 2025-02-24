@@ -1,23 +1,23 @@
 # 🌈 ColorTokensKit 🌈
-#### 🚧 STABLE RELEASE COMING SOON 🚧
+By designers, for developers. 
 
 ![Cover Image](/Tests/ColorTokensKitTests/Exports/cover-image.png)
 
-By designers, for developers. 
+# Features
 
 ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 100's of pre-defined colors built using the LCH color system. 
 
-# Features
 - 📱 Designed for apps of all sizes
-- ⭐️ Easy to use color tokens APIs
+- ⭐️ Easy to use color token APIs
 - 🎨 Pre-defined LCH color palettes
+- 🤝 Built-in support for accessible contrast ratios
 - 🌘 Built-in dark mode capability
 - 🌈 Built-in theming for all apps
 - 🎛️ Easy conversions between RGB/HSL/LCH/LAB/XYZ spaces
 - 🕊️ No dependencies
 
 # But wait, what are design tokens?
-Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus on color tokens. 
+Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus just on colors. 
 
 ![Color Grid](/Tests/ColorTokensKitTests/Exports/color-grid.png)
 
