@@ -178,7 +178,7 @@ print(interpolatedColor) // Output: LCHColor(l: 50, c: 45, h: 75)
 ```
 
 ## Conversions
-ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, LAB, OKLAB, OKLCH etc. Here are some simple examples:
+ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, LAB etc. Here are some simple examples:
 
 ```swift
 
