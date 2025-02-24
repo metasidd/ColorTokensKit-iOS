@@ -81,7 +81,7 @@ And VOILA! You also now support dark mode out of the box.
 
 - Step 1. Install with SPM. Use `https://github.com/metasidd/ColorTokensKit-Swift.git` to install the package in your project.
 - Step 2. Add `import ColorTokensKit` to all files that need these tokens.
-- Step 3. Copy-paste [this file](/Tests/ColorTokensKitTests/Tests/ColorTokensKitTests/Marketing/Setup/ColorTokens.swift) into your project, or define your own tokens. An example is shown below.
+- Step 3. Copy-paste [this file](https://github.com/metasidd/ColorTokensKit-Swift/blob/main/Tests/ColorTokensKitTests/Marketing/Setup/ColorTokens.swift)) into your project, or define your own tokens. An example is shown below.
 - Step 4. That's all!
 
 # 🎁 Examples
