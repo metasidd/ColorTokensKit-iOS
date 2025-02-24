@@ -17,9 +17,6 @@ struct ColorGridView: View {
                 ColorColumn(name: ramp.name, color: ramp.color)
             }
         }
-        .padding(MarketingStyle.pagePadding)
-        .background(MarketingStyle.backgroundColor)
-        .background(Color.white)
     }
 }
 

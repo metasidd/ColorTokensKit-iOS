@@ -32,7 +32,6 @@ struct CoverImageView: View {
             }
         }
         .padding(0)
-        .background(Color.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
@@ -75,7 +74,7 @@ struct CoverImageView: View {
     }
 }
 
-struct AnyShape: Shape {
+private struct AnyShape: Shape {
     private let path: (CGRect) -> Path
 
     init<S: Shape>(_ shape: S) {

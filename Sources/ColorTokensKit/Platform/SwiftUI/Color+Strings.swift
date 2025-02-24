@@ -10,7 +10,7 @@ import SwiftUI
 public extension Color {
 
     /// Converts the `LCHColor` to a hexadecimal string representation.
-    public func getHexString() -> String {
+    func getHexString() -> String {
         let resolvedColor = resolve(in: .init())
 
         // Ensure RGB values are within [0, 1]
@@ -38,7 +38,7 @@ public extension Color {
     }
     
     /// Get LCH string representation
-    public func getLCHString() -> String {
+    func getLCHString() -> String {
         let lchColor = LCHColor(color: self)
         return "L:\(Int(lchColor.l)) C:\(Int(lchColor.c)) H:\(Int(lchColor.h))"
     }
