@@ -18,7 +18,7 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
 
 > 💚 The broader concept of LCH-based design tokens is widely trusted, and utilized by leading companies like [Linear](https://linear.app/blog/how-we-redesigned-the-linear-ui), [Slack](https://slack.design/articles/a-new-visual-language-for-slack/), [Stripe](https://stripe.com/blog/accessible-color-systems), [Zapier](https://zapier.com/blog/lch-easier-accessibility-prettier-colors/) and many others.
 
-# Why Native Apple Colors Aren't Enough
+# 🍎 Why Native Apple Colors Aren't Enough
 
 Swift's native color system provides only basic functionality for color representation. Native colors are limited to RGB and HSL, which do not offer perceptual uniformity. This can lead to inconsistent color experiences across different devices and environments. 
 
@@ -33,17 +33,17 @@ Text("The Everything Company")
   .background(Color.brandColor.backgroundPrimary) // ✅ Semantic naming, accessible, responsive to dark mode, and ergonomic. 
 ```
 
-# But wait, what are design tokens?
+# 🤔 But wait, what are design tokens?
 Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus just on colors. 
 
 ![Color Grid](/Tests/ColorTokensKitTests/Exports/color-grid.png)
 
-# What's LCH though? 
+# 🌈 What's LCH though? 
 The LCH (**L**ightness, **C**hroma, **H**ue) color system offers significant advantages over RGB and HSL based initializers. LCH is "perceptually uniform", meaning changes in color values correspond more closely to how humans perceive color differences. This makes it easier to create harmonious color palettes, ensure proper contrast for accessibility, and make predictable color adjustments. Unlike RGB or HSL, LCH also supports a wider gamut of colors and provides more intuitive control over color properties, making it an excellent choice for modern iOS app development.
 
 ![Color System Comparison](/Tests/ColorTokensKitTests/Exports/color-system-comparison.png)
 
-# Can you give me a quick example?
+# ✨ Can you give me a quick example?
 Imagine you have a primary color used for your brand. This color is used in various levels of brightness and saturation in various areas (backgrounds, text, hovers, buttons, onpress states etc). 
 
 Instead of hardcoding each of the color values in multiple places, you define a design token named `brandColor`. 
@@ -74,164 +74,18 @@ VStack {
 
 And VOILA! You also now support dark mode out of the box.
 
-# Installation
+# 📦 Getting Started
 
-ColorTokensKit provides a flexible framework for defining your own color stops and extensions. You can start by defining your own color tokens in your project. 
+- Step 1. Install with SPM. Use `https://github.com/metasidd/ColorTokensKit.git` to install the package in your project.
+- Step 2. Add `import ColorTokensKit` to all files that need these tokens.
+- Step 3. Copy-paste [this file](/Tests/ColorTokensKitTests/Tests/ColorTokensKitTests/Marketing/Setup/ColorTokens.swift) into your project, or define your own tokens. An example is shown below.
+- Step 4. That's all!
 
-## Step 1: Install with SPM
+# 🎁 Examples
 
-Use `https://github.com/metasidd/ColorTokensKit.git` to install the package in your project.
+## A Simple Card View ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/CardView.swift))
 
-## Step 2: Define Design Tokens
-Copy-pasta these design tokens into your project, or create your own. An example is shown below.
-
-```swift
-public extension LCHColor {
-    // Foreground colors
-    var foregroundPrimary: Color {
-        Color(light: _1000, dark:  _50)
-    }
-    var foregroundSecondary: Color {
-        Color(light: _800, dark: _200)
-    }
-    var foregroundTertiary: Color {
-        Color(light: _700, dark: _300) }
-
-    // Inverted foreground colors
-    var invertedForegroundPrimary: Color { 
-        Color(light: _50, dark: _1000) 
-    }
-    var invertedForegroundSecondary: Color { 
-        Color(light: _150, dark: _800) 
-    }
-    var invertedForegroundTertiary: Color { 
-        Color(light: _250, dark: _700) 
-    }
-
-    // Backgroundcolors
-    var backgroundPrimary: Color { 
-        Color(light: _50, dark: _1000) 
-    }
-    var backgroundSecondary: Color { 
-        Color(light: _100, dark: _800) 
-    }
-    var backgroundTertiary: Color { 
-        Color(light: _200, dark: _700) 
-    }
-    
-    // Surface colors
-    var surfacePrimary: Color {
-        Color(light: _200, dark: _700).opacity(0.5)
-    }
-    var surfaceSecondary: Color {
-        Color(light: _200, dark: _700).opacity(0.3)
-    }
-    var surfaceTertiary: Color {
-        Color(light: _200, dark: _700).opacity(0.1)
-    }
-
-    // Inverted surface colors
-    var invertedSurfacePrimary: Color {
-        Color(light: _400, dark: _600).opacity(0.4)
-    }
-    var invertedSurfaceSecondary: Color {
-        Color(light: _400, dark: _600).opacity(0.2)
-    }
-
-    // Inverted background colors
-    var invertedBackgroundPrimary: Color { 
-        Color(light: _900, dark: _50) 
-    }
-    var invertedBackgroundSecondary: Color { 
-        Color(light: _800, dark: _150) 
-    }
-    var invertedBackgroundTertiary: Color { 
-        Color(light: _650, dark: _250) 
-    }
-
-    // Outline colors
-    var outlinePrimary: Color { 
-        Color(light: _300, dark: _700) 
-    }
-    var outlineSecondary: Color { 
-        Color(light: _200, dark: _800)
-    }
-    var outlineTertiary: Color { 
-        Color(light: _100, dark: _900) 
-    }
-}
-```
-
-## Step 3: Create Your Default Gray Ramp
-
-Most of your app will have pieces of text, backgrounds, shadows, icons, and outlines. You can create a default gray ramp for your app by extending the `Color` type so you don't always have to type `.Color.proGray.foregroundPrimary`.
-
-```swift
-import SwiftUI
-import ColorTokensKit
-
-public extension Color {
-    // Foreground colors
-    static var foregroundPrimary: Color {
-        .proGray.foregroundPrimary
-    }
-
-    static var foregroundSecondary: Color {
-        .proGray.foregroundSecondary
-    }
-
-    static var foregroundTertiary: Color {
-        .proGray.foregroundTertiary
-    }
-
-    // Inverted colors
-    static var invertedForeground: Color {
-        .proGray.invertedForegroundPrimary
-    }
-
-    static var invertedForegroundSecondary: Color {
-        .proGray.invertedForegroundSecondary
-    }
-
-    static var invertedForegroundTertiary: Color {
-        .proGray.invertedForegroundTertiary
-    }
-
-    // Background colors
-    static var backgroundPrimary: Color {
-        Color(light: .white, dark: .black) // Pure black and white
-    }
-
-    static var backgroundSecondary: Color {
-        .proGray.backgroundSecondary
-    }
-
-    static var backgroundTertiary: Color {
-        .proGray.backgroundTertiary
-    }
-
-    // Outline colors
-    static var outlinePrimary: Color {
-        .proGray.outlinePrimary
-    }
-
-    static var outlineSecondary: Color {
-        .proGray.outlineSecondary
-    }
-
-    static var outlineTertiary: Color {
-        .proGray.outlineTertiary
-    }
-}
-```
-
-# Examples
-
-## Pills ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/PillView.swift))
-
-The `PillView` demonstrates the benefits of using ColorTokensKit's color tokens. You can use the pre-defined color tokens below (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`), or use the custom tokens you created in Step 2.
-
-![Pill View](/Tests/ColorTokensKitTests/Exports/pill-view.png)
+This is a simple card view that uses the basic gray ramp without using any theming shenanigans.
 
 ```swift
 import ColorTokensKit
@@ -250,11 +104,18 @@ struct CardView: View {
 }
 ```
 
+## Pills ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/PillView.swift))
+
+The `PillView` demonstrates the benefits of using ColorTokensKit's color tokens. You can use the pre-defined color tokens below (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`), or use the custom tokens you created in Step 2.
+
+![Pill View](/Tests/ColorTokensKitTests/Exports/pill-view.png)
+
 ## Themes & Dark mode ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/ThemedCardView.swift))
-![Simple Card View](/Tests/ColorTokensKitTests/Exports/simple-card-view.png)
-![Simple Card Dark Mode View](/Tests/ColorTokensKitTests/Exports/simple-card-dark-mode-view.png)
 
 Theming is made extremely ergonomic with this approach. You can pass theme values as needed, and all children elements are dynamically assigned colors depending on the LCH color chosen.
+
+![Simple Card View](/Tests/ColorTokensKitTests/Exports/simple-card-view.png)
+![Simple Card Dark Mode View](/Tests/ColorTokensKitTests/Exports/simple-card-dark-mode-view.png)
 
 ```swift
 import ColorTokensKit
@@ -302,11 +163,11 @@ struct CardView: View {
 }
 ```
 
-# Utilities 
+# 🛠️ Utilities
 
 In addition to just using color tokens, we offer some easy conversions, and interpolations colors for niche usecases.
 
-## Interpolating Colors
+## Interpolating
 Transitioning colors using LCH offer much smoother color values.
 
 ```swift
@@ -316,7 +177,7 @@ let interpolatedColor = color1.lerp(color2, t: 0.5)
 print(interpolatedColor) // Output: LCHColor(l: 50, c: 45, h: 75)
 ```
 
-## Converting Colors
+## Conversions
 ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, LAB, OKLAB, OKLCH etc. Here are some simple examples:
 
 ```swift
