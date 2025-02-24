@@ -7,8 +7,6 @@ By designers, for developers.
 
 ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 100's of pre-defined colors built using the LCH color system. 
 
-> **Note:** The broader concept of LCH-based design tokens are trusted, and utilized by leading companies like Linear, Slack, Stripe, Zapier and others.
-
 - 📱 Designed for apps of all sizes
 - ⭐️ Easy to use color token APIs
 - 🎨 Pre-defined LCH color palettes
@@ -17,6 +15,8 @@ ColorTokensKit is a powerful design library that extends Swift's native capabili
 - 🌈 Built-in theming for all apps
 - 🎛️ Easy conversions between RGB/HSL/LCH/LAB/XYZ spaces
 - 🕊️ No dependencies
+
+> 💚 The broader concept of LCH-based design tokens is widely trusted, and utilized by leading companies like [Linear](https://linear.app/blog/how-we-redesigned-the-linear-ui), [Slack](https://slack.design/articles/a-new-visual-language-for-slack/), [Stripe](https://stripe.com/blog/accessible-color-systems), [Zapier](https://zapier.com/blog/lch-easier-accessibility-prettier-colors/) and many others.
 
 # Why Native Apple Colors Aren't Enough
 
