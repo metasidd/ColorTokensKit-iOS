@@ -7,27 +7,39 @@ By designers, for developers.
 
 ColorTokensKit is a powerful design library that extends Swift's native capabilities by offering ergonomic access to the LCH color system, and 100's of pre-defined colors built using the LCH color system. 
 
-- [What are design tokens?](#what-are-design-tokens)
-- [How does LCH work?](#how-does-lch-work)
-- [Simple Example](#simple-example)
-- [Setting it up](#setting-it-up)
-- [Using them in the UI](#using-them-in-the-ui)
-- [Going beyond the basics](#going-beyond-the-basics)
-  - [Working with themes](#working-with-themes)
-  - [Making exceptions for dark mode](#making-exceptions-for-dark-mode)
-  - [Interpolating Colors](#interpolating-colors)
-  - [Convenience Functions](#convenience-functions)
-- [Sample Application](#sample-application)
-- [Future ideas](#future-ideas)
-- [License](#license)
+# Features
+- 📱 Designed for apps of all sizes
+- ⭐️ Easy to use color tokens APIs
+- 🎨 Pre-defined LCH color palettes
+- 🌘 Built-in dark mode capability
+- 🌈 Built-in theming for all apps
+- 🎛️ Easy conversions between RGB/HSL/LCH/LAB/XYZ spaces
+- 🕊️ No dependencies
 
-## What are design tokens?
+# But wait, what are design tokens?
 Design tokens are the fundamental building blocks of a design system. They represent the smallest, atomic decisions in your UI, such as colors, typography, spacing, and more. In the context of ColorTokensKit, we focus on color tokens. 
 
 ![Color Grid](/Tests/ColorTokensKitTests/Exports/color-grid.png)
 
-#### Example
-Imagine you have a primary color used for your brand. This color is used in various levels of brightness and saturation in various areas (backgrounds, text, hovers, buttons, onpress states etc). Instead of hardcoding each of the color values in multiple places, you define a design token named `brandColor`. Now, whenever the brand color needs to be used, you just use `brandColor.backgroundPrimary`. If it needs to change, you update just one token value, and all instances of `brandColor` in your app automatically update. Design tokens ensure consistency and make it easier to maintain and update your design system.
+# What's LCH though? 
+The LCH (**L**ightness, **C**hroma, **H**ue) color system offers significant advantages over RGB and HSL based initializers. LCH is "perceptually uniform", meaning changes in color values correspond more closely to how humans perceive color differences. This makes it easier to create harmonious color palettes, ensure proper contrast for accessibility, and make predictable color adjustments. Unlike RGB or HSL, LCH also supports a wider gamut of colors and provides more intuitive control over color properties, making it an excellent choice for modern iOS app development.
+
+![Color System Comparison](/Tests/ColorTokensKitTests/Exports/color-system-comparison.png)
+
+# Can you give me some examples?
+Imagine you have a primary color used for your brand. This color is used in various levels of brightness and saturation in various areas (backgrounds, text, hovers, buttons, onpress states etc). 
+
+Instead of hardcoding each of the color values in multiple places, you define a design token named `brandColor`. 
+
+```swift
+extension Color {
+    var brandColor: LCHColor {
+        LCHColor("#FF04DA") // The hex would represent your brand color
+    }
+}
+```
+
+Now, whenever the brand color needs to be used, you just use `brandColor.backgroundPrimary`. If the hue needs to change, you update just one token value, and all instances of `brandColor` in your app automatically update to the new colors. 
 
 ```swift
 Text("Hello to ColorTokensKit")
@@ -36,20 +48,17 @@ Text("Hello to ColorTokensKit")
   .background(Color.brandColor.backgroundPrimary) // ✅ Semantic naming, reusability, with accessible colors. 
 ```
 
-## What is the LCH color system? 
-The LCH (**L**ightness, **C**hroma, **H**ue) color system offers significant advantages over RGB and HSL based initializers. LCH is "perceptually uniform", meaning changes in color values correspond more closely to how humans perceive color differences. This makes it easier to create harmonious color palettes, ensure proper contrast for accessibility, and make predictable color adjustments. Unlike RGB or HSL, LCH also supports a wider gamut of colors and provides more intuitive control over color properties, making it an excellent choice for modern iOS app development.
+Design tokens ensure consistency and make it easier to maintain and update your design system.
 
-![Color System Comparison](/Tests/ColorTokensKitTests/Exports/color-system-comparison.png)
-
-## Installation
+# Installation
 
 ColorTokensKit provides a flexible framework for defining your own color stops and extensions. You can start by defining your own color tokens in your project. 
 
-### Step 1: Install with SPM
+## Step 1: Install with SPM
 
 Use `https://github.com/metasidd/ColorTokensKit.git` to install the package in your project.
 
-### Step 2: Define Design Tokens
+## Step 2: Define Design Tokens
 Copy-pasta these design tokens into your project, or create your own. An example is shown below.
 
 ```swift
@@ -129,7 +138,7 @@ public extension LCHColor {
 }
 ```
 
-### Step 3: Create Your Default Gray Ramp
+## Step 3: Create Your Default Gray Ramp
 
 Most of your app will have pieces of text, backgrounds, shadows, icons, and outlines. You can create a default gray ramp for your app by extending the `Color` type so you don't always have to type `.Color.proGray.foregroundPrimary`.
 
@@ -192,9 +201,9 @@ public extension Color {
 }
 ```
 
-## Examples
+# Examples
 
-### Pills ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/PillView.swift))
+## Pills ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/PillView.swift))
 
 The `PillView` demonstrates the benefits of using ColorTokensKit's color tokens. You can use the pre-defined color tokens below (like `Color.backgroundPrimary`, `Color.foregroundTertiary`, `Color.outlinePrimary`), or use the custom tokens you created in Step 2.
 
@@ -217,7 +226,7 @@ struct CardView: View {
 }
 ```
 
-### Themes & Dark mode ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/ThemedCardView.swift))
+## Themes & Dark mode ([Example Code](/Tests/ColorTokensKitTests/Marketing/Views/ThemedCardView.swift))
 ![Simple Card View](/Tests/ColorTokensKitTests/Exports/simple-card-view.png)
 ![Simple Card Dark Mode View](/Tests/ColorTokensKitTests/Exports/simple-card-dark-mode-view.png)
 
@@ -269,7 +278,11 @@ struct CardView: View {
 }
 ```
 
-### Interpolating Colors
+# Utilities 
+
+In addition to just using color tokens, we offer some easy conversions, and interpolations colors for niche usecases.
+
+## Interpolating Colors
 Transitioning colors using LCH offer much smoother color values.
 
 ```swift
@@ -279,7 +292,7 @@ let interpolatedColor = color1.lerp(color2, t: 0.5)
 print(interpolatedColor) // Output: LCHColor(l: 50, c: 45, h: 75)
 ```
 
-### Convenience Functions
+## Converting Colors
 ColorKit allows you to convert between different color types - RGB, HSL, HEX, LCH, LAB, OKLAB, OKLCH etc. Here are some simple examples:
 
 ```swift
@@ -312,10 +325,6 @@ let uiColor = lchColor.toColor()
 print(uiColor) // Output: UIDeviceRGBColorSpace 0.5 0.4 0.3 1
 
 ```
-
-## Sample Application
-Open `ColorGenerator.xcproject` from the File Explorer to explore the spectrum of colors.
-[insert image of the application]
 
 ## Future Ideas
 - [ ] Offer `.lighten()`, `.darken()`, `.saturate()` and `.desaturate()` for LCH Colors
