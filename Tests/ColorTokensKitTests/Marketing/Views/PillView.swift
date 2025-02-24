@@ -5,56 +5,105 @@ struct PillView: View {
     private let nativeColors: [(name: String, color: Color)] = [
         ("Gray", .gray),
         ("Red", .red),
-        ("Blue", .blue),
-        ("Green", .green),
+        ("Brown", .brown),
         ("Yellow", .yellow),
-        ("Purple", .purple)
+        ("Green", .green),
+        ("Mint", .mint),
+        ("Cyan", .cyan),
+        ("Teal", .teal),
+        ("Blue", .blue),
+        ("Indigo", .indigo),
+        ("Purple", .purple),
+        ("Black", .black)
     ]
     
-    private let colorTokenColors: [(name: String, color: LCHColor)] = [
-        ("Gray", Color.proGray),
-        ("Red", Color.proRed),
-        ("Blue", Color.proIndigo),
-        ("Green", Color.proGreen),
-        ("Yellow", Color.proYellow),
-        ("Purple", Color.proPurple)
-    ]
+    private var colorRamps: [(name: String, color: LCHColor)] {
+        Color.allProHues.map { (name: $0.key, color: $0.value) }
+            .sorted { lhs, rhs in
+                if lhs.name == "Gray" { return true }
+                if rhs.name == "Gray" { return false }
+                return lhs.color.h < rhs.color.h
+            }
+    }
     
     var body: some View {
         VStack(alignment: .center, spacing: 128) {
             VStack(alignment: .center, spacing: 48) {
-                Text("👎 With SwiftUI Colors")
+                VStack(spacing: 8) {
+                    Text("👎 SwiftUI Colors")
+                        .font(.system(size: 32, weight: .black))
+                        .foregroundStyle(Color.foregroundPrimary)
+                    Text("Limited, not balanced, and not customizable")
+                        .font(.system(size: 24, weight: .regular))
+                        .foregroundStyle(Color.foregroundTertiary)
+                }
                 
-                HStack(spacing: 16) {
-                    ForEach(nativeColors, id: \.name) { colorInfo in
-                        makePill(text: "\(colorInfo.name) Pill",
-                               color: colorInfo.color)
+                VStack(spacing: 16) {
+                    HStack(spacing: 16) {
+                        ForEach(nativeColors.prefix(nativeColors.count / 2), id: \.name) { colorInfo in
+                            makePill(text: "\(colorInfo.name)",
+                                     color: colorInfo.color)
+                        }
+                    }
+                    
+                    HStack(spacing: 16) {
+                        ForEach(nativeColors.suffix(nativeColors.count / 2), id: \.name) { colorInfo in
+                            makePill(text: "\(colorInfo.name)",
+                                     color: colorInfo.color)
+                        }
                     }
                 }
             }
             
             VStack(alignment: .center, spacing: 48) {
-                Text("🔥 With Color Tokens")
+                VStack(spacing: 8) {
+                    Text("🔥 Example Color Tokens")
+                        .foregroundStyle(Color.foregroundPrimary)
+                        .font(.system(size: 32, weight: .black))
+                    
+                    Text("Unlimited colors, balanced for depth,  customizable to your brand")
+                        .font(.system(size: 24, weight: .regular))
+                        .foregroundStyle(Color.foregroundTertiary)
+                }
                 
-                HStack(spacing: 16) {
-                    ForEach(Array(colorTokenColors), id: \.name) { name, color in
-                        makeThemedPill(text: "\(name) Pill", theme: color)
+                VStack(spacing: 16) {
+                    let numberOfItemsPerRow = Int(colorRamps.count / 3)
+                    
+                    HStack(spacing: 16) {
+                        ForEach(colorRamps.dropLast(numberOfItemsPerRow * 2), id: \.name) { colorInfo in
+                            makeThemedPill(text: "\(colorInfo.name)",
+                                     theme: colorInfo.color)
+                        }
+                    }
+                    
+                    HStack(spacing: 16) {
+                        ForEach(colorRamps.dropFirst(numberOfItemsPerRow).dropLast(numberOfItemsPerRow), id: \.name) { colorInfo in
+                            makeThemedPill(text: "\(colorInfo.name)",
+                                     theme: colorInfo.color)
+                        }
+                    }
+                    
+                    HStack(spacing: 16) {
+                        ForEach(colorRamps.dropFirst(numberOfItemsPerRow * 2), id: \.name) { colorInfo in
+                            makeThemedPill(text: "\(colorInfo.name)",
+                                     theme: colorInfo.color)
+                        }
                     }
                 }
             }
         }
-        .font(.system(size: 36, weight: .black, design: .monospaced))
+        .fontDesign(.monospaced)
         .padding(MarketingStyle.pagePadding)
         .frame(maxWidth: .infinity, alignment: .center)
     }
     
     private func makePill(text: String, color: Color) -> some View {
-        Text(text)
+        return Text(text)
             .font(.title)
-            .foregroundColor(color)
+            .foregroundColor(Color.primary)
             .padding(.horizontal, 32)
             .padding(.vertical, 12)
-            .background(color.opacity(0.2))
+            .background(color.quinary)
             .clipShape(Capsule())
     }
     
