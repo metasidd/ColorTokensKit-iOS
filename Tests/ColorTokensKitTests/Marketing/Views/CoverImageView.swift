@@ -74,7 +74,7 @@ struct CoverImageView: View {
     }
 }
 
-struct AnyShape: Shape {
+private struct AnyShape: Shape {
     private let path: (CGRect) -> Path
 
     init<S: Shape>(_ shape: S) {

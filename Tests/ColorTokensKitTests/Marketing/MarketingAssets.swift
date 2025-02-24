@@ -72,7 +72,6 @@ public struct MarketingAssets {
         // Create and configure the hosting controller
         let hostingController = UIHostingController(rootView: view)
         hostingController.view.frame = CGRect(origin: .zero, size: size)
-        hostingController.view.backgroundColor = .white
         
         // Create a new window for rendering
         let window = UIWindow(frame: CGRect(origin: .zero, size: size))
